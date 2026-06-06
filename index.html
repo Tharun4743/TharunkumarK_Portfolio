@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tharunkumar K | Full Stack Developer</title>
+
+    <!-- Tailwind via CDN (simple setup) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --theme-primary: #2563eb;
+        --theme-secondary: #4f46e5;
+        --theme-bg-soft: #eff6ff;
+        --theme-glow: rgba(37, 99, 235, 0.2);
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+        background-color: #ffffff;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(226, 232, 240, 0.5);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .bg-theme-gradient {
+        background: linear-gradient(to bottom right, var(--theme-primary), var(--theme-secondary));
+      }
+      .text-theme {
+        color: var(--theme-primary);
+      }
+      .bg-theme {
+        background-color: var(--theme-primary);
+      }
+      .border-theme {
+        border-color: var(--theme-primary);
+      }
+      .bg-theme-soft {
+        background-color: var(--theme-bg-soft);
+      }
+      section {
+        scroll-margin-top: 100px;
+      }
+      ::selection {
+        background: var(--theme-bg-soft);
+        color: var(--theme-primary);
+      }
+    </style>
+  </head>
+  <body class="text-slate-900 antialiased overflow-x-hidden">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
