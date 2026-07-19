@@ -22,14 +22,6 @@
 <br clear="both"/>
 </div>
 
-<div align="center">
-
-![Hackathon Winner](https://img.shields.io/badge/Hackathon_Winner-Code_Thugs_2k26-38BDF8?style=flat)
-&nbsp;
-![GFG Campus Mantri](https://img.shields.io/badge/GFG_Campus_Mantri-2F8D46?style=flat)
-
-</div>
-
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&section=header" width="100%">
 
 <!-- ============================================= -->
@@ -213,14 +205,6 @@ An intelligent IoT helmet system that proactively prevents accidents by monitori
 <!-- ============================================= -->
 
 ## 📊 GitHub Analytics
-
-<div align="center">
-
-<img src="https://github-profile-trophy.vercel.app/?username=Tharun4743&amp;theme=tokyonight&amp;no-frame=true&amp;no-bg=true&amp;margin-w=4&amp;column=7" width="100%" alt="Trophies"/>
-
-</div>
-
-<br/>
 
 <div align="center">
   <img src="https://streak-stats.demolab.com?user=Tharun4743&amp;theme=tokyonight&amp;hide_border=true&amp;date_format=j%20M%5B%20Y%5D" height="165"/>
