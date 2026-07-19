@@ -32,8 +32,6 @@
 
 > Full stack developer passionate about building scalable web applications. Currently interning at **Neura Global** (a startup), working with React, Node.js, TypeScript, and PostgreSQL. Thrives on learning, collaborating with teams, and solving complex challenges.
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=14&pause=2000&color=38BDF8&width=700&lines=📍+Dharapuram%2C+Tamil+Nadu+%7C+✉️+tharunkumark42007%40gmail.com+%7C+🎓+B.Tech+IT+%40+VSB+Engineering+College" alt="Info"/>
-
 | 📍 Location | ✉️ Email | 🔗 LeetCode | 🌐 GeeksforGeeks |
 |:---:|:---:|:---:|:---:|
 | Dharapuram, Tamil Nadu | tharunkumark42007@gmail.com | [Tharunkumar\_\_K](https://leetcode.com/u/Tharunkumar__K/) | [tharunkumark4743](https://www.geeksforgeeks.org/profile/tharunkumark4743) |
