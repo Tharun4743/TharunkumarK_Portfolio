@@ -18,12 +18,16 @@
 <br/><br/>
 
 <img src="https://komarev.com/ghpvc/?username=Tharun4743&label=Profile+Views&color=0e75b6&style=flat" alt="Profile Views"/>
-&nbsp;
-<img src="https://img.shields.io/badge/Hackathon_Winner-Code_Thugs_2k26-38BDF8?style=flat" alt="Hackathon Winner"/>
-&nbsp;
-<img src="https://img.shields.io/badge/GFG_Campus_Mantri-2F8D46?style=flat" alt="GFG Campus Mantri"/>
 
 <br clear="both"/>
+</div>
+
+<div align="center">
+
+![Hackathon Winner](https://img.shields.io/badge/Hackathon_Winner-Code_Thugs_2k26-38BDF8?style=flat)
+&nbsp;
+![GFG Campus Mantri](https://img.shields.io/badge/GFG_Campus_Mantri-2F8D46?style=flat)
+
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&section=header" width="100%">
@@ -212,22 +216,22 @@ An intelligent IoT helmet system that proactively prevents accidents by monitori
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=Tharun4743&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=1" width="100%" alt="Trophies"/>
+<img src="https://github-profile-trophy.vercel.app/?username=Tharun4743&amp;theme=tokyonight&amp;no-frame=true&amp;no-bg=true&amp;margin-w=4&amp;column=7" width="100%" alt="Trophies"/>
 
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=Tharun4743&theme=tokyonight&hide_border=true&date_format=j%20M%5B%20Y%5D" height="165"/>
+  <img src="https://streak-stats.demolab.com?user=Tharun4743&amp;theme=tokyonight&amp;hide_border=true&amp;date_format=j%20M%5B%20Y%5D" height="165"/>
   &nbsp;&nbsp;
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tharun4743&layout=compact&theme=tokyonight&hide_border=true&langs_count=8&cache_seconds=3600" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tharun4743&amp;layout=compact&amp;theme=tokyonight&amp;hide_border=true&amp;langs_count=8&amp;cache_seconds=3600" height="165"/>
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Tharun4743&theme=tokyo-night&hide_border=true&area=true&area_color=38BDF8" width="95%" alt="Activity Graph"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Tharun4743&amp;theme=tokyo-night&amp;hide_border=true&amp;area=true&amp;area_color=38BDF8" width="95%" alt="Activity Graph"/>
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=3&section=header" width="100%">
