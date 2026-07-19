@@ -6,7 +6,7 @@
 
 <h3>👋 Hi, I'm <strong>Tharunkumar K</strong></h3>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=38BDF8&width=500&lines=Full+Stack+Developer+%F0%9F%9A%80;IoT+%26+Embedded+Systems+Engineer+%F0%9F%AA%96;AI+%26+RAG+Systems+Builder+%F0%9F%A7%A0;Hackathon+Winner+%F0%9F%8F%85;Open+Source+Contributor+%F0%9F%8C%9F" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=38BDF8&width=550&lines=Full+Stack+Developer+%F0%9F%9A%80;IoT+%26+Embedded+Systems+Engineer+%F0%9F%AA%96;AI+%26+RAG+Systems+Builder+%F0%9F%A7%A0;Hackathon+Winner+%28Code+Thugs+2k26%29+%F0%9F%8F%85;Open+Source+Contributor+%F0%9F%8C%9F" alt="Typing SVG" />
 
 <p>Building intelligent web applications, desktop software, and safety IoT systems that solve real-world problems.</p>
 
