@@ -208,8 +208,6 @@ An intelligent IoT helmet system that proactively prevents accidents by monitori
 
 <div align="center">
   <img src="https://streak-stats.demolab.com?user=Tharun4743&amp;theme=tokyonight&amp;hide_border=true&amp;date_format=j%20M%5B%20Y%5D" height="165"/>
-  &nbsp;&nbsp;
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tharun4743&amp;layout=compact&amp;theme=tokyonight&amp;hide_border=true&amp;langs_count=8&amp;cache_seconds=3600" height="165"/>
 </div>
 
 <br/>
