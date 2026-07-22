@@ -487,8 +487,8 @@ const AIChatbot: React.FC = () => {
       answer: "Tharunkumar K is a passionate Full Stack Developer and IoT enthusiast from Tamil Nadu, currently pursuing a B.Tech in IT at VSB Engineering College (CGPA: 8.5). He specializes in React, Node.js, TypeScript, PostgreSQL, and embedded IoT designs."
     },
     {
-      keywords: ['project', 'work', 'build', 'portfolio', 'top', 'technical', 'skills', 'tech', 'stack', 'helmet', 'backend'],
-      answer: "Tharun has built several impressive engineering solutions:\n\n• Aura: 100% Offline Multimodal RAG System (Spring Boot, Llama-3, CLIP).\n• Campus Connect: Full-stack Placement Cell Platform (reduces hiring cycle by 40% using Supabase, Node.js).\n• Techy Tharun's Chatbox: Multi-modal GPT-4o conversational AI (Next.js 15, Neon Postgres).\n• Smart Helmet IoT System: Sobriety check, drowsiness detection & RF cutoff ignition relay (SIH 2025 Top 50)."
+      keywords: ['project', 'work', 'build', 'portfolio', 'top', 'technical', 'skills', 'tech', 'stack', 'helmet', 'backend', 'task', 'vsbec'],
+      answer: "Tharun has built several impressive engineering solutions:\n\n• VSBEC Academic Task Manager: Production-deployed full-stack task collection & role-based workflow system currently implemented in department (React, Node.js, PostgreSQL).\n• Aura: 100% Offline Multimodal RAG System (Spring Boot, Llama-3, CLIP).\n• Campus Connect: Full-stack Placement Cell Platform (Supabase, Node.js).\n• Techy Tharun's Chatbox: Multi-modal GPT-4o conversational AI (Next.js 15, Neon Postgres).\n• Smart Helmet IoT System: Sobriety check, drowsiness detection & RF cutoff ignition relay (SIH 2025 Top 50)."
     },
     {
       keywords: ['intern', 'experience', 'neura', 'infosys', 'job'],
@@ -544,7 +544,7 @@ const AIChatbot: React.FC = () => {
           >
             <div className="p-6 bg-theme text-white flex items-center justify-between shadow-md">
               <div className="flex items-center gap-3">
-                <img src={PERSONAL_INFO.profileImage} alt="Tharunkumar K" className="w-10 h-10 min-w-[40px] rounded-xl object-cover object-center border-2 border-white/20 shadow-sm flex-shrink-0" />
+                <img src={PERSONAL_INFO.profileImage} alt="Tharunkumar K" className="w-10 h-10 min-w-[40px] rounded-xl object-cover object-top border-2 border-white/20 shadow-sm flex-shrink-0" />
                 <div>
                   <h3 className="font-bold text-sm">Tharun's Assistant</h3>
                   <p className="text-[10px] text-white/80">Online & Ready</p>
@@ -559,7 +559,7 @@ const AIChatbot: React.FC = () => {
               {messages.map((msg, i) => (
                 <div key={i} className={`flex w-full ${msg.sender === 'user' ? 'justify-end' : 'justify-start gap-2 items-end'}`}>
                   {msg.sender === 'bot' && (
-                    <img src={PERSONAL_INFO.profileImage} alt="Assistant" className="w-6 h-6 rounded-full object-cover object-center shadow-sm flex-shrink-0 mb-1 border border-slate-200" />
+                    <img src={PERSONAL_INFO.profileImage} alt="Assistant" className="w-6 h-6 rounded-full object-cover object-top shadow-sm flex-shrink-0 mb-1 border border-slate-200" />
                   )}
                   <div
                     className={`max-w-[80%] px-4 py-3 rounded-2xl text-[13.5px] leading-relaxed whitespace-pre-line shadow-sm ${
@@ -729,6 +729,17 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [activeProject]);
+
+  useEffect(() => {
     const fetchGitHub = async () => {
       try {
         const userRes = await fetch('https://api.github.com/users/Tharun4743');
@@ -889,7 +900,7 @@ const App: React.FC = () => {
                   <img
                     src={PERSONAL_INFO.profileImage}
                     alt={PERSONAL_INFO.name}
-                    className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-1000"
+                    className="w-full h-full object-cover object-top scale-100 group-hover:scale-105 transition-transform duration-1000"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop';
@@ -1161,59 +1172,86 @@ const App: React.FC = () => {
                   onClick={() => setActiveProject(project)}
                   className="group bg-white rounded-[3.5rem] overflow-hidden flex flex-col border border-slate-100 hover:border-theme transition-all hover:shadow-3xl cursor-pointer"
                 >
-                  <div className="p-12 flex flex-col h-full">
-                    <div className="flex justify-between items-start mb-8">
-                      <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-theme transition-colors tracking-tighter">
-                        {project.title}
-                      </h3>
-                      <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
-                        {project.githubLink && (
-                          <motion.a
-                            whileHover={{ scale: 1.1, y: -5 }}
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-4 bg-slate-50 rounded-2xl shadow-sm text-slate-400 hover:text-theme transition-all border border-slate-100"
-                            title="View on GitHub"
-                          >
-                            <Github size={20} />
-                          </motion.a>
-                        )}
-                        {project.driveLink && (
-                          <motion.a
-                            whileHover={{ scale: 1.1, y: -5 }}
-                            href={project.driveLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-4 bg-slate-50 rounded-2xl shadow-sm text-slate-400 hover:text-theme transition-all border border-slate-100"
-                            title="Project Files"
-                          >
-                            <FileText size={20} />
-                          </motion.a>
-                        )}
-                        {project.link && project.link !== '#' && (
-                          <motion.a
-                            whileHover={{ scale: 1.1, y: -5 }}
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-4 bg-slate-50 rounded-2xl shadow-sm text-slate-400 hover:text-theme transition-all border border-slate-100"
-                            title="Live Demo"
-                          >
-                            <ExternalLink size={20} />
-                          </motion.a>
-                        )}
+                  <div className="p-10 flex flex-col h-full items-center text-center">
+                    {/* 1. Project Logo / Icon */}
+                    {project.image && (
+                      <div className="mb-6 flex justify-center">
+                        <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative group-hover:scale-105 transition-transform duration-500 flex-shrink-0">
+                          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                        </div>
                       </div>
-                    </div>
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-12 font-medium">
+                    )}
+
+                    {/* 2. Category Badge */}
+                    <span className="px-3.5 py-1 bg-theme-soft text-theme font-bold rounded-lg text-xs uppercase tracking-wider mb-3">
+                      {project.category === 'fullstack' ? 'Full-Stack Web Application' : project.category === 'iot' ? 'IoT & Embedded Safety System' : project.category}
+                    </span>
+
+                    {/* 3. Title */}
+                    <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors tracking-tighter mb-3">
+                      {project.title}
+                    </h3>
+
+                    {/* 4. Short Description */}
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6 font-medium max-w-lg">
                       {project.description}
                     </p>
-                    <div className="mt-auto flex flex-wrap gap-3">
+
+                    {/* 5. Status Badges */}
+                    {(project.status || project.realWorldImplementation) && (
+                      <div className="flex flex-wrap justify-center gap-2 mb-6">
+                        {project.status && (
+                          <span className="px-3 py-1 bg-emerald-50 text-emerald-600 font-extrabold rounded-lg text-[10px] border border-emerald-100 uppercase tracking-wider">
+                            {project.status}
+                          </span>
+                        )}
+                        {project.realWorldImplementation && (
+                          <span className="px-3 py-1 bg-indigo-50 text-indigo-600 font-extrabold rounded-lg text-[10px] border border-indigo-100 uppercase tracking-wider">
+                            Implemented in Dept
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* 6. Technology Badges */}
+                    <div className="mt-auto flex flex-wrap justify-center gap-2 mb-8">
                       {project.tags.map((tag, tIdx) => (
-                        <span key={tIdx} className="px-5 py-2.5 bg-slate-50 text-[10px] sm:text-xs font-black text-slate-500 rounded-xl border border-slate-200 uppercase tracking-widest group-hover:border-theme-soft group-hover:text-theme transition-colors">
+                        <span key={tIdx} className="px-3 py-1.5 bg-slate-50 text-[10px] sm:text-xs font-bold text-slate-500 rounded-xl border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
                           {tag}
                         </span>
                       ))}
+                    </div>
+
+                    {/* 7. Action Button */}
+                    <div className="w-full flex justify-center gap-3 pt-4 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
+                      <button
+                        onClick={() => setActiveProject(project)}
+                        className="px-6 py-2.5 bg-theme text-white text-xs font-bold rounded-xl shadow-md hover:brightness-110 transition-all flex items-center gap-2"
+                      >
+                        View Project <ChevronRight size={14} />
+                      </button>
+                      {project.link && project.link !== '#' && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors"
+                          title="Live Demo"
+                        >
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
+                      {project.githubLink && (
+                        <a
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors"
+                          title="GitHub Repository"
+                        >
+                          <Github size={16} />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -1238,36 +1276,149 @@ const App: React.FC = () => {
                 initial={{ scale: 0.9, opacity: 0, y: 30 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 30 }}
-                className="w-full max-w-3xl bg-white rounded-[2.5rem] border border-slate-200 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.4)] overflow-hidden glass-effect z-10 max-h-[85vh] flex flex-col"
+                className="w-full max-w-3xl bg-white rounded-[2.5rem] border border-slate-200 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.4)] overflow-hidden glass-effect z-10 max-h-[90vh] flex flex-col relative"
               >
-                {/* Modal Header */}
-                <div className="p-8 border-b border-slate-100 flex justify-between items-start flex-shrink-0">
-                  <div>
-                    <span className="px-3.5 py-1 bg-theme-soft text-theme font-bold rounded-lg text-xs border border-theme/10 mb-3 inline-block mr-2">
-                      {activeProject.date}
-                    </span>
-                    {activeProject.myRole && (
-                      <span className="px-3.5 py-1 bg-emerald-50 text-emerald-600 font-bold rounded-lg text-xs border border-emerald-100 mb-3 inline-block">
-                        {activeProject.myRole}
-                      </span>
+                {/* Floating Top Close Button */}
+                <button
+                  onClick={() => setActiveProject(null)}
+                  className="absolute top-6 right-6 z-30 p-2.5 bg-white/90 backdrop-blur-md hover:bg-slate-100 rounded-full text-slate-500 hover:text-slate-900 shadow-md border border-slate-200 transition-all"
+                  title="Close Modal"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Single Scrollable Container */}
+                <div className="overflow-y-auto max-h-[90vh] scrollbar-thin">
+                  {/* Modal Hero Header Section */}
+                  <div className="p-8 sm:p-10 border-b border-slate-100 bg-slate-50/70 flex flex-col items-center text-center">
+                    {/* 1. Logo */}
+                    {activeProject.image && (
+                      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-2xl ring-1 ring-slate-200/60 mb-4 flex-shrink-0">
+                        <img src={activeProject.image} alt={activeProject.title} className="w-full h-full object-cover" />
+                      </div>
                     )}
-                    <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter">
+
+                    {/* 2. Category */}
+                    <span className="px-3.5 py-1 bg-theme-soft text-theme font-bold rounded-lg text-xs uppercase tracking-wider mb-2">
+                      {activeProject.category === 'fullstack' ? 'Full-Stack Web Application' : activeProject.category === 'iot' ? 'IoT & Embedded Safety System' : activeProject.category}
+                    </span>
+
+                    {/* 3. Title */}
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter mb-3">
                       {activeProject.title}
                     </h3>
-                  </div>
-                  <button onClick={() => setActiveProject(null)} className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 hover:text-slate-700 transition-colors">
-                    <X size={22} />
-                  </button>
-                </div>
 
-                {/* Modal Body */}
-                <div className="p-8 overflow-y-auto space-y-6 flex-grow">
+                    {/* 4. Short Summary */}
+                    <p className="text-slate-600 text-sm sm:text-base font-medium max-w-xl mb-4">
+                      {activeProject.description}
+                    </p>
+
+                    {/* 5. Status & Role Badges */}
+                    <div className="flex flex-wrap justify-center gap-2 mb-6">
+                      {activeProject.date && (
+                        <span className="px-3.5 py-1 bg-theme-soft text-theme font-bold rounded-lg text-xs border border-theme/10">
+                          {activeProject.date}
+                        </span>
+                      )}
+                      {activeProject.status && (
+                        <span className="px-3.5 py-1 bg-emerald-50 text-emerald-600 font-bold rounded-lg text-xs border border-emerald-100">
+                          {activeProject.status}
+                        </span>
+                      )}
+                      {activeProject.myRole && (
+                        <span className="px-3.5 py-1 bg-slate-100 text-slate-700 font-bold rounded-lg text-xs border border-slate-200">
+                          {activeProject.myRole}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* 6. Action CTA Buttons */}
+                    <div className="flex flex-wrap justify-center gap-3">
+                      {activeProject.link && activeProject.link !== '#' && (
+                        <a
+                          href={activeProject.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-2.5 bg-theme text-white rounded-xl text-xs font-bold flex items-center gap-2 hover:brightness-110 transition-colors shadow-md"
+                        >
+                          <ExternalLink size={16} /> Live Demo
+                        </a>
+                      )}
+                      {activeProject.githubLink && (
+                        <a
+                          href={activeProject.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black transition-colors shadow-md"
+                        >
+                          <Github size={16} /> GitHub Repository
+                        </a>
+                      )}
+                      {activeProject.driveLink && (
+                        <a
+                          href={activeProject.driveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-2.5 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-slate-300 transition-colors"
+                        >
+                          <FileText size={16} /> Project Resources
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Modal Scrollable Body */}
+                  <div className="p-8 sm:p-10 space-y-6">
+                  {activeProject.realWorldImplementation && (
+                    <div className="p-5 bg-indigo-50/70 rounded-2xl border border-indigo-200/70 flex items-start gap-3">
+                      <Sparkles className="text-indigo-600 flex-shrink-0 mt-0.5" size={20} />
+                      <div>
+                        <h4 className="text-[10px] sm:text-xs font-black text-indigo-600 uppercase tracking-widest mb-1">Real-World Implementation</h4>
+                        <p className="text-slate-800 text-xs sm:text-sm font-bold leading-relaxed">
+                          {activeProject.realWorldImplementation}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   <div>
                     <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
-                    <p className="text-slate-600 leading-relaxed font-medium text-base">
+                    <p className="text-slate-600 leading-relaxed font-medium text-base whitespace-pre-line">
                       {activeProject.longDescription || activeProject.description}
                     </p>
                   </div>
+
+                  {activeProject.problem && (
+                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                      <h4 className="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Problem Statement</h4>
+                      <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
+                        {activeProject.problem}
+                      </p>
+                    </div>
+                  )}
+
+                  {activeProject.solution && (
+                    <div className="p-5 bg-emerald-50/40 rounded-2xl border border-emerald-100/50">
+                      <h4 className="text-[10px] sm:text-xs font-black text-emerald-600 uppercase tracking-widest mb-2">Solution</h4>
+                      <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
+                        {activeProject.solution}
+                      </p>
+                    </div>
+                  )}
+
+                  {activeProject.roleStructure && (
+                    <div>
+                      <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Role-Based Architecture</h4>
+                      <div className="grid gap-3">
+                        {activeProject.roleStructure.map((roleItem, rIdx) => (
+                          <div key={rIdx} className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <span className="text-xs font-black text-slate-900 block mb-1">{roleItem.role}</span>
+                            <p className="text-slate-600 text-xs font-medium leading-relaxed">{roleItem.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Dynamic Custom Features */}
                   {activeProject.features && (
@@ -1287,7 +1438,7 @@ const App: React.FC = () => {
                   {/* Custom Architecture Block */}
                   {activeProject.architecture && (
                     <div className="p-5 bg-blue-50/40 rounded-2xl border border-blue-100/50">
-                      <h4 className="text-[10px] sm:text-xs font-black text-blue-500 uppercase tracking-widest mb-2">System Architecture</h4>
+                      <h4 className="text-[10px] sm:text-xs font-black text-blue-500 uppercase tracking-widest mb-2">System Architecture & Data Isolation</h4>
                       <p className="text-slate-700 text-xs leading-relaxed font-medium">
                         {activeProject.architecture}
                       </p>
@@ -1308,7 +1459,7 @@ const App: React.FC = () => {
                   {activeProject.impact && (
                     <div className="p-5 bg-amber-50/40 rounded-2xl border border-amber-100/50">
                       <h4 className="text-[10px] sm:text-xs font-black text-amber-600 uppercase tracking-widest mb-2">Impact & Results</h4>
-                      <p className="text-slate-700 text-xs leading-relaxed font-medium">
+                      <p className="text-slate-700 text-xs leading-relaxed font-medium whitespace-pre-line">
                         {activeProject.impact}
                       </p>
                     </div>
@@ -1326,7 +1477,7 @@ const App: React.FC = () => {
 
                   {/* Tags */}
                   <div>
-                    <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Tech Arsenal Used</h4>
+                    <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {activeProject.tags.map((tag, tIdx) => (
                         <span key={tIdx} className="px-3.5 py-1.5 bg-slate-50 text-xs font-black text-slate-500 rounded-lg border border-slate-200">
@@ -1336,42 +1487,9 @@ const App: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Modal Footer Links */}
-                <div className="p-8 bg-slate-50 border-t border-slate-100 flex gap-4 flex-shrink-0">
-                  {activeProject.githubLink && (
-                    <a
-                      href={activeProject.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black transition-colors shadow-md"
-                    >
-                      <Github size={16} /> GitHub Repository
-                    </a>
-                  )}
-                  {activeProject.link && activeProject.link !== '#' && (
-                    <a
-                      href={activeProject.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 bg-theme text-white rounded-xl text-xs font-bold flex items-center gap-2 hover:brightness-110 transition-colors shadow-md"
-                    >
-                      <ExternalLink size={16} /> Live Demo Link
-                    </a>
-                  )}
-                  {activeProject.driveLink && (
-                    <a
-                      href={activeProject.driveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-slate-300 transition-colors"
-                    >
-                      <FileText size={16} /> Project Resources
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
+          </div>
           )}
         </AnimatePresence>
       </section>

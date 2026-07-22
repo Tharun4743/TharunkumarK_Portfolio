@@ -1,3 +1,8 @@
+export type RoleItem = {
+  role: string;
+  description: string;
+};
+
 export type Project = {
   title: string;
   description: string;
@@ -14,6 +19,12 @@ export type Project = {
   myRole?: string;
   impact?: string;
   keyLearnings?: string;
+  status?: string;
+  realWorldImplementation?: string;
+  problem?: string;
+  solution?: string;
+  roleStructure?: RoleItem[];
+  image?: string;
 };
 
 export type SkillCategory = {

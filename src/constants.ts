@@ -1,6 +1,11 @@
 import { Project, CertificationItem, SkillCategory } from './type';
 
 import profileImg from './assets/profile.png';
+import vsbecTaskManagerImg from './assets/vsbec-task-manager.png';
+import campusConnectImg from './assets/campusconnect.jpeg';
+import auraImg from './assets/aura.png';
+import chatboxImg from './assets/chatbox.png';
+import smartHelmetImg from './assets/smart-helmet.png';
 
 export const PERSONAL_INFO = {
   name: 'Tharunkumar K',
@@ -136,7 +141,7 @@ export const CERTIFICATIONS: CertificationItem[] = [
 ];
 
 export const PORTFOLIO_STATS = {
-  projectsCount: 8,
+  projectsCount: 5,
   certificationsCount: 15,
   leetcodeCount: 450,
   githubContributions: 200,
@@ -145,16 +150,93 @@ export const PORTFOLIO_STATS = {
 
 export const PROJECTS: Project[] = [
   {
+    title: 'VSBEC Academic Task Manager',
+    description:
+      'Role-based academic task management platform for centralized task collection, proof submission, verification, and class-level data management.',
+    longDescription:
+      'The VSBEC Academic Task Manager is a centralized academic workflow platform engineered to modernize manual task collection, proof submission, and verification processes.\n\nThe system enables administrators and academic staff to create and assign tasks to specific classes, collect student screenshot/proof submissions, and process verified work through a multi-tier role-based access control architecture (Supreme Admin, HOD, Class Advisor, Student Coordinator, and Student).\n\nBuilt as a full-stack web application with React.js, TypeScript, Express.js, PostgreSQL, and Cloudinary, it enforces multi-tenant class and department data isolation with IDOR protection.\n\nThe platform is now actively deployed and implemented in the department to manage real-world academic task collection and verification.',
+    date: 'Production Deployed',
+    link: 'https://it-taskmanager.onrender.com/',
+    githubLink: 'https://github.com/Tharun4743/IT_taskmanager',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express.js', 'PostgreSQL', 'Cloudinary', 'Render'],
+    category: 'fullstack',
+    status: 'Production Deployed',
+    realWorldImplementation:
+      'Currently implemented and being used in the department to centrally collect and manage academic task details.',
+    image: vsbecTaskManagerImg,
+    problem:
+      'Academic task details are often collected through scattered communication channels, manual submissions, and disconnected verification processes. This makes tracking, managing, and verifying student task completion difficult.',
+    solution:
+      'The VSBEC Academic Task Manager provides a centralized platform where authorized academic staff can create and manage tasks, students can submit proof of completion, and coordinators/advisors can review and verify submissions using role-based access control.',
+    features: [
+      'Role-based access control',
+      'Supreme Admin global platform management',
+      'HOD department-level management',
+      'Class Advisor class-level management',
+      'Student Coordinator class-specific task and review operations',
+      'Student-specific task dashboard',
+      'HOD task creation with class selection',
+      'Class-based task assignment',
+      'Student screenshot/proof submission',
+      'Submission review and approval workflow',
+      'Submission unlock workflow',
+      'Department and class-level data isolation',
+      'Secure backend API authorization',
+      'IDOR protection',
+      'PostgreSQL as the single source of truth',
+      'Cloudinary image storage',
+      'Environment-based production configuration',
+      'Deployed on Render'
+    ],
+    roleStructure: [
+      {
+        role: 'Supreme Admin',
+        description: 'Global platform, department, class, and user management.'
+      },
+      {
+        role: 'HOD',
+        description: 'Restricted to the assigned department and authorized department-level classes, staff, students, and tasks.'
+      },
+      {
+        role: 'Class Advisor',
+        description: 'Restricted to assigned class/classes with class information management, student management, coordinator assignment, and submission review.'
+      },
+      {
+        role: 'Student Coordinator',
+        description: 'Restricted to the assigned class for class-specific task posting, submission review, and permitted unlock actions.'
+      },
+      {
+        role: 'Student',
+        description: 'Access to own dashboard, authorized tasks, and screenshot/proof submission.'
+      }
+    ],
+    architecture:
+      'Decoupled React.js & TypeScript SPA frontend communicating via REST APIs with a Node.js & Express.js backend. Powered by PostgreSQL database as the single source of truth and Cloudinary for screenshot/proof media storage, deployed on Render with environment-based production configuration.',
+    challenges:
+      'Enforcing strict class and department-level multi-tenant data isolation while maintaining seamless access for multi-role staff (Supreme Admin down to Student Coordinators). Solved by engineering robust server-side authorization middleware, IDOR protection, and row-level relational isolation in PostgreSQL.',
+    myRole: 'Full-Stack Architect & Lead Developer',
+    impact:
+      'Transformed academic task collection from fragmented manual workflows into a centralized digital platform with role-based access, class-level data isolation, and structured verification.\n\nThe platform is currently being implemented in the department for real-world academic task collection and management.',
+    keyLearnings:
+      'Engineered multi-tier RBAC workflows, implemented secure media submission pipelines with Cloudinary, and built production-grade REST APIs enforcing strict data isolation and IDOR protection.'
+  },
+  {
     title: 'Campus Connect — College Placement Cell Platform',
     description:
       'Premium, enterprise-grade placement management platform designed to automate TPO workflows, facilitate seamless recruiter engagement, and help students transition smoothly into their careers.',
     longDescription:
-      'A comprehensive college placement cell system connecting students, recruiters, and college Training & Placement Officers (TPOs) in a unified workflow. Built as a secure, full-stack application integrating modern web technologies and real-time web sockets.',
+      'Campus Connect is an enterprise-grade college placement cell management platform designed to automate Training & Placement Officer (TPO) workflows and streamline recruitment operations.\n\nThe platform connects students, corporate recruiters, and placement officers into a unified digital ecosystem, facilitating automated job drive creation, multi-filter student screening, and interview scheduling.\n\nIt features an interactive Document Vault backed by Cloudinary for storing verified transcripts and resumes, alongside real-time application status tracking powered by WebSockets.\n\nBuilt with React, TypeScript, Node.js, Express, and Supabase PostgreSQL, Campus Connect eliminates manual placement record keeping and reduces interview scheduling friction.',
     date: 'June 2026',
     githubLink: 'https://github.com/Tharun4743/CampusConnect',
     link: 'https://campusconnect-yg4h.onrender.com/',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'Socket.IO'],
     category: 'fullstack',
+    status: 'Production Deployed',
+    image: campusConnectImg,
+    problem:
+      'College placement cells often struggle with manual record keeping, fragmented email communication with recruiters, delayed student application tracking, and lack of real-time visibility for Training & Placement Officers (TPOs).',
+    solution:
+      'Campus Connect centralizes the placement workflow into an enterprise platform featuring real-time application tracking, document vault storage, automated recruiter drive management, and verified TPO invite pipelines.',
     features: [
       'Interactive Document Vault for academic transcripts, resumes, and certificates backed by Cloudinary',
       'Real-Time Application Tracker with a step-by-step visual timeline tracking progress',
@@ -175,12 +257,18 @@ export const PROJECTS: Project[] = [
     description:
       'A high-performance, premium AI assistant powered by GPT-4o. Featuring a sleek, humanized interface and optimized for extreme speed and near-zero latency streaming.',
     longDescription:
-      'A feature-rich conversational interface leveraging OpenAI models to parse uploaded documents, accept voice commands, render formatted markdown content, and maintain low response latency.',
+      "Techy Tharun's Chatbox is a high-performance, conversational AI assistant powered by OpenAI GPT-4o models, engineered for near-zero latency streaming and humanized digital interaction.\n\nThe platform offers multimodal capabilities, enabling users to upload and parse documents (PDF, DOCX, TXT), perform real-time voice transcription, and receive beautifully formatted markdown responses.\n\nArchitected with Next.js 15 App Router, TypeScript, Tailwind CSS, Prisma ORM, and Neon Serverless PostgreSQL, it achieves sub-200ms latency through parallelized backend operations.\n\nDesigned as a PWA with sleek glassmorphism aesthetics, it delivers an intuitive, empathetic chat experience tailored for high-speed technical workflows.",
     date: 'Feb 2026 - Apr 2026',
     githubLink: 'https://github.com/Tharun4743/Tharun-s-Chatbox',
     link: 'https://tharunchatbox.onrender.com',
     tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma', 'Neon PostgreSQL', 'GPT-4o'],
     category: 'fullstack',
+    status: 'Production Deployed',
+    image: chatboxImg,
+    problem:
+      'Standard AI chat interfaces often suffer from high latency, clunky document uploads, lack of voice interaction, and robotic user experiences that fail to adapt to local network setups.',
+    solution:
+      "Techy Tharun's Chatbox leverages parallelized GPT-4o streaming APIs, Next.js 15 App Router, and a humanized glassmorphic UI supporting instant document parsing, voice commands, and sub-200ms response streaming.",
     features: [
       'Extreme Performance with parallelized backend operations for near-zero latency streaming',
       'Humanized UI featuring empathetic authentication flow and sleek glassmorphism design',
@@ -200,11 +288,16 @@ export const PROJECTS: Project[] = [
     description:
       '100% Offline Multimodal Retrieval-Augmented Generation (RAG) System developed for resource-constrained environments. Features local document processing, multimodal vision indexing, and voice transcription.',
     longDescription:
-      'A military-grade, fully air-gapped, sovereign multimodal RAG workstation designed to ingest, process, and query enterprise documents, visual assets, and vocal recordings with 100% on-premises privacy.',
+      'Aura is a military-grade, 100% offline multimodal Retrieval-Augmented Generation (RAG) workstation built for sovereign, air-gapped enterprise and defense environments.\n\nThe platform enables local page-by-page document ingestion (PDF, plaintext), local visual indexing using Hugging Face CLIP embeddings, and offline speech-to-text transcription via Vosk and Whisper.\n\nIt integrates local Llama-3 models running on Ollama with ChromaDB vector storage, ensuring grounded, context-anchored chat generation without transmitting any data over external networks.\n\nWrapped in an Electron desktop shell packaging a Spring Boot Java backend, local JRE, and Python environment, Aura provides absolute data privacy and zero-latency local intelligence.',
     date: '2026',
     githubLink: 'https://github.com/Tharun4743/SIH25231',
     tags: ['React', 'Spring Boot', 'Java', 'SQLite', 'ChromaDB', 'Ollama', 'Electron'],
     category: 'fullstack',
+    image: auraImg,
+    problem:
+      'Enterprise and defense environments requiring intelligent document and visual asset retrieval cannot rely on cloud-based LLM APIs due to strict data privacy, air-gapped network policies, and latency constraints.',
+    solution:
+      'Aura provides a 100% offline, sovereign multimodal RAG workstation packaged in an Electron shell, running local LLMs via Ollama, local CLIP vision embeddings, and offline STT for complete on-premises privacy.',
     features: [
       'Document Processing: Local page-by-page text extraction from PDF and plaintext documents via Apache PDFBox',
       'Multimodal Vision: Visual feature extraction and semantic indexing of local image materials using Hugging Face CLIP',
@@ -225,12 +318,17 @@ export const PROJECTS: Project[] = [
     description:
       'An intelligent IoT helmet system that proactively prevents accidents by monitoring helmet wear, alcohol levels, and drowsiness — disabling bike ignition on unsafe conditions via RF communication. Smart India Hackathon 2025 Submission.',
     longDescription:
-      'An embedded rider safety platform linking sensors on a helmet to a receiver circuit inside a motorcycle ignition system to enforce safe riding practices.',
+      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle casualties through real-time hardware sensing and ignition interlocking.\n\nDeveloped for Smart India Hackathon 2025, the system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication.\n\nIt continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (eye-blink patterns), automatically cutting bike ignition within 500ms under unsafe conditions.\n\nBuilt with Arduino microcontrollers, C programming, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
     date: 'Sep 2025 - Oct 2025',
     githubLink: 'https://github.com/Tharun4743/AGILE-INNOVATORS-smart-helmet-',
     driveLink: 'https://drive.google.com/drive/folders/1kYhyoOx9-Tr4WyOJkmUz7K4PDDpmaHEr?usp=drive_link',
     tags: ['Arduino', 'C', 'RF 433MHz', 'IoT', 'Embedded Systems'],
     category: 'iot',
+    image: smartHelmetImg,
+    problem:
+      'Two-wheeler accidents frequently lead to severe casualties due to helmet non-compliance, DUI (driving under the influence), and unmonitored rider drowsiness.',
+    solution:
+      'The Smart Helmet IoT Safety System links rider sensors (IR proximity, MQ-3 alcohol, eye-blink drowsiness) via RF 433MHz to an ignition-interlock circuit that automatically blocks bike ignition under unsafe conditions.',
     features: [
       'Helmet Detection: Ensures rider wears the helmet before starting via IR/Proximity sensor',
       'Alcohol Detection: MQ-3 sensor detects alcohol presence and blocks ignition',
