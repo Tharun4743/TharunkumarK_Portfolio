@@ -1,0 +1,24 @@
+# Robots.txt for Tharunkumar K Portfolio
+# Entity Graph Engineering Crawler Rules
+
+User-agent: *
+Allow: /
+Allow: /links
+
+# Specifically allow AI search bots and LLM crawlers for entity disambiguation
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://tharunkumark4743.netlify.app/sitemap.xml

@@ -36,6 +36,7 @@ import {
   PORTFOLIO_STATS
 } from './constants';
 import { Project } from './type';
+import { LinksHub } from './components/LinksHub';
 
 const THEMES = [
   { primary: '#4f46e5', secondary: '#7c3aed', soft: '#f5f3ff', glow: 'rgba(79, 70, 229, 0.2)' }, // Indigo
@@ -79,6 +80,7 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
     { name: 'Projects', id: 'projects' },
     { name: 'Achievements', id: 'achievements' },
     { name: 'Certifications', id: 'certs' },
+    { name: 'Links Hub', id: 'links' },
     { name: 'Contact', id: 'contact' },
   ];
 
@@ -1592,6 +1594,9 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Self-Hosted Links Hub (Entity Engineering Blueprint) */}
+      <LinksHub />
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-slate-50">
