@@ -5,7 +5,7 @@ import vsbecTaskManagerImg from './assets/vsbec-task-manager.png';
 import campusConnectImg from './assets/campusconnect.jpeg';
 import auraImg from './assets/aura.png';
 import chatboxImg from './assets/chatbox.png';
-import smartHelmetImg from './assets/smart-helmet.png';
+import smartHelmetImg from './assets/aura.png';
 
 export const PERSONAL_INFO = {
   name: 'Tharunkumar K',
