@@ -236,11 +236,11 @@ type CursorMode = 'magnetic' | 'particle' | 'inverted';
 
 const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const el = cursorRef.current;
+    if (!el) return;
+
     let mouseX = -100;
     let mouseY = -100;
     let currentX = -100;
@@ -250,29 +250,35 @@ const CustomCursor: React.FC = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      if (!isVisible) setIsVisible(true);
+
+      if (el.style.display === 'none') {
+        el.style.display = 'block';
+      }
 
       const target = e.target as HTMLElement | null;
       const interactiveEl = target?.closest('a, button, input, textarea, [role="button"]');
-      setIsHovered(!!interactiveEl);
+      if (interactiveEl) {
+        el.classList.add('scale-150', 'border-[2.5px]');
+        el.style.boxShadow = '0 0 30px var(--theme-glow), 0 0 50px var(--theme-glow)';
+      } else {
+        el.classList.remove('scale-150', 'border-[2.5px]');
+        el.style.boxShadow = '0 0 15px var(--theme-glow)';
+      }
     };
 
     const updateCursor = () => {
-      // 0.65 lerp coefficient for instant zero-lag responsiveness
-      currentX += (mouseX - currentX) * 0.65;
-      currentY += (mouseY - currentY) * 0.65;
+      // 0.85 ultra-high speed lerp for 144Hz instant follow
+      currentX += (mouseX - currentX) * 0.85;
+      currentY += (mouseY - currentY) * 0.85;
 
-      if (cursorRef.current) {
-        // Keep offset constant at 18px (half of 36px ring size) so center point stays locked to mouse without coordinate jumps
-        cursorRef.current.style.transform = `translate3d(${currentX - 18}px, ${currentY - 18}px, 0px)`;
-      }
+      el.style.transform = `translate3d(${currentX - 18}px, ${currentY - 18}px, 0px)`;
       rAFId = requestAnimationFrame(updateCursor);
     };
 
-    const handleMouseDown = () => setIsClicked(true);
-    const handleMouseUp = () => setIsClicked(false);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseDown = () => el.classList.add('scale-75');
+    const handleMouseUp = () => el.classList.remove('scale-75');
+    const handleMouseLeave = () => { el.style.display = 'none'; };
+    const handleMouseEnter = () => { el.style.display = 'block'; };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
@@ -290,23 +296,16 @@ const CustomCursor: React.FC = () => {
       document.removeEventListener('mouseenter', handleMouseEnter);
       cancelAnimationFrame(rAFId);
     };
-  }, [isVisible, isHovered]);
-
-  if (!isVisible) return null;
+  }, []);
 
   return (
     <div className="hidden lg:block pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
       <div
         ref={cursorRef}
-        className={`fixed top-0 left-0 w-9 h-9 rounded-full bg-transparent border-2 border-theme shadow-[0_0_15px_var(--theme-glow)] will-change-transform ${
-          isHovered
-            ? 'scale-150 border-[2.5px] shadow-[0_0_30px_var(--theme-glow),0_0_50px_var(--theme-glow)]'
-            : isClicked
-            ? 'scale-75'
-            : 'scale-100'
-        }`}
+        className="fixed top-0 left-0 w-9 h-9 rounded-full bg-transparent border-2 border-theme shadow-[0_0_15px_var(--theme-glow)] will-change-transform scale-100 transition-[scale,border-width,box-shadow] duration-150 ease-out"
         style={{
-          transition: 'transform 0s, scale 0.12s cubic-bezier(0.16, 1, 0.3, 1)',
+          display: 'none',
+          transform: 'translate3d(-100px, -100px, 0px)'
         }}
       />
     </div>
