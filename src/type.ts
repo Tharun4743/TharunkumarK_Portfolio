@@ -44,7 +44,7 @@ export type CertificationItem = {
   issuer: string;
   year?: string; // Made optional as it's missing in some constants
   link?: string;
-  type?: 'CERTIFICATE' | 'BADGE';
+  type?: 'CERTIFICATE' | 'BADGE' | 'GOLD CERTIFICATE';
 };
 
 // NEW: Internship type

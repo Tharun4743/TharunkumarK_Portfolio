@@ -134,10 +134,10 @@ export const CERTIFICATIONS: CertificationItem[] = [
   },
   {
     title: 'Introduction to IoT and Digital Transformation',
-    issuer: 'Certification',
-    year: '2024',
-    link: '#',
-    type: 'CERTIFICATE'
+    issuer: 'FutureSkills Prime — NASSCOM',
+    year: 'Mar 2026',
+    link: 'https://drive.google.com/file/d/1R8eAyLXAUdxyRK_hDgUBgikkULJLSBje/view?usp=drive_link',
+    type: 'GOLD CERTIFICATE'
   }
 ];
 
