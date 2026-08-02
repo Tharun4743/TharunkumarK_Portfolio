@@ -967,15 +967,21 @@ const AchievementsTimeline: React.FC = () => {
 
 const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.ReactNode }> = ({ title, subtitle, icon }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     className="mb-16"
   >
     <div className="flex items-center gap-4 mb-4">
-      <div className="w-14 h-14 rounded-2xl bg-transparent border-2 border-theme text-slate-900 flex items-center justify-center transition-all hover:scale-105" style={{ boxShadow: '0 0 20px var(--theme-glow)' }}>
+      <motion.div
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+        className="w-14 h-14 rounded-2xl bg-transparent border-2 border-theme text-slate-900 flex items-center justify-center transition-all cursor-pointer shadow-lg shadow-theme/10"
+        style={{ boxShadow: '0 0 20px var(--theme-glow)' }}
+      >
         {icon}
-      </div>
+      </motion.div>
       <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">{title}</h2>
     </div>
     {subtitle && <p className="text-slate-500 max-w-2xl text-lg font-medium ml-1 mr-auto">{subtitle}</p>}
