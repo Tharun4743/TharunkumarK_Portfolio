@@ -241,38 +241,34 @@ const CustomCursor: React.FC = () => {
     const el = cursorRef.current;
     if (!el) return;
 
-    let mouseX = -100;
-    let mouseY = -100;
-    let currentX = -100;
-    let currentY = -100;
-    let rAFId: number;
+    let rAFPending = false;
+    let targetX = -100;
+    let targetY = -100;
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      targetX = e.clientX;
+      targetY = e.clientY;
 
       if (el.style.display === 'none') {
         el.style.display = 'block';
       }
 
       const target = e.target as HTMLElement | null;
-      const interactiveEl = target?.closest('a, button, input, textarea, [role="button"]');
-      if (interactiveEl) {
+      if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.tagName === 'INPUT' || target.closest('a, button, input, textarea, [role="button"]'))) {
         el.classList.add('scale-150', 'border-[2.5px]');
         el.style.boxShadow = '0 0 30px var(--theme-glow), 0 0 50px var(--theme-glow)';
       } else {
         el.classList.remove('scale-150', 'border-[2.5px]');
         el.style.boxShadow = '0 0 15px var(--theme-glow)';
       }
-    };
 
-    const updateCursor = () => {
-      // 0.85 ultra-high speed lerp for 144Hz instant follow
-      currentX += (mouseX - currentX) * 0.85;
-      currentY += (mouseY - currentY) * 0.85;
-
-      el.style.transform = `translate3d(${currentX - 18}px, ${currentY - 18}px, 0px)`;
-      rAFId = requestAnimationFrame(updateCursor);
+      if (!rAFPending) {
+        rAFPending = true;
+        requestAnimationFrame(() => {
+          el.style.transform = `translate3d(${targetX - 18}px, ${targetY - 18}px, 0px)`;
+          rAFPending = false;
+        });
+      }
     };
 
     const handleMouseDown = () => el.classList.add('scale-75');
@@ -286,15 +282,12 @@ const CustomCursor: React.FC = () => {
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
-    rAFId = requestAnimationFrame(updateCursor);
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
-      cancelAnimationFrame(rAFId);
     };
   }, []);
 
@@ -302,7 +295,7 @@ const CustomCursor: React.FC = () => {
     <div className="hidden lg:block pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-9 h-9 rounded-full bg-transparent border-2 border-theme shadow-[0_0_15px_var(--theme-glow)] will-change-transform scale-100 transition-[scale,border-width,box-shadow] duration-150 ease-out"
+        className="fixed top-0 left-0 w-9 h-9 rounded-full bg-transparent border-2 border-theme shadow-[0_0_15px_var(--theme-glow)] will-change-transform scale-100 transition-[scale,border-width,box-shadow] duration-100 ease-out"
         style={{
           display: 'none',
           transform: 'translate3d(-100px, -100px, 0px)'
