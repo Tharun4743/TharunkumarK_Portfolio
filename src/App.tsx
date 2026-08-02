@@ -117,28 +117,45 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
   };
 
   useEffect(() => {
+    let rAF: number | null = null;
+    let lastScrolled = false;
+    let lastSection = '';
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      
-      let current = '';
-      for (const link of navLinks) {
-        const element = document.getElementById(link.id);
-        if (element) {
-          if (element.getBoundingClientRect().top <= window.innerHeight * 0.4) {
-            current = link.id;
+      if (rAF !== null) return;
+      rAF = requestAnimationFrame(() => {
+        rAF = null;
+        const scrolled = window.scrollY > 20;
+        if (scrolled !== lastScrolled) {
+          lastScrolled = scrolled;
+          setIsScrolled(scrolled);
+        }
+
+        let current = '';
+        for (const link of navLinks) {
+          const element = document.getElementById(link.id);
+          if (element) {
+            if (element.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+              current = link.id;
+            }
           }
         }
-      }
-      // Handle bottom of page
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-        current = 'contact';
-      }
-      setActiveSection(current);
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+          current = 'contact';
+        }
+        if (current !== lastSection) {
+          lastSection = current;
+          setActiveSection(current);
+        }
+      });
     };
-    
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rAF !== null) cancelAnimationFrame(rAF);
+    };
   }, []);
 
   return (
@@ -245,26 +262,33 @@ const CustomCursor: React.FC = () => {
     const el = cursorRef.current;
     if (!el) return;
 
-    let rAFPending = false;
-    let targetX = -100;
-    let targetY = -100;
+    let rAF: number | null = null;
+    let isHoveringInteractive = false;
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Immediate hardware translation on mousemove event for instant 0ms latency speed
-      el.style.transform = `translate3d(${e.clientX - 18}px, ${e.clientY - 18}px, 0px)`;
+      if (rAF !== null) return;
+      rAF = requestAnimationFrame(() => {
+        rAF = null;
+        el.style.transform = `translate3d(${e.clientX - 18}px, ${e.clientY - 18}px, 0px)`;
 
-      if (el.style.display === 'none') {
-        el.style.display = 'block';
-      }
+        if (el.style.display === 'none') {
+          el.style.display = 'block';
+        }
 
-      const target = e.target as HTMLElement | null;
-      if (target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.tagName === 'INPUT' || target.closest('a, button, input, textarea, [role="button"]'))) {
-        el.classList.add('scale-150', 'border-[2.5px]');
-        el.style.boxShadow = '0 0 30px var(--theme-glow), 0 0 50px var(--theme-glow)';
-      } else {
-        el.classList.remove('scale-150', 'border-[2.5px]');
-        el.style.boxShadow = '0 0 15px var(--theme-glow)';
-      }
+        const target = e.target as HTMLElement | null;
+        const isInteractive = Boolean(target && (target.tagName === 'A' || target.tagName === 'BUTTON' || target.tagName === 'INPUT' || target.closest('a, button, input, textarea, [role="button"]')));
+
+        if (isInteractive !== isHoveringInteractive) {
+          isHoveringInteractive = isInteractive;
+          if (isInteractive) {
+            el.classList.add('scale-150', 'border-[2.5px]');
+            el.style.boxShadow = '0 0 30px var(--theme-glow), 0 0 50px var(--theme-glow)';
+          } else {
+            el.classList.remove('scale-150', 'border-[2.5px]');
+            el.style.boxShadow = '0 0 15px var(--theme-glow)';
+          }
+        }
+      });
     };
 
     const handleMouseDown = () => el.classList.add('scale-75');
@@ -284,6 +308,7 @@ const CustomCursor: React.FC = () => {
       window.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
+      if (rAF !== null) cancelAnimationFrame(rAF);
     };
   }, []);
 
@@ -328,34 +353,29 @@ const CountUp: React.FC<{ value: number; suffix?: string }> = ({ value, suffix =
 };
 
 const TiltCard: React.FC<{ children: React.ReactNode; className?: string; onClick?: () => void }> = ({ children, className = '', onClick }) => {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  
+  const cardRef = useRef<HTMLDivElement>(null);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    setCoords({ x, y });
+    cardRef.current.style.setProperty('--card-x', `${x}px`);
+    cardRef.current.style.setProperty('--card-y', `${y}px`);
   };
-  
+
   return (
     <div
+      ref={cardRef}
       onClick={onClick}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden transition-all duration-300 ${className}`}
-      style={{
-        transform: isHovered ? 'scale(1.025) translateY(-8px)' : 'scale(1) translateY(0)',
-        boxShadow: isHovered ? '0 25px 50px -12px var(--theme-glow), 0 0 30px var(--theme-glow)' : 'none'
-      }}
+      className={`relative overflow-hidden transition-all duration-300 hover:scale-[1.025] hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_var(--theme-glow),0_0_30px_var(--theme-glow)] group/card ${className}`}
     >
-      {/* Dynamic Cursor Spotlight Highlight (Leadership Signature) */}
+      {/* Dynamic Cursor Spotlight Highlight */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 z-0"
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 z-0"
         style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(500px circle at ${coords.x}px ${coords.y}px, var(--theme-glow), transparent 70%)`
+          background: `radial-gradient(500px circle at var(--card-x, 50%) var(--card-y, 50%), var(--theme-glow), transparent 70%)`
         }}
       />
       <div className="relative z-10 w-full h-full flex flex-col">{children}</div>
@@ -790,37 +810,25 @@ const ContactSlider: React.FC = () => {
 
   return (
     <div className="w-full overflow-hidden relative py-6 group [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-      <motion.div
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: 'loop',
-            duration: 22,
-            ease: 'linear'
-          }
-        }}
-        className="flex gap-6 w-max group-hover:[animation-play-state:paused]"
-      >
+      <div className="flex gap-6 w-max animate-marquee">
         {marqueeItems.map((item, idx) => (
-          <motion.a
+          <a
             key={idx}
-            whileHover={{ y: -6, scale: 1.03 }}
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-80 p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-2xl transition-all flex flex-col items-center text-center gap-4 flex-shrink-0 group ${item.borderHover}`}
+            className={`w-80 p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03] transition-all flex flex-col items-center text-center gap-4 flex-shrink-0 group/item ${item.borderHover}`}
           >
-            <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 text-slate-800 flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:border-theme transition-all duration-300">
+            <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 text-slate-800 flex items-center justify-center shadow-sm group-hover/item:scale-110 group-hover/item:border-theme transition-all duration-300">
               {item.icon}
             </div>
             <div className="w-full overflow-hidden">
               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{item.label}</h4>
               <p className="text-base font-black text-slate-900 truncate w-full px-2">{item.value}</p>
             </div>
-          </motion.a>
+          </a>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -984,12 +992,99 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.Re
   </motion.div>
 );
 
+const HeroHighlightBadge: React.FC = () => {
+  const [index, setIndex] = useState(0);
+
+  const highlights = [
+    {
+      icon: <Award size={20} />,
+      subtitle: 'Hackathon Winner',
+      title: 'Code Thugs 2k26'
+    },
+    {
+      icon: <Trophy size={20} />,
+      subtitle: 'SIH 2025 Top 50',
+      title: 'Smart India Hackathon'
+    },
+    {
+      icon: <Sparkles size={20} />,
+      subtitle: 'National Finalist',
+      title: 'India Innovates 2026'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % highlights.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [highlights.length]);
+
+  const current = highlights[index];
+
+  return (
+    <div className="absolute -bottom-4 -left-4 sm:-left-6 bg-white p-4 sm:p-5 rounded-3xl shadow-2xl border border-slate-100 flex items-center gap-3.5 hover:scale-105 transition-transform z-10 max-w-[280px] sm:max-w-[320px] overflow-hidden">
+      <div className="w-10 h-10 rounded-xl bg-transparent border-2 border-theme text-theme flex items-center justify-center flex-shrink-0 shadow-sm">
+        {current.icon}
+      </div>
+      <div className="overflow-hidden relative h-10 flex flex-col justify-center min-w-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none mb-1 truncate">
+              {current.subtitle}
+            </p>
+            <p className="text-xs sm:text-sm font-black text-slate-900 leading-none truncate">
+              {current.title}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+const SpotlightBackground: React.FC = () => {
+  const spotlightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = spotlightRef.current;
+    if (!el) return;
+
+    let rAF: number | null = null;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (rAF !== null) return;
+      rAF = requestAnimationFrame(() => {
+        rAF = null;
+        el.style.background = `radial-gradient(400px at ${e.clientX}px ${e.clientY}px, var(--theme-glow), transparent 80%)`;
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rAF !== null) cancelAnimationFrame(rAF);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={spotlightRef}
+      className="pointer-events-none fixed inset-0 z-30 opacity-40 hidden md:block"
+    />
+  );
+};
+
 const App: React.FC = () => {
   const [activeThemeIndex, setActiveThemeIndex] = useState(0);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'iot' | 'fullstack'>('all');
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [gitStats, setGitStats] = useState({
     followers: 7,
     repos: 15,
@@ -1013,14 +1108,6 @@ const App: React.FC = () => {
       root.style.setProperty('--theme-glow', theme.glow);
     }
   }, [activeThemeIndex]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1084,7 +1171,7 @@ const App: React.FC = () => {
             scale: [1, 1.2, 0.9, 1]
           }}
           transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full blur-[150px]"
+          className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full blur-[100px] will-change-transform"
           style={{ backgroundColor: 'var(--theme-glow)' }}
         />
         <motion.div
@@ -1094,18 +1181,13 @@ const App: React.FC = () => {
             scale: [1, 0.8, 1.1, 1]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full blur-[150px]"
+          className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full blur-[100px] will-change-transform"
           style={{ backgroundColor: 'var(--theme-glow)' }}
         />
       </div>
 
-      {/* Dynamic Cursor Spotlight (Feature 6 & 16) */}
-      <div
-        className="pointer-events-none fixed inset-0 z-30 opacity-40 hidden md:block"
-        style={{
-          background: `radial-gradient(400px at ${mousePos.x}px ${mousePos.y}px, var(--theme-glow), transparent 80%)`
-        }}
-      />
+      {/* Dynamic Cursor Spotlight (Zero-re-render component) */}
+      <SpotlightBackground />
 
       <Nav onOpenPalette={() => setIsPaletteOpen(true)} />
 
@@ -1214,20 +1296,7 @@ const App: React.FC = () => {
                   />
                 </motion.div>
 
-                <motion.div
-                  initial={{ x: 50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute -bottom-4 -left-4 bg-white p-5 rounded-3xl shadow-2xl border border-slate-100 flex items-center gap-4 hover:scale-110 transition-transform z-10"
-                >
-                  <div className="p-3 bg-theme text-white rounded-xl shadow-lg">
-                    <Award size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none mb-1">Hackathon Winner</p>
-                    <p className="text-base font-black text-slate-900 leading-none">Code Thugs 2k26</p>
-                  </div>
-                </motion.div>
+                <HeroHighlightBadge />
               </div>
             </motion.div>
           </div>
@@ -1930,36 +1999,38 @@ const App: React.FC = () => {
                   transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
                   className="w-full"
                 >
-                  <TiltCard className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme transition-all group flex flex-col items-center text-center gap-4 h-full">
-                  <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 group-hover:border-theme text-slate-800 flex items-center justify-center group-hover:scale-110 transition-all shadow-sm flex-shrink-0">
-                    {getCompanyIcon(cert.issuer, cert.title)}
-                  </div>
-                <div>
-                  <h3 className="text-base font-black text-slate-900 leading-tight mb-2 group-hover:text-theme transition-colors line-clamp-2">
-                    {cert.title}
-                  </h3>
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    {cert.type && (
-                      <span className="px-2 py-0.5 bg-theme-soft text-theme font-bold rounded-lg text-[10px] border border-theme/20 uppercase tracking-widest">
-                        {cert.type}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                    {cert.issuer}
-                  </p>
-                  {cert.link && cert.link !== '#' && (
-                    <a 
-                      href={cert.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-2 text-xs font-black text-theme hover:underline"
-                    >
-                      View {cert.type === 'BADGE' ? 'Badge' : 'Certificate'} <ExternalLink size={12} />
-                    </a>
-                  )}
-                </div>
-                </TiltCard>
+                  <TiltCard className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme transition-all group h-full">
+                    <div className="flex flex-col items-center text-center gap-4 w-full h-full">
+                      <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 group-hover:border-theme text-slate-800 flex items-center justify-center group-hover:scale-110 transition-all shadow-sm flex-shrink-0">
+                        {getCompanyIcon(cert.issuer, cert.title)}
+                      </div>
+                      <div className="flex flex-col items-center text-center w-full">
+                        <h3 className="text-base font-black text-slate-900 leading-tight mb-2 group-hover:text-theme transition-colors line-clamp-2">
+                          {cert.title}
+                        </h3>
+                        <div className="flex items-center justify-center gap-2 mb-2">
+                          {cert.type && (
+                            <span className="px-2 py-0.5 bg-theme-soft text-theme font-bold rounded-lg text-[10px] border border-theme/20 uppercase tracking-widest">
+                              {cert.type}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                          {cert.issuer}
+                        </p>
+                        {cert.link && cert.link !== '#' && (
+                          <a 
+                            href={cert.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-flex items-center gap-2 text-xs font-black text-theme hover:underline"
+                          >
+                            View {cert.type === 'BADGE' ? 'Badge' : 'Certificate'} <ExternalLink size={12} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </TiltCard>
               </motion.div>
             );
           })}
