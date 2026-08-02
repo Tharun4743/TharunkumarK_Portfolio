@@ -1819,38 +1819,30 @@ const App: React.FC = () => {
                 }
                 if (norm.includes('infosys')) {
                   return (
-                    <img
-                      src="https://img.icons8.com/?size=100&id=13631&format=png"
-                      alt="Infosys"
-                      className="w-8 h-8 object-contain"
-                    />
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#007CC3">
+                      <path d="M3 4h4v16H3V4zm7 0h4v16h-4V4zm7 0h4v16h-4V4z" />
+                    </svg>
                   );
                 }
                 if (norm.includes('tata') || norm.includes('tcs') || norm.includes('forage')) {
                   return (
-                    <img
-                      src="https://img.icons8.com/?size=100&id=20888&format=png"
-                      alt="Tata / TCS"
-                      className="w-8 h-8 object-contain"
-                    />
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#00529C">
+                      <path d="M2 5h20v4H14v10h-4V9H2V5z" />
+                    </svg>
                   );
                 }
                 if (norm.includes('salesforce') || norm.includes('trailhead')) {
                   return (
-                    <img
-                      src="https://img.icons8.com/?size=100&id=38804&format=png"
-                      alt="Salesforce"
-                      className="w-8 h-8 object-contain"
-                    />
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#00A1E0">
+                      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                    </svg>
                   );
                 }
                 if (norm.includes('cisco')) {
                   return (
-                    <img
-                      src="https://img.icons8.com/?size=100&id=20875&format=png"
-                      alt="Cisco"
-                      className="w-8 h-8 object-contain"
-                    />
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#049FD9">
+                      <path d="M4 16h2v4H4zm4-4h2v8H8zm4-4h2v12h-2zm4 4h2v8h-2zm4 4h2v4h-2z" />
+                    </svg>
                   );
                 }
                 if (norm.includes('algo')) {
