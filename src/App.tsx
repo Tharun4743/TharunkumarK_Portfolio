@@ -72,10 +72,9 @@ const THEMES = [
 
 interface NavProps {
   onOpenPalette: () => void;
-  onOpenResume: () => void;
 }
 
-const Nav: React.FC<NavProps> = ({ onOpenPalette, onOpenResume }) => {
+const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -166,14 +165,16 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette, onOpenResume }) => {
             </a>
           ))}
           
-          {/* ATS Resume Quick Modal Trigger */}
-          <button
-            onClick={onOpenResume}
-            className="px-3 py-1.5 ml-1 text-xs font-bold text-theme bg-theme-soft hover:bg-theme hover:text-white rounded-xl transition-all border border-theme/20 shadow-sm flex items-center gap-1.5"
-            title="View ATS Resume Modal"
+          {/* Resume Link */}
+          <a
+            href={PERSONAL_INFO.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-1.5 ml-1 text-xs font-bold text-theme bg-theme-soft hover:bg-theme hover:text-white rounded-xl transition-all border border-theme/20 shadow-sm flex items-center gap-1.5"
+            title="Open Resume"
           >
             <FileText size={14} /> Resume
-          </button>
+          </a>
 
           {/* Command Palette Desktop Trigger */}
           <button
@@ -840,155 +841,7 @@ const ContactSlider: React.FC = () => {
   );
 };
 
-const ResumeModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
 
-  const handlePrintDownload = () => {
-    window.print();
-  };
-
-  return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 30 }}
-          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]"
-        >
-          {/* Top Bar */}
-          <div className="p-6 bg-slate-900 text-white flex justify-between items-center border-b border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl border-2 border-theme text-theme bg-transparent flex items-center justify-center font-black">
-                TK
-              </div>
-              <div>
-                <h3 className="font-black text-base leading-tight">Tharunkumar K — ATS Resume</h3>
-                <p className="text-xs text-slate-400 font-medium">Full Stack Developer & AI Application Developer</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <a
-                href={PERSONAL_INFO.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md"
-              >
-                <ExternalLink size={14} /> Open Google Drive
-              </a>
-              <button
-                onClick={handlePrintDownload}
-                className="px-4 py-2 bg-theme hover:brightness-110 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md"
-              >
-                <FileText size={14} /> Download / Print PDF
-              </button>
-              <button
-                onClick={onClose}
-                className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-xl transition-all"
-              >
-                <X size={18} />
-              </button>
-            </div>
-          </div>
-
-          {/* Structured ATS Resume Content */}
-          <div className="p-8 sm:p-10 overflow-y-auto text-slate-800 font-sans space-y-8 print:p-0">
-            {/* Header / Contact Info */}
-            <div className="border-b border-slate-200 pb-6 flex flex-col sm:flex-row justify-between items-start gap-4">
-              <div>
-                <h1 className="text-3xl font-black text-slate-900 tracking-tight">{PERSONAL_INFO.name}</h1>
-                <p className="text-base font-bold text-theme mt-1">{PERSONAL_INFO.title}</p>
-                <p className="text-xs text-slate-500 font-medium mt-1">{PERSONAL_INFO.location}</p>
-              </div>
-              <div className="text-xs font-medium text-slate-600 space-y-1.5 sm:text-right">
-                <p className="flex items-center sm:justify-end gap-1.5"><Mail size={13} className="text-slate-400" /> {PERSONAL_INFO.email}</p>
-                <p className="flex items-center sm:justify-end gap-1.5"><Phone size={13} className="text-slate-400" /> {PERSONAL_INFO.phone}</p>
-                <p className="flex items-center sm:justify-end gap-1.5"><Github size={13} className="text-slate-400" /> github.com/Tharun4743</p>
-                <p className="flex items-center sm:justify-end gap-1.5"><Linkedin size={13} className="text-slate-400" /> linkedin.com/in/tharunkumark</p>
-              </div>
-            </div>
-
-            {/* Summary */}
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-3">Professional Summary</h2>
-              <p className="text-xs sm:text-sm leading-relaxed text-slate-700">{PERSONAL_INFO.profileSummary}</p>
-            </div>
-
-            {/* Work & Internships */}
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-4">Work & Internship Experience</h2>
-              <div className="space-y-4">
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-                  <div className="flex justify-between items-start flex-wrap gap-2 mb-1">
-                    <h3 className="font-bold text-slate-900 text-sm">Full Stack & AI Developer Intern &bull; <span className="text-theme">Neura Global</span></h3>
-                    <span className="text-xs font-semibold px-2.5 py-0.5 bg-slate-200 text-slate-700 rounded-full">06/2026 – 07/2026</span>
-                  </div>
-                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                    Engineered AI-first enterprise products, microservice APIs, and automated workflows. Architected full-stack features using React, Node.js, and ChromaDB vector databases.
-                  </p>
-                </div>
-
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-                  <div className="flex justify-between items-start flex-wrap gap-2 mb-1">
-                    <h3 className="font-bold text-slate-900 text-sm">Software Engineering Intern &bull; <span className="text-theme">Infosys Springboard</span></h3>
-                    <span className="text-xs font-semibold px-2.5 py-0.5 bg-slate-200 text-slate-700 rounded-full">11/2025 – 01/2026</span>
-                  </div>
-                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                    Developed full-stack web applications using Java Spring Boot, REST API standards, SQL databases, and modern frontend practices.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Skills */}
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-3">Core Technical Skills</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-                <div><span className="font-bold text-slate-900">Languages:</span> Java, Python, TypeScript, JavaScript, SQL</div>
-                <div><span className="font-bold text-slate-900">Backend:</span> Spring Boot, Node.js, Express.js</div>
-                <div><span className="font-bold text-slate-900">Frontend:</span> React.js, Tailwind CSS, HTML5/CSS3</div>
-                <div><span className="font-bold text-slate-900">Databases:</span> PostgreSQL, SQLite, Supabase</div>
-                <div><span className="font-bold text-slate-900">AI & Vector:</span> Ollama, ChromaDB, RAG Pipelines</div>
-                <div><span className="font-bold text-slate-900">Dev Tools:</span> Git/GitHub, Cloudinary, Render</div>
-              </div>
-            </div>
-
-            {/* Featured Projects */}
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-4">Key Featured Projects</h2>
-              <div className="space-y-3 text-xs">
-                <div>
-                  <h3 className="font-bold text-slate-900">1. VSBEC Academic Task Manager <span className="text-slate-400 font-normal">(React, Express, PostgreSQL, Cloudinary)</span></h3>
-                  <p className="text-slate-600 font-medium">Production-deployed academic task verification platform with 5-tier RBAC isolation actively implemented in the department.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-900">2. CampusConnect Placement Cell Platform <span className="text-slate-400 font-normal">(React, Node.js, Supabase, Socket.IO)</span></h3>
-                  <p className="text-slate-600 font-medium">Enterprise placement management system automating TPO workflows, student Document Vault, and recruiter drive screening.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-900">3. AURA AI Platform <span className="text-slate-400 font-normal">(Ollama, ChromaDB, RAG Architecture)</span></h3>
-                  <p className="text-slate-600 font-medium">Privacy-focused offline AI desktop application supporting RAG document QA, local model inference, and vector embeddings.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Achievements & Leadership */}
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-3">Achievements & Leadership</h2>
-              <ul className="list-disc list-inside text-xs text-slate-700 font-medium space-y-1.5">
-                <li><strong className="text-slate-900">Code Thugs 2k26 1st Place National Winner:</strong> Won ₹5,000 cash prize for real-time collaborative code editor with live sync.</li>
-                <li><strong className="text-slate-900">Smart India Hackathon (SIH) 2025 Top 50:</strong> Top 50 out of 300+ teams for IoT rider safety system.</li>
-                <li><strong className="text-slate-900">Department Student Coordinator (2024 – Present):</strong> Appointed IT Department Student Coordinator at VSB Engineering College.</li>
-                <li><strong className="text-slate-900">SIH 2026 IT Department Coordinator:</strong> Leading and mentoring 15+ student teams for SIH 2026.</li>
-                <li><strong className="text-slate-900">Fun Quest Coordinator:</strong> Coordinated symposium event for 150+ participants (9.8/10 average score).</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </AnimatePresence>
-  );
-};
 
 const AchievementsTimeline: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'hackathon' | 'leadership' | 'ambassador'>('all');
@@ -1120,7 +973,6 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.Re
 const App: React.FC = () => {
   const [activeThemeIndex, setActiveThemeIndex] = useState(0);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'iot' | 'fullstack'>('all');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -1241,7 +1093,7 @@ const App: React.FC = () => {
         }}
       />
 
-      <Nav onOpenPalette={() => setIsPaletteOpen(true)} onOpenResume={() => setIsResumeOpen(true)} />
+      <Nav onOpenPalette={() => setIsPaletteOpen(true)} />
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
@@ -1283,15 +1135,17 @@ const App: React.FC = () => {
                   <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
-                <motion.button
+                <motion.a
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px var(--theme-glow)" }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsResumeOpen(true)}
+                  href={PERSONAL_INFO.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-5 bg-white text-theme border-2 border-theme-soft hover:border-theme hover:bg-theme-soft rounded-[2rem] font-bold transition-all flex items-center gap-3 group shadow-sm"
                 >
                   <FileText size={20} className="group-hover:scale-110 transition-transform" />
-                  ATS Resume
-                </motion.button>
+                  Resume
+                </motion.a>
 
                 <div className="flex items-center gap-3">
                   {[
@@ -2030,7 +1884,6 @@ const App: React.FC = () => {
         onClose={() => setIsPaletteOpen(false)}
         onSelectTheme={(idx) => setActiveThemeIndex(idx)}
       />
-      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
       <AIChatbot />
     </div>
   );
