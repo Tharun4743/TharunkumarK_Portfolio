@@ -1,4 +1,4 @@
-import { Project, CertificationItem, SkillCategory } from './type';
+import { Project, CertificationItem, SkillCategory, AchievementItem } from './type';
 
 import profileImg from './assets/profile.png';
 import vsbecTaskManagerImg from './assets/vsbec-task-manager.png';
@@ -363,61 +363,77 @@ export const LEADERSHIP = [
   }
 ];
 
-export const ACHIEVEMENTS = [
+export const ACHIEVEMENTS: AchievementItem[] = [
   {
-    title: 'Code Thugs 2k26 – 1st Place',
+    title: 'Code Thugs 2k26 – 1st Place (National Winner)',
     organization: 'Code Thugs 2k26',
     year: '2026',
-    type: '1ST PLACE',
+    type: '1ST PLACE WINNER',
+    prize: '₹5,000 Cash Prize',
+    category: 'hackathon',
+    iconName: 'trophy',
     description:
-      'Won nationally for a real-time collaborative code editor with live sync and conflict resolution; ₹5,000 cash prize.'
+      'Won 1st Place nationally for developing a real-time collaborative code editor with live AST sync, operational transformation, and conflict resolution.'
   },
   {
     title: 'Smart India Hackathon 2025 – Top 50',
-    organization: 'SIH 2025',
+    organization: 'Ministry of Education & SIH',
     year: '2025',
-    type: 'TOP 50',
+    type: 'TOP 50 / 300+ TEAMS',
+    category: 'hackathon',
+    iconName: 'rocket',
     description:
-      'Made it to the top 50 out of 300+ teams in the internal round, leading dev for the IoT rider safety system.'
+      'Ranked in the top 50 out of 300+ competing teams in the internal hackathon, serving as lead developer for an IoT-enabled rider safety system.'
   },
   {
     title: 'India Innovates 2026 – Finalist',
-    organization: 'India Innovates',
+    organization: 'India Innovates National Innovation Challenge',
     year: '2026',
-    type: 'FINALIST',
+    type: 'NATIONAL FINALIST',
+    category: 'hackathon',
+    iconName: 'lightbulb',
     description:
-      'Reached the finals after two rounds of selection.'
-  },
-  {
-    title: 'GeeksforGeeks Campus Mantri',
-    organization: 'GeeksforGeeks',
-    year: 'Jan – Jul 2026',
-    type: 'LEADERSHIP',
-    description:
-      'Ran workshops and coding events on campus as Student Ambassador.'
-  },
-  {
-    title: 'Fun Quest Event Coordination',
-    organization: 'Symposium Event',
-    year: '2026',
-    type: 'LEADERSHIP',
-    description:
-      'Coordinated a symposium event for 150+ people; got a 9.8/10 average feedback score.'
+      'Advanced to the national finals following multi-stage technical evaluations and prototype demonstrations.'
   },
   {
     title: 'Department Student Coordinator',
-    organization: 'VSB Engineering College',
-    year: '2024 - Present',
-    type: 'LEADERSHIP',
+    organization: 'VSB Engineering College (IT Dept)',
+    year: '2024 – Present',
+    type: 'DEPARTMENT LEAD',
+    category: 'leadership',
+    iconName: 'graduation',
     description:
-      'Serving as Department Student Coordinator for Information Technology from 2024, leading student activities, technical events, and department initiatives.'
+      'Appointed Department Student Coordinator for Information Technology from 2024. Leading student technical events, academic task automation, and department activities.'
   },
   {
     title: 'SIH 2026 IT Department Coordinator',
     organization: 'VSB Engineering College',
     year: '2026',
-    type: 'LEADERSHIP',
+    type: 'SIH IT LEAD',
+    category: 'leadership',
+    iconName: 'shield',
     description:
-      'Serving as the IT Department Coordinator for Smart India Hackathon (SIH) 2026, mentoring teams, coordinating project submissions, and managing hackathon operations.'
+      'Appointed IT Department Coordinator for Smart India Hackathon (SIH) 2026. Mentoring 15+ student teams, reviewing problem statements, and managing college submission pipelines.'
+  },
+  {
+    title: 'GeeksforGeeks Campus Mantri',
+    organization: 'GeeksforGeeks Ambassador Program',
+    year: 'Jan – Jul 2026',
+    type: 'CAMPUS AMBASSADOR',
+    category: 'ambassador',
+    iconName: 'code',
+    description:
+      'Organized and hosted campus coding workshops, competitive programming contests, and technical bootcamps for 200+ student developers.'
+  },
+  {
+    title: 'Fun Quest Event Coordinator',
+    organization: 'National Level Technical Symposium',
+    year: '2026',
+    type: 'EVENT COORDINATOR',
+    score: '9.8 / 10 Rating',
+    category: 'leadership',
+    iconName: 'star',
+    description:
+      'Spearheaded event planning, logistics, and execution for 150+ symposium participants, achieving an average feedback rating score of 9.8 out of 10.'
   }
 ];

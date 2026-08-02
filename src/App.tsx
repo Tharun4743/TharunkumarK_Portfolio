@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Github,
@@ -14,6 +14,7 @@ import {
   BookOpen,
   User,
   ChevronRight,
+  ChevronLeft,
   Menu,
   X,
   Terminal,
@@ -21,7 +22,18 @@ import {
   Sparkles,
   FileText,
   Search,
-  Activity
+  Activity,
+  Trophy,
+  Gift,
+  Star,
+  GraduationCap,
+  Users,
+  Rocket,
+  Lightbulb,
+  Calendar,
+  ShieldCheck,
+  Layers,
+  Briefcase
 } from 'lucide-react';
 import {
   PERSONAL_INFO,
@@ -60,9 +72,10 @@ const THEMES = [
 
 interface NavProps {
   onOpenPalette: () => void;
+  onOpenResume: () => void;
 }
 
-const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
+const Nav: React.FC<NavProps> = ({ onOpenPalette, onOpenResume }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -137,7 +150,7 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
           onClick={(e) => handleNavClick(e, 'top')}
           className="text-2xl font-black tracking-tighter text-theme hover:scale-105 transition-transform flex items-center gap-2"
         >
-          <div className="w-8 h-8 bg-theme rounded-lg flex items-center justify-center text-white text-sm shadow-md">TK</div>
+          <div className="w-8 h-8 rounded-lg border-2 border-theme text-theme bg-transparent flex items-center justify-center text-xs font-black shadow-sm">TK</div>
           <span className="gradient-text">Tharunkumar <span className="text-slate-400">K</span></span>
         </a>
 
@@ -153,10 +166,19 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
             </a>
           ))}
           
+          {/* ATS Resume Quick Modal Trigger */}
+          <button
+            onClick={onOpenResume}
+            className="px-3 py-1.5 ml-1 text-xs font-bold text-theme bg-theme-soft hover:bg-theme hover:text-white rounded-xl transition-all border border-theme/20 shadow-sm flex items-center gap-1.5"
+            title="View ATS Resume Modal"
+          >
+            <FileText size={14} /> Resume
+          </button>
+
           {/* Command Palette Desktop Trigger */}
           <button
             onClick={onOpenPalette}
-            className="p-2 ml-4 text-slate-500 hover:text-theme hover:bg-theme-soft rounded-xl transition-colors flex items-center gap-1.5 border border-slate-100"
+            className="p-2 ml-2 text-slate-500 hover:text-theme hover:bg-theme-soft rounded-xl transition-colors flex items-center gap-1.5 border border-slate-100"
             title="Search / Command Palette (Ctrl+K)"
           >
             <Search size={16} />
@@ -206,6 +228,87 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
         )}
       </AnimatePresence>
     </motion.nav>
+  );
+};
+
+type CursorMode = 'magnetic' | 'particle' | 'inverted';
+
+const CustomCursor: React.FC = () => {
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    let mouseX = -100;
+    let mouseY = -100;
+    let currentX = -100;
+    let currentY = -100;
+    let rAFId: number;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isVisible) setIsVisible(true);
+
+      const target = e.target as HTMLElement | null;
+      const interactiveEl = target?.closest('a, button, input, textarea, [role="button"]');
+      setIsHovered(!!interactiveEl);
+    };
+
+    const updateCursor = () => {
+      // 0.65 lerp coefficient for instant zero-lag responsiveness
+      currentX += (mouseX - currentX) * 0.65;
+      currentY += (mouseY - currentY) * 0.65;
+
+      if (cursorRef.current) {
+        // Keep offset constant at 18px (half of 36px ring size) so center point stays locked to mouse without coordinate jumps
+        cursorRef.current.style.transform = `translate3d(${currentX - 18}px, ${currentY - 18}px, 0px)`;
+      }
+      rAFId = requestAnimationFrame(updateCursor);
+    };
+
+    const handleMouseDown = () => setIsClicked(true);
+    const handleMouseUp = () => setIsClicked(false);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+
+    rAFId = requestAnimationFrame(updateCursor);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      cancelAnimationFrame(rAFId);
+    };
+  }, [isVisible, isHovered]);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="hidden lg:block pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
+      <div
+        ref={cursorRef}
+        className={`fixed top-0 left-0 w-9 h-9 rounded-full bg-transparent border-2 border-theme shadow-[0_0_15px_var(--theme-glow)] will-change-transform ${
+          isHovered
+            ? 'scale-150 border-[2.5px] shadow-[0_0_30px_var(--theme-glow),0_0_50px_var(--theme-glow)]'
+            : isClicked
+            ? 'scale-75'
+            : 'scale-100'
+        }`}
+        style={{
+          transition: 'transform 0s, scale 0.12s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      />
+    </div>
   );
 };
 
@@ -280,8 +383,27 @@ const LeetCodeIcon: React.FC<{ className?: string; size?: number }> = ({ classNa
     src="https://img.icons8.com/?size=100&id=6cdjttfIiwc0&format=png"
     alt="LeetCode"
     style={{ width: size, height: size }}
-    className={`object-contain ${className}`}
+    className={`object-contain transition-all ${className}`}
   />
+);
+
+const GeeksForGeeksIcon: React.FC<{ className?: string; size?: number }> = ({ className = '', size = 22 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`transition-all ${className}`}
+  >
+    {/* Left bracket < */}
+    <path d="M9 7.5L4.5 12L9 16.5" />
+    {/* Right bracket > */}
+    <path d="M15 7.5l4.5 4.5-4.5 4.5" />
+  </svg>
 );
 
 const Typewriter: React.FC = () => {
@@ -668,6 +790,316 @@ const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) =
   );
 };
 
+const ContactSlider: React.FC = () => {
+  const contactItems = [
+    { label: 'Drop me a message', value: PERSONAL_INFO.email, link: `https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}`, icon: <Mail size={32} />, borderHover: 'hover:border-blue-500', iconHover: 'group-hover:text-blue-600 group-hover:bg-blue-50 group-hover:border-blue-300' },
+    { label: 'Give me a call', value: PERSONAL_INFO.phone, link: `tel:${PERSONAL_INFO.phone}`, icon: <Phone size={32} />, accentColor: 'from-emerald-500 to-teal-600', borderHover: 'hover:border-emerald-500', iconHover: 'group-hover:text-emerald-600 group-hover:bg-emerald-50 group-hover:border-emerald-300' },
+    { label: 'Connect on', value: 'GitHub', link: PERSONAL_INFO.github, icon: <Github size={32} />, borderHover: 'hover:border-slate-800', iconHover: 'group-hover:text-slate-900 group-hover:bg-slate-100 group-hover:border-slate-400' },
+    { label: 'Connect on', value: 'LinkedIn', link: PERSONAL_INFO.linkedin, icon: <Linkedin size={32} />, borderHover: 'hover:border-blue-600', iconHover: 'group-hover:text-blue-700 group-hover:bg-blue-50 group-hover:border-blue-400' },
+    { label: 'Connect on', value: 'LeetCode', link: PERSONAL_INFO.leetcode, icon: <LeetCodeIcon size={32} />, borderHover: 'hover:border-amber-500', iconHover: 'group-hover:text-amber-600 group-hover:bg-amber-50 group-hover:border-amber-300' },
+    { label: 'Connect on', value: 'GeeksForGeeks', link: PERSONAL_INFO.geeksforgeeks, icon: <GeeksForGeeksIcon size={32} />, borderHover: 'hover:border-green-600', iconHover: 'group-hover:text-green-700 group-hover:bg-green-50 group-hover:border-green-300' }
+  ];
+
+  // Duplicated items for seamless continuous infinite marquee
+  const marqueeItems = [...contactItems, ...contactItems];
+
+  return (
+    <div className="w-full overflow-hidden relative py-6 group [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+      <motion.div
+        animate={{ x: ['0%', '-50%'] }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: 'loop',
+            duration: 22,
+            ease: 'linear'
+          }
+        }}
+        className="flex gap-6 w-max group-hover:[animation-play-state:paused]"
+      >
+        {marqueeItems.map((item, idx) => (
+          <motion.a
+            key={idx}
+            whileHover={{ y: -6, scale: 1.03 }}
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-80 p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-2xl transition-all flex flex-col items-center text-center gap-4 flex-shrink-0 group ${item.borderHover}`}
+          >
+            <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 text-slate-800 flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:border-theme transition-all duration-300">
+              {item.icon}
+            </div>
+            <div className="w-full overflow-hidden">
+              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{item.label}</h4>
+              <p className="text-base font-black text-slate-900 truncate w-full px-2">{item.value}</p>
+            </div>
+          </motion.a>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+const ResumeModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  const handlePrintDownload = () => {
+    window.print();
+  };
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 30 }}
+          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]"
+        >
+          {/* Top Bar */}
+          <div className="p-6 bg-slate-900 text-white flex justify-between items-center border-b border-slate-800">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl border-2 border-theme text-theme bg-transparent flex items-center justify-center font-black">
+                TK
+              </div>
+              <div>
+                <h3 className="font-black text-base leading-tight">Tharunkumar K — ATS Resume</h3>
+                <p className="text-xs text-slate-400 font-medium">Full Stack Developer & AI Application Developer</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href={PERSONAL_INFO.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md"
+              >
+                <ExternalLink size={14} /> Open Google Drive
+              </a>
+              <button
+                onClick={handlePrintDownload}
+                className="px-4 py-2 bg-theme hover:brightness-110 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md"
+              >
+                <FileText size={14} /> Download / Print PDF
+              </button>
+              <button
+                onClick={onClose}
+                className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-xl transition-all"
+              >
+                <X size={18} />
+              </button>
+            </div>
+          </div>
+
+          {/* Structured ATS Resume Content */}
+          <div className="p-8 sm:p-10 overflow-y-auto text-slate-800 font-sans space-y-8 print:p-0">
+            {/* Header / Contact Info */}
+            <div className="border-b border-slate-200 pb-6 flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div>
+                <h1 className="text-3xl font-black text-slate-900 tracking-tight">{PERSONAL_INFO.name}</h1>
+                <p className="text-base font-bold text-theme mt-1">{PERSONAL_INFO.title}</p>
+                <p className="text-xs text-slate-500 font-medium mt-1">{PERSONAL_INFO.location}</p>
+              </div>
+              <div className="text-xs font-medium text-slate-600 space-y-1.5 sm:text-right">
+                <p className="flex items-center sm:justify-end gap-1.5"><Mail size={13} className="text-slate-400" /> {PERSONAL_INFO.email}</p>
+                <p className="flex items-center sm:justify-end gap-1.5"><Phone size={13} className="text-slate-400" /> {PERSONAL_INFO.phone}</p>
+                <p className="flex items-center sm:justify-end gap-1.5"><Github size={13} className="text-slate-400" /> github.com/Tharun4743</p>
+                <p className="flex items-center sm:justify-end gap-1.5"><Linkedin size={13} className="text-slate-400" /> linkedin.com/in/tharunkumark</p>
+              </div>
+            </div>
+
+            {/* Summary */}
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-3">Professional Summary</h2>
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-700">{PERSONAL_INFO.profileSummary}</p>
+            </div>
+
+            {/* Work & Internships */}
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-4">Work & Internship Experience</h2>
+              <div className="space-y-4">
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                  <div className="flex justify-between items-start flex-wrap gap-2 mb-1">
+                    <h3 className="font-bold text-slate-900 text-sm">Full Stack & AI Developer Intern &bull; <span className="text-theme">Neura Global</span></h3>
+                    <span className="text-xs font-semibold px-2.5 py-0.5 bg-slate-200 text-slate-700 rounded-full">06/2026 – 07/2026</span>
+                  </div>
+                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                    Engineered AI-first enterprise products, microservice APIs, and automated workflows. Architected full-stack features using React, Node.js, and ChromaDB vector databases.
+                  </p>
+                </div>
+
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                  <div className="flex justify-between items-start flex-wrap gap-2 mb-1">
+                    <h3 className="font-bold text-slate-900 text-sm">Software Engineering Intern &bull; <span className="text-theme">Infosys Springboard</span></h3>
+                    <span className="text-xs font-semibold px-2.5 py-0.5 bg-slate-200 text-slate-700 rounded-full">11/2025 – 01/2026</span>
+                  </div>
+                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                    Developed full-stack web applications using Java Spring Boot, REST API standards, SQL databases, and modern frontend practices.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Skills */}
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-3">Core Technical Skills</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                <div><span className="font-bold text-slate-900">Languages:</span> Java, Python, TypeScript, JavaScript, SQL</div>
+                <div><span className="font-bold text-slate-900">Backend:</span> Spring Boot, Node.js, Express.js</div>
+                <div><span className="font-bold text-slate-900">Frontend:</span> React.js, Tailwind CSS, HTML5/CSS3</div>
+                <div><span className="font-bold text-slate-900">Databases:</span> PostgreSQL, SQLite, Supabase</div>
+                <div><span className="font-bold text-slate-900">AI & Vector:</span> Ollama, ChromaDB, RAG Pipelines</div>
+                <div><span className="font-bold text-slate-900">Dev Tools:</span> Git/GitHub, Cloudinary, Render</div>
+              </div>
+            </div>
+
+            {/* Featured Projects */}
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-4">Key Featured Projects</h2>
+              <div className="space-y-3 text-xs">
+                <div>
+                  <h3 className="font-bold text-slate-900">1. VSBEC Academic Task Manager <span className="text-slate-400 font-normal">(React, Express, PostgreSQL, Cloudinary)</span></h3>
+                  <p className="text-slate-600 font-medium">Production-deployed academic task verification platform with 5-tier RBAC isolation actively implemented in the department.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900">2. CampusConnect Placement Cell Platform <span className="text-slate-400 font-normal">(React, Node.js, Supabase, Socket.IO)</span></h3>
+                  <p className="text-slate-600 font-medium">Enterprise placement management system automating TPO workflows, student Document Vault, and recruiter drive screening.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900">3. AURA AI Platform <span className="text-slate-400 font-normal">(Ollama, ChromaDB, RAG Architecture)</span></h3>
+                  <p className="text-slate-600 font-medium">Privacy-focused offline AI desktop application supporting RAG document QA, local model inference, and vector embeddings.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Achievements & Leadership */}
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-theme pb-1 mb-3">Achievements & Leadership</h2>
+              <ul className="list-disc list-inside text-xs text-slate-700 font-medium space-y-1.5">
+                <li><strong className="text-slate-900">Code Thugs 2k26 1st Place National Winner:</strong> Won ₹5,000 cash prize for real-time collaborative code editor with live sync.</li>
+                <li><strong className="text-slate-900">Smart India Hackathon (SIH) 2025 Top 50:</strong> Top 50 out of 300+ teams for IoT rider safety system.</li>
+                <li><strong className="text-slate-900">Department Student Coordinator (2024 – Present):</strong> Appointed IT Department Student Coordinator at VSB Engineering College.</li>
+                <li><strong className="text-slate-900">SIH 2026 IT Department Coordinator:</strong> Leading and mentoring 15+ student teams for SIH 2026.</li>
+                <li><strong className="text-slate-900">Fun Quest Coordinator:</strong> Coordinated symposium event for 150+ participants (9.8/10 average score).</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+};
+
+const AchievementsTimeline: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<'all' | 'hackathon' | 'leadership' | 'ambassador'>('all');
+
+  const filteredAchievements = ACHIEVEMENTS.filter((item) => {
+    if (activeFilter === 'all') return true;
+    return item.category === activeFilter;
+  });
+
+  const getJourneyIcon = (iconName?: string) => {
+    switch (iconName) {
+      case 'trophy':
+        return <Trophy size={20} className="text-theme" />;
+      case 'rocket':
+        return <Rocket size={20} className="text-theme" />;
+      case 'lightbulb':
+        return <Lightbulb size={20} className="text-theme" />;
+      case 'graduation':
+        return <GraduationCap size={20} className="text-theme" />;
+      case 'shield':
+        return <ShieldCheck size={20} className="text-theme" />;
+      case 'code':
+        return <Code size={20} className="text-theme" />;
+      case 'star':
+        return <Star size={20} className="text-theme" />;
+      default:
+        return <Award size={20} className="text-theme" />;
+    }
+  };
+
+  return (
+    <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
+      {/* Category Filter Pills with Outlined Vector Icons */}
+      <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+        {[
+          { id: 'all', label: 'All Milestones', icon: <Layers size={14} /> },
+          { id: 'hackathon', label: 'Hackathons & Wins', icon: <Trophy size={14} /> },
+          { id: 'leadership', label: 'Department Leadership', icon: <GraduationCap size={14} /> },
+          { id: 'ambassador', label: 'Campus Ambassador', icon: <Users size={14} /> },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveFilter(tab.id as any)}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
+              activeFilter === tab.id
+                ? 'bg-theme text-white shadow-lg'
+                : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+            }`}
+          >
+            {tab.icon}
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Interactive Vertical Timeline Track */}
+      <div className="relative w-full border-l-2 border-slate-200/80 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+        {filteredAchievements.map((item, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.08 }}
+            className="relative group"
+          >
+            {/* Timeline Pulsing Node */}
+            <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-theme shadow-md group-hover:scale-125 group-hover:bg-theme transition-all duration-300" />
+
+            <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white border border-slate-100 shadow-md hover:shadow-2xl hover:border-theme transition-all">
+              <div className="flex flex-wrap justify-between items-start gap-3 mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-transparent border-2 border-theme text-theme flex items-center justify-center flex-shrink-0 transition-all shadow-sm">
+                    {getJourneyIcon(item.iconName)}
+                  </div>
+                  <span className="px-3.5 py-1 bg-transparent text-slate-700 font-bold rounded-xl text-xs border border-slate-200 flex items-center gap-1.5">
+                    <Calendar size={13} className="text-slate-400" /> {item.year}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {item.prize && (
+                    <span className="px-3.5 py-1 bg-transparent text-amber-700 font-bold rounded-xl text-xs border border-amber-300/80 shadow-sm flex items-center gap-1.5">
+                      <Gift size={13} className="text-amber-600" /> {item.prize}
+                    </span>
+                  )}
+                  {item.score && (
+                    <span className="px-3.5 py-1 bg-transparent text-emerald-700 font-bold rounded-xl text-xs border border-emerald-300/80 shadow-sm flex items-center gap-1.5">
+                      <Star size={13} className="text-emerald-600" /> {item.score}
+                    </span>
+                  )}
+                  {item.type && (
+                    <span className="px-3.5 py-1 bg-transparent text-theme font-bold rounded-xl text-xs border border-theme/40">
+                      {item.type}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors mb-1 leading-snug">
+                {item.title}
+              </h3>
+              <h4 className="text-xs font-bold text-slate-400 mb-3">{item.organization}</h4>
+              <p className="text-slate-600 text-sm font-medium leading-relaxed">{item.description}</p>
+            </TiltCard>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.ReactNode }> = ({ title, subtitle, icon }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -676,7 +1108,7 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.Re
     className="mb-16"
   >
     <div className="flex items-center gap-4 mb-4">
-      <div className="w-14 h-14 rounded-2xl bg-theme flex items-center justify-center text-white shadow-xl" style={{ boxShadow: '0 8px 20px -5px var(--theme-glow)' }}>
+      <div className="w-14 h-14 rounded-2xl bg-transparent border-2 border-theme text-slate-900 flex items-center justify-center transition-all hover:scale-105" style={{ boxShadow: '0 0 20px var(--theme-glow)' }}>
         {icon}
       </div>
       <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">{title}</h2>
@@ -688,6 +1120,7 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.Re
 const App: React.FC = () => {
   const [activeThemeIndex, setActiveThemeIndex] = useState(0);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'iot' | 'fullstack'>('all');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -775,6 +1208,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 selection:bg-theme-soft selection:text-theme relative">
+      <CustomCursor />
       {/* Background Blobs (Feature 6) */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-20 opacity-30">
         <motion.div
@@ -807,7 +1241,7 @@ const App: React.FC = () => {
         }}
       />
 
-      <Nav onOpenPalette={() => setIsPaletteOpen(true)} />
+      <Nav onOpenPalette={() => setIsPaletteOpen(true)} onOpenResume={() => setIsResumeOpen(true)} />
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
@@ -849,24 +1283,22 @@ const App: React.FC = () => {
                   <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
-                <motion.a
+                <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px var(--theme-glow)" }}
                   whileTap={{ scale: 0.95 }}
-                  href={PERSONAL_INFO.resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={() => setIsResumeOpen(true)}
                   className="px-8 py-5 bg-white text-theme border-2 border-theme-soft hover:border-theme hover:bg-theme-soft rounded-[2rem] font-bold transition-all flex items-center gap-3 group shadow-sm"
                 >
                   <FileText size={20} className="group-hover:scale-110 transition-transform" />
-                  Resume
-                </motion.a>
+                  ATS Resume
+                </motion.button>
 
                 <div className="flex items-center gap-3">
                   {[
                     { icon: <Github size={22} />, link: PERSONAL_INFO.github, label: 'GitHub' },
                     { icon: <Linkedin size={22} />, link: PERSONAL_INFO.linkedin, label: 'LinkedIn' },
                     { icon: <LeetCodeIcon size={22} />, link: PERSONAL_INFO.leetcode, label: 'LeetCode' },
-                    { icon: <Terminal size={22} />, link: PERSONAL_INFO.geeksforgeeks, label: 'GeeksForGeeks' },
+                    { icon: <GeeksForGeeksIcon size={22} />, link: PERSONAL_INFO.geeksforgeeks, label: 'GeeksForGeeks' },
                   ].map((social, i) => (
                     <motion.a
                       key={i}
@@ -1094,8 +1526,12 @@ const App: React.FC = () => {
                     >
                       {idx === firstEduIdx && <div id="education" className="absolute -top-24" />}
                       {/* Node Marker */}
-                      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-[3px] border-white shadow-md bg-white z-10 flex items-center justify-center text-lg">
-                        {item.type === 'work' ? '💼' : '🎓'}
+                      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-2 border-theme bg-white shadow-md z-10 flex items-center justify-center text-slate-800 transition-transform hover:scale-110">
+                        {item.type === 'work' ? (
+                          <Briefcase size={18} className="text-slate-800" />
+                        ) : (
+                          <GraduationCap size={18} className="text-slate-800" />
+                        )}
                       </div>
 
                       {/* Content Card */}
@@ -1504,43 +1940,11 @@ const App: React.FC = () => {
       <section id="achievements" className="py-32 bg-slate-50">
         <div className="container mx-auto px-6">
           <SectionHeader
-            title="Achievements"
-            subtitle="Recognition for excellence and innovation."
+            title="Achievements & Leadership"
+            subtitle="National hackathon titles, Department Student Coordinator initiatives, and event leadership."
             icon={<Award size={28} />}
           />
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
-            {ACHIEVEMENTS.map((item: AchievementItem, idx: number) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] flex-grow lg:flex-grow-0"
-              >
-                <TiltCard className="p-8 sm:p-10 rounded-[2.5rem] bg-white shadow-md border border-slate-100 hover:border-theme transition-all hover:shadow-2xl h-full flex flex-col justify-between">
-                  <div>
-                    <div className="flex justify-between items-start gap-4 mb-6 flex-wrap">
-                      <span className="px-3.5 py-1.5 bg-yellow-50 text-yellow-700 font-bold rounded-xl text-xs border border-yellow-200">
-                        {item.year}
-                      </span>
-                      {item.type && (
-                        <span className="px-3.5 py-1.5 bg-theme-soft text-theme font-bold rounded-xl text-xs border border-theme/20">
-                          {item.type}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors leading-tight mb-2">
-                      {item.title}
-                    </h3>
-                    <h4 className="text-xs font-bold text-slate-500 mb-4">{item.organization}</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                      {item.description}
-                    </p>
-                  </div>
-                </TiltCard>
-              </motion.div>
-            ))}
-          </div>
+          <AchievementsTimeline />
         </div>
       </section>
 
@@ -1607,37 +2011,7 @@ const App: React.FC = () => {
             subtitle="I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision."
             icon={<MessageSquare size={28} />}
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { label: 'Drop me a message', value: PERSONAL_INFO.email, link: `https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}`, icon: <Mail size={32} />, borderHover: 'hover:border-blue-600', iconHover: 'group-hover:text-blue-600 group-hover:bg-blue-50' },
-              { label: 'Give me a call', value: PERSONAL_INFO.phone, link: `tel:${PERSONAL_INFO.phone}`, icon: <Phone size={32} />, borderHover: 'hover:border-theme', iconHover: 'group-hover:text-theme group-hover:bg-theme-soft' },
-              { label: 'Connect on', value: 'GitHub', link: PERSONAL_INFO.github, icon: <Github size={32} />, borderHover: 'hover:border-black', iconHover: 'group-hover:text-black group-hover:bg-slate-200' },
-              { label: 'Connect on', value: 'LinkedIn', link: PERSONAL_INFO.linkedin, icon: <Linkedin size={32} />, borderHover: 'hover:border-blue-700', iconHover: 'group-hover:text-blue-700 group-hover:bg-blue-50' },
-              { label: 'Connect on', value: 'LeetCode', link: PERSONAL_INFO.leetcode, icon: <LeetCodeIcon size={32} />, borderHover: 'hover:border-yellow-600', iconHover: 'group-hover:text-yellow-600 group-hover:bg-yellow-50' },
-              { label: 'Connect on', value: 'GeeksForGeeks', link: PERSONAL_INFO.geeksforgeeks, icon: <Terminal size={32} />, borderHover: 'hover:border-green-700', iconHover: 'group-hover:text-green-700 group-hover:bg-green-50' }
-            ].map((item, idx) => (
-              <motion.a
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all group flex flex-col items-center text-center gap-4 ${item.borderHover}`}
-              >
-                <div className={`w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:scale-110 transition-colors duration-300 shadow-sm ${item.iconHover}`}>
-                  {item.icon}
-                </div>
-                <div className="w-full overflow-hidden">
-                  <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">{item.label}</h4>
-                  <p className="text-base sm:text-lg font-black text-slate-900 truncate w-full px-2">{item.value}</p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
+          <ContactSlider />
         </div>
       </section>
 
@@ -1656,6 +2030,7 @@ const App: React.FC = () => {
         onClose={() => setIsPaletteOpen(false)}
         onSelectTheme={(idx) => setActiveThemeIndex(idx)}
       />
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
       <AIChatbot />
     </div>
   );

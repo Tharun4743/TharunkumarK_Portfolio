@@ -56,12 +56,15 @@ export type LeadershipItem = {
   description: string;
 };
 
-// NEW: Achievement type
 export type AchievementItem = {
   title: string;
   organization: string;
   year: string;
   description: string;
   type?: string;
+  prize?: string;
+  score?: string;
+  category?: 'hackathon' | 'leadership' | 'ambassador';
+  iconName?: 'trophy' | 'rocket' | 'lightbulb' | 'graduation' | 'shield' | 'code' | 'star';
 };
 
