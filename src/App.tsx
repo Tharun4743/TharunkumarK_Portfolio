@@ -327,7 +327,7 @@ const CountUp: React.FC<{ value: number; suffix?: string }> = ({ value, suffix =
   return <span>{count}{suffix}</span>;
 };
 
-const TiltCard: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
+const TiltCard: React.FC<{ children: React.ReactNode; className?: string; onClick?: () => void }> = ({ children, className = '', onClick }) => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   
@@ -340,29 +340,25 @@ const TiltCard: React.FC<{ children: React.ReactNode; className?: string }> = ({
   
   return (
     <div
+      onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden transition-all duration-300 ${className}`}
       style={{
-        transform: isHovered ? 'scale(1.01) translateY(-2px)' : 'scale(1) translateY(0)',
-        boxShadow: isHovered ? '0 15px 30px -10px var(--theme-glow)' : 'none'
+        transform: isHovered ? 'scale(1.025) translateY(-8px)' : 'scale(1) translateY(0)',
+        boxShadow: isHovered ? '0 25px 50px -12px var(--theme-glow), 0 0 30px var(--theme-glow)' : 'none'
       }}
     >
-      {isHovered && (
-        <div
-          className="absolute pointer-events-none rounded-full blur-[60px] -z-10 bg-theme-soft"
-          style={{
-            width: '150px',
-            height: '150px',
-            left: `${coords.x - 75}px`,
-            top: `${coords.y - 75}px`,
-            backgroundColor: 'var(--theme-glow)',
-            opacity: 0.8
-          }}
-        />
-      )}
-      {children}
+      {/* Dynamic Cursor Spotlight Highlight (Leadership Signature) */}
+      <div
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300 z-0"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(500px circle at ${coords.x}px ${coords.y}px, var(--theme-glow), transparent 70%)`
+        }}
+      />
+      <div className="relative z-10 w-full h-full flex flex-col">{children}</div>
     </div>
   );
 };
@@ -1490,14 +1486,13 @@ const App: React.FC = () => {
                   exit={{ opacity: 0, x: -20, scale: 0.95 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.06 }}
-                  whileHover={{ y: -8, scale: 1.015 }}
-                  onClick={() => setActiveProject(project)}
-                  className="group bg-white rounded-[3.5rem] overflow-hidden flex flex-col border border-slate-100 hover:border-theme transition-all hover:shadow-3xl cursor-pointer will-change-transform relative"
+                  className="w-full"
                 >
-                  {/* Ambient Hover Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                  <div className="p-10 flex flex-col h-full items-center text-center relative z-10">
+                  <TiltCard
+                    onClick={() => setActiveProject(project)}
+                    className="group bg-white rounded-[3.5rem] border border-slate-100 hover:border-theme transition-all cursor-pointer h-full"
+                  >
+                    <div className="p-10 flex flex-col h-full items-center text-center">
                     {/* 1. Project Logo / Icon */}
                     {project.image && (
                       <div className="mb-6 flex justify-center">
@@ -1589,6 +1584,7 @@ const App: React.FC = () => {
                       )}
                     </div>
                   </div>
+                </TiltCard>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -1932,10 +1928,9 @@ const App: React.FC = () => {
                   whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
-                  whileHover={{ y: -8, scale: 1.015 }}
-                  className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme hover:shadow-xl transition-all group flex flex-col items-center text-center gap-4 relative overflow-hidden will-change-transform"
+                  className="w-full"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  <TiltCard className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme transition-all group flex flex-col items-center text-center gap-4 h-full">
                   <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 group-hover:border-theme text-slate-800 flex items-center justify-center group-hover:scale-110 transition-all shadow-sm flex-shrink-0">
                     {getCompanyIcon(cert.issuer, cert.title)}
                   </div>
@@ -1964,6 +1959,7 @@ const App: React.FC = () => {
                     </a>
                   )}
                 </div>
+                </TiltCard>
               </motion.div>
             );
           })}
