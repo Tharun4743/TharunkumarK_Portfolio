@@ -275,6 +275,15 @@ const TiltCard: React.FC<{ children: React.ReactNode; className?: string }> = ({
   );
 };
 
+const LeetCodeIcon: React.FC<{ className?: string; size?: number }> = ({ className = '', size = 22 }) => (
+  <img
+    src="https://img.icons8.com/?size=100&id=6cdjttfIiwc0&format=png"
+    alt="LeetCode"
+    style={{ width: size, height: size }}
+    className={`object-contain ${className}`}
+  />
+);
+
 const Typewriter: React.FC = () => {
   const ROLES = ['IoT Safety Solutions', 'Robust Full-Stack Apps', 'Intelligent Systems'];
   const [roleIdx, setRoleIdx] = useState(0);
@@ -856,7 +865,7 @@ const App: React.FC = () => {
                   {[
                     { icon: <Github size={22} />, link: PERSONAL_INFO.github, label: 'GitHub' },
                     { icon: <Linkedin size={22} />, link: PERSONAL_INFO.linkedin, label: 'LinkedIn' },
-                    { icon: <Code size={22} />, link: PERSONAL_INFO.leetcode, label: 'LeetCode' },
+                    { icon: <LeetCodeIcon size={22} />, link: PERSONAL_INFO.leetcode, label: 'LeetCode' },
                     { icon: <Terminal size={22} />, link: PERSONAL_INFO.geeksforgeeks, label: 'GeeksForGeeks' },
                   ].map((social, i) => (
                     <motion.a
@@ -1604,7 +1613,7 @@ const App: React.FC = () => {
               { label: 'Give me a call', value: PERSONAL_INFO.phone, link: `tel:${PERSONAL_INFO.phone}`, icon: <Phone size={32} />, borderHover: 'hover:border-theme', iconHover: 'group-hover:text-theme group-hover:bg-theme-soft' },
               { label: 'Connect on', value: 'GitHub', link: PERSONAL_INFO.github, icon: <Github size={32} />, borderHover: 'hover:border-black', iconHover: 'group-hover:text-black group-hover:bg-slate-200' },
               { label: 'Connect on', value: 'LinkedIn', link: PERSONAL_INFO.linkedin, icon: <Linkedin size={32} />, borderHover: 'hover:border-blue-700', iconHover: 'group-hover:text-blue-700 group-hover:bg-blue-50' },
-              { label: 'Connect on', value: 'LeetCode', link: PERSONAL_INFO.leetcode, icon: <Code size={32} />, borderHover: 'hover:border-yellow-600', iconHover: 'group-hover:text-yellow-600 group-hover:bg-yellow-50' },
+              { label: 'Connect on', value: 'LeetCode', link: PERSONAL_INFO.leetcode, icon: <LeetCodeIcon size={32} />, borderHover: 'hover:border-yellow-600', iconHover: 'group-hover:text-yellow-600 group-hover:bg-yellow-50' },
               { label: 'Connect on', value: 'GeeksForGeeks', link: PERSONAL_INFO.geeksforgeeks, icon: <Terminal size={32} />, borderHover: 'hover:border-green-700', iconHover: 'group-hover:text-green-700 group-hover:bg-green-50' }
             ].map((item, idx) => (
               <motion.a
