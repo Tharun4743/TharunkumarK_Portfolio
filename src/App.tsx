@@ -1481,25 +1481,29 @@ const App: React.FC = () => {
                 <motion.div
                   key={project.title}
                   layout
-                  initial={{ opacity: 0, scale: 0.85, y: 30 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.85, y: 20 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  initial={{ opacity: 0, x: -40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.95 }}
+                  viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
-                  whileHover={{ scale: 1.025, y: -8 }}
+                  whileHover={{ y: -8, scale: 1.015 }}
                   onClick={() => setActiveProject(project)}
                   className="group bg-white rounded-[3.5rem] overflow-hidden flex flex-col border border-slate-100 hover:border-theme transition-all hover:shadow-3xl cursor-pointer will-change-transform relative"
                 >
                   {/* Ambient Hover Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-theme-soft/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
                   <div className="p-10 flex flex-col h-full items-center text-center relative z-10">
                     {/* 1. Project Logo / Icon */}
                     {project.image && (
                       <div className="mb-6 flex justify-center">
-                        <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative group-hover:scale-105 transition-transform duration-500 flex-shrink-0">
+                        <motion.div
+                          whileHover={{ rotate: 5, scale: 1.08 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                          className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
+                        >
                           <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
-                        </div>
+                        </motion.div>
                       </div>
                     )}
 
@@ -1522,14 +1526,14 @@ const App: React.FC = () => {
                     {(project.status || project.realWorldImplementation) && (
                       <div className="flex flex-wrap justify-center gap-2 mb-6">
                         {project.status && (
-                          <span className="px-3 py-1 bg-emerald-50 text-emerald-600 font-extrabold rounded-lg text-[10px] border border-emerald-100 uppercase tracking-wider">
+                          <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-emerald-50 text-emerald-600 font-extrabold rounded-lg text-[10px] border border-emerald-100 uppercase tracking-wider shadow-sm">
                             {project.status}
-                          </span>
+                          </motion.span>
                         )}
                         {project.realWorldImplementation && (
-                          <span className="px-3 py-1 bg-indigo-50 text-indigo-600 font-extrabold rounded-lg text-[10px] border border-indigo-100 uppercase tracking-wider">
+                          <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-indigo-50 text-indigo-600 font-extrabold rounded-lg text-[10px] border border-indigo-100 uppercase tracking-wider shadow-sm">
                             Implemented in Dept
-                          </span>
+                          </motion.span>
                         )}
                       </div>
                     )}
@@ -1537,9 +1541,9 @@ const App: React.FC = () => {
                     {/* 6. Technology Badges */}
                     <div className="mt-auto flex flex-wrap justify-center gap-2 mb-8">
                       {project.tags.map((tag: string, tIdx: number) => (
-                        <span key={tIdx} className="px-3 py-1.5 bg-slate-50 text-[10px] sm:text-xs font-bold text-slate-500 rounded-xl border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
+                        <motion.span whileHover={{ scale: 1.05 }} key={tIdx} className="px-3 py-1.5 bg-slate-50 text-[10px] sm:text-xs font-bold text-slate-500 rounded-xl border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
                           {tag}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
 
