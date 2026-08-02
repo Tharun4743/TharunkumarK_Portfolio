@@ -905,7 +905,7 @@ const AchievementsTimeline: React.FC = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -20, scale: 0.95 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.06 }}
               whileHover={{ y: -8, scale: 1.015 }}
               className="relative group"
             >
@@ -1249,9 +1249,10 @@ const App: React.FC = () => {
           <div className="max-w-4xl mx-auto">
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -40, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
               className="flex flex-col gap-6 sm:gap-8"
             >
               <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-md border border-slate-100 text-center sm:text-left hover:shadow-xl transition-all">
@@ -1316,13 +1317,15 @@ const App: React.FC = () => {
             {TECHNICAL_SKILLS.map((cat, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -40, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)]"
+                transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] will-change-transform"
               >
-                <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white shadow-md border border-slate-100 hover:shadow-xl hover:border-theme transition-all group h-full">
+                <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white shadow-md border border-slate-100 hover:shadow-xl hover:border-theme transition-all group h-full relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   <h3 className="text-theme font-black mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-theme animate-ping"></div>
                     {cat.name}
@@ -1390,10 +1393,11 @@ const App: React.FC = () => {
                   return (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, y: 50 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      initial={{ opacity: 0, x: isLeft ? -40 : 40, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.1 }}
+                      whileHover={{ y: -6, scale: 1.015 }}
                       className={`relative flex flex-col md:flex-row ${isLeft ? 'md:flex-row-reverse' : ''} items-start md:items-center`}
                     >
                       {idx === firstEduIdx && <div id="education" className="absolute -top-24" />}
@@ -1485,7 +1489,7 @@ const App: React.FC = () => {
                   whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: -20, scale: 0.95 }}
                   viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.06 }}
                   whileHover={{ y: -8, scale: 1.015 }}
                   onClick={() => setActiveProject(project)}
                   className="group bg-white rounded-[3.5rem] overflow-hidden flex flex-col border border-slate-100 hover:border-theme transition-all hover:shadow-3xl cursor-pointer will-change-transform relative"
@@ -1924,13 +1928,14 @@ const App: React.FC = () => {
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme hover:shadow-xl transition-all group flex flex-col items-center text-center gap-4"
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
+                  whileHover={{ y: -8, scale: 1.015 }}
+                  className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme hover:shadow-xl transition-all group flex flex-col items-center text-center gap-4 relative overflow-hidden will-change-transform"
                 >
+                  <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 group-hover:border-theme text-slate-800 flex items-center justify-center group-hover:scale-110 transition-all shadow-sm flex-shrink-0">
                     {getCompanyIcon(cert.issuer, cert.title)}
                   </div>
