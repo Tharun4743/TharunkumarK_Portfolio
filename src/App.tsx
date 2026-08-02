@@ -1458,17 +1458,19 @@ const App: React.FC = () => {
               { id: 'fullstack', label: 'Full-Stack' },
               { id: 'iot', label: 'IoT & Embedded' }
             ].map(cat => (
-              <button
+              <motion.button
                 key={cat.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(cat.id as any)}
                 className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-theme border-theme text-white shadow-lg'
+                    ? 'bg-theme border-theme text-white shadow-lg shadow-theme/20'
                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                 }`}
               >
                 {cat.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -1486,14 +1488,17 @@ const App: React.FC = () => {
                   transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
                   whileHover={{ scale: 1.025, y: -8 }}
                   onClick={() => setActiveProject(project)}
-                  className="group bg-white rounded-[3.5rem] overflow-hidden flex flex-col border border-slate-100 hover:border-theme transition-all hover:shadow-3xl cursor-pointer"
+                  className="group bg-white rounded-[3.5rem] overflow-hidden flex flex-col border border-slate-100 hover:border-theme transition-all hover:shadow-3xl cursor-pointer will-change-transform relative"
                 >
-                  <div className="p-10 flex flex-col h-full items-center text-center">
+                  {/* Ambient Hover Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-theme-soft/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                  <div className="p-10 flex flex-col h-full items-center text-center relative z-10">
                     {/* 1. Project Logo / Icon */}
                     {project.image && (
                       <div className="mb-6 flex justify-center">
                         <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative group-hover:scale-105 transition-transform duration-500 flex-shrink-0">
-                          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                          <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                         </div>
                       </div>
                     )}
@@ -1540,33 +1545,39 @@ const App: React.FC = () => {
 
                     {/* 7. Action Button */}
                     <div className="w-full flex justify-center gap-3 pt-4 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                         onClick={() => setActiveProject(project)}
                         className="px-6 py-2.5 bg-theme text-white text-xs font-bold rounded-xl shadow-md hover:brightness-110 transition-all flex items-center gap-2"
                       >
                         View Project <ChevronRight size={14} />
-                      </button>
+                      </motion.button>
                       {project.link && project.link !== '#' && (
-                        <a
+                        <motion.a
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors"
+                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
                           title="Live Demo"
                         >
                           <ExternalLink size={16} />
-                        </a>
+                        </motion.a>
                       )}
                       {project.githubLink && (
-                        <a
+                        <motion.a
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                           href={project.githubLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors"
+                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
                           title="GitHub Repository"
                         >
                           <Github size={16} />
-                        </a>
+                        </motion.a>
                       )}
                     </div>
                   </div>
