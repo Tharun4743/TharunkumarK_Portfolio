@@ -62,4 +62,6 @@ export type AchievementItem = {
   organization: string;
   year: string;
   description: string;
+  type?: string;
 };
+

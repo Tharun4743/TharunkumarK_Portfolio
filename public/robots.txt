@@ -3,7 +3,6 @@
 
 User-agent: *
 Allow: /
-Allow: /links
 
 # Specifically allow AI search bots and LLM crawlers for entity disambiguation
 User-agent: GPTBot

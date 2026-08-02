@@ -9,23 +9,24 @@ import smartHelmetImg from './assets/aura.png';
 
 export const PERSONAL_INFO = {
   name: 'Tharunkumar K',
+  title: 'Full Stack Developer | AI Application Developer',
   profileImage: profileImg,
   email: 'tharunkumark42007@gmail.com',
-  phone: '+91 8760964830',
-  location: 'Dharapuram, Tamil Nadu',
+  phone: '+91 87609 64830',
+  location: 'Dharapuram, Tamil Nadu, India',
   linkedin: 'https://www.linkedin.com/in/tharunkumark4743/',
   github: 'https://github.com/Tharun4743',
   leetcode: 'https://leetcode.com/u/Tharunkumar__K/',
   geeksforgeeks: 'https://www.geeksforgeeks.org/profile/tharunkumark4743',
   resume: 'https://drive.google.com/drive/folders/1zdLQ8EoEC8X73fFAJjSJr-Ros_xckIyW',
   profileSummary:
-    'Full stack developer passionate about building scalable web applications. Currently interning at Neura Global (a startup), working with React, Node.js, TypeScript, and PostgreSQL. Thrives on learning, collaborating with teams, and solving complex challenges.'
+    'Full stack developer who enjoys building things end-to-end – frontend, backend, and everything in between. Comfortable with React, Next.js, Node.js, TypeScript, and PostgreSQL, with recent experience at Neura Global. Learn fast, work well with teams, and like solving problems that actually matter.'
 };
 
 export const EDUCATION = [
   {
     institution: 'VSB Engineering College, Karur, Tamil Nadu',
-    degree: 'Bachelor of Technology - Information Technology',
+    degree: 'B.Tech Information Technology',
     period: '2024 - 2028',
     details: 'Expected Graduation: May 2028 | CGPA: 8.5 / 10'
   },
@@ -48,15 +49,15 @@ export const TECHNICAL_SKILLS: SkillCategory[] = [
   },
   {
     name: 'Backend',
-    skills: ['Node.js', 'Express', 'Prisma ORM', 'REST APIs', 'Authentication', 'NextAuth.js']
+    skills: ['Node.js', 'Express', 'Prisma ORM', 'REST APIs', 'NextAuth.js', 'Spring Boot']
   },
   {
     name: 'Databases',
-    skills: ['PostgreSQL', 'Supabase', 'Neon Serverless', 'MongoDB', 'MySQL']
+    skills: ['PostgreSQL', 'Supabase', 'Neon Serverless', 'MongoDB', 'MySQL', 'SQLite']
   },
   {
     name: 'Tools & Platforms',
-    skills: ['Git', 'GitHub', 'Render', 'Netlify', 'VS Code', 'Arduino IDE', 'Salesforce', 'Cloudinary']
+    skills: ['Git', 'GitHub', 'Render', 'Netlify', 'Arduino IDE', 'Salesforce', 'Cloudinary', 'Ollama', 'ChromaDB']
   }
 ];
 
@@ -349,51 +350,51 @@ export const LEADERSHIP = [
   {
     title: 'Fullstack Development Intern',
     organization: 'Neura Global (Startup)',
-    period: 'June 2026 - Present',
+    period: '06/2026 - 07/2026',
     description:
-      'Developing and optimizing full-stack features using React, Node.js, and TypeScript. Collaborating with cross-functional teams to build responsive user interfaces and robust backend APIs in a fast-paced startup environment.'
+      'Built Campus Connect, a placement portal for the college’s TPO cell using React, Node.js, TypeScript, and Supabase. | Added real-time status updates with Socket.IO and a document vault (Cloudinary) so students could upload resumes and transcripts securely. | Rolled it out to 500+ students, cutting down manual paperwork by 80% and removing scheduling clashes for interviews.'
   },
   {
     title: 'Software Development Intern',
     organization: 'Infosys Springboard',
-    period: 'Nov 2025 - Jan 2026',
+    period: '11/2025 - 01/2026',
     description:
-      'Completed Infosys Springboard 6.0 program. Developed "StarWall: Employee Recognition Dashboard" project. Learned enterprise development practices, debugging techniques, and collaborative coding in a real production environment.'
+      'Completed the Infosys Springboard 6.0 program, working alongside mentors on real project workflows. | Built StarWall, an employee recognition dashboard, as part of the internship project. | Picked up debugging habits and version-control discipline from working in a proper team setup.'
   }
 ];
 
 export const ACHIEVEMENTS = [
   {
-    title: 'Hackathon Winner',
+    title: 'Code Thugs 2k26 – 1st Place',
     organization: 'Code Thugs 2k26',
     year: '2026',
-    type: 'ACHIEVEMENT',
+    type: '1ST PLACE',
     description:
-      'Secured 1st place nationally for a Real-Time Collaborative Code Editor with multi-user synchronization and conflict resolution. Recognized for innovative system design. Prize: ₹5,000 cash award.'
+      'Won nationally for a real-time collaborative code editor with live sync and conflict resolution; ₹5,000 cash prize.'
   },
   {
-    title: 'Smart India Hackathon 2025 — Internal Hackathon Top 50',
+    title: 'Smart India Hackathon 2025 – Top 50',
     organization: 'SIH 2025',
     year: '2025',
-    type: 'RECOGNITION',
+    type: 'TOP 50',
     description:
-      'Selected in the top 50 out of 300+ submissions during the SIH internal hackathon phase. Led the full-stack development for an IoT-based rider safety system.'
+      'Made it to the top 50 out of 300+ teams in the internal round, leading dev for the IoT rider safety system.'
   },
   {
-    title: 'India Innovates 2026 — Finals Track',
+    title: 'India Innovates 2026 – Finalist',
     organization: 'India Innovates',
     year: '2026',
-    type: 'RECOGNITION',
+    type: 'FINALIST',
     description:
-      'Advanced to the finals track after two rigorous selection rounds. Demonstrated capability to develop production-grade, scalable solutions.'
+      'Reached the finals after two rounds of selection.'
   },
   {
     title: 'GeeksforGeeks Campus Mantri',
     organization: 'GeeksforGeeks',
-    year: '2026',
+    year: 'Jan – Jul 2026',
     type: 'LEADERSHIP',
     description:
-      'Served as Student Ambassador from January 2026 to July 2026. Organized tech workshops and events to build a strong coding culture on campus.'
+      'Ran workshops and coding events on campus as Student Ambassador.'
   },
   {
     title: 'Fun Quest Event Coordination',
@@ -401,6 +402,14 @@ export const ACHIEVEMENTS = [
     year: '2026',
     type: 'LEADERSHIP',
     description:
-      'Led technical coordination and execution of a non-technical symposium event. Managed 150+ participants across two slots. Achieved 9.8 / 10 average participant feedback rating.'
+      'Coordinated a symposium event for 150+ people; got a 9.8/10 average feedback score.'
+  },
+  {
+    title: 'Department Student Coordinator',
+    organization: 'VSB Engineering College',
+    year: '2026 - Present',
+    type: 'LEADERSHIP',
+    description:
+      'Serving as Department Student Coordinator for Information Technology, leading student activities, technical events, and department initiatives.'
   }
 ];

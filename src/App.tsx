@@ -21,8 +21,6 @@ import {
   Sparkles,
   FileText,
   Search,
-  Sliders,
-  Send,
   Activity
 } from 'lucide-react';
 import {
@@ -35,11 +33,9 @@ import {
   ACHIEVEMENTS,
   PORTFOLIO_STATS
 } from './constants';
-import { Project } from './type';
-import { LinksHub } from './components/LinksHub';
+import { Project, RoleItem, LeadershipItem, EducationItem, AchievementItem } from './type';
 
 const THEMES = [
-  { primary: '#4f46e5', secondary: '#7c3aed', soft: '#f5f3ff', glow: 'rgba(79, 70, 229, 0.2)' }, // Indigo
   { primary: '#059669', secondary: '#10b981', soft: '#ecfdf5', glow: 'rgba(16, 185, 129, 0.2)' }, // Emerald
   { primary: '#e11d48', secondary: '#fb7185', soft: '#fff1f2', glow: 'rgba(225, 29, 72, 0.2)' }, // Rose
   { primary: '#d97706', secondary: '#f59e0b', soft: '#fffbeb', glow: 'rgba(217, 119, 6, 0.2)' }, // Amber
@@ -80,7 +76,6 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
     { name: 'Projects', id: 'projects' },
     { name: 'Achievements', id: 'achievements' },
     { name: 'Certifications', id: 'certs' },
-    { name: 'Links Hub', id: 'links' },
     { name: 'Contact', id: 'contact' },
   ];
 
@@ -1020,7 +1015,7 @@ const App: React.FC = () => {
                     {cat.name}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {cat.skills.map((skill, sIdx) => (
+                    {cat.skills.map((skill: string, sIdx: number) => (
                       <motion.span
                         key={sIdx}
                         whileHover={{ scale: 1.05, color: 'var(--theme-primary)' }}
@@ -1059,14 +1054,14 @@ const App: React.FC = () => {
                 };
 
                 const timelineItems = [
-                  ...LEADERSHIP.map(item => ({
+                  ...LEADERSHIP.map((item: LeadershipItem) => ({
                     type: 'work',
                     title: item.title,
                     org: item.organization,
                     period: item.period,
                     description: item.description
                   })),
-                  ...EDUCATION.map(item => ({
+                  ...EDUCATION.map((item: EducationItem) => ({
                     type: 'education',
                     title: item.degree,
                     org: item.institution,
@@ -1110,7 +1105,7 @@ const App: React.FC = () => {
                           </h3>
                           <h4 className="text-sm font-bold text-slate-500 mb-4">{item.org}</h4>
                           <div className="text-slate-600 text-sm leading-relaxed font-medium space-y-1.5">
-                            {item.description.split(' | ').map((desc, i, arr) => (
+                            {item.description.split(' | ').map((desc: string, i: number, arr: string[]) => (
                               <div key={i} className="flex items-start gap-2">
                                 {arr.length > 1 && (
                                   <span className="w-1.5 h-1.5 rounded-full bg-theme/40 mt-1.5 flex-shrink-0" />
@@ -1217,7 +1212,7 @@ const App: React.FC = () => {
 
                     {/* 6. Technology Badges */}
                     <div className="mt-auto flex flex-wrap justify-center gap-2 mb-8">
-                      {project.tags.map((tag, tIdx) => (
+                      {project.tags.map((tag: string, tIdx: number) => (
                         <span key={tIdx} className="px-3 py-1.5 bg-slate-50 text-[10px] sm:text-xs font-bold text-slate-500 rounded-xl border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
                           {tag}
                         </span>
@@ -1412,7 +1407,7 @@ const App: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Role-Based Architecture</h4>
                       <div className="grid gap-3">
-                        {activeProject.roleStructure.map((roleItem, rIdx) => (
+                        {activeProject.roleStructure.map((roleItem: RoleItem, rIdx: number) => (
                           <div key={rIdx} className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                             <span className="text-xs font-black text-slate-900 block mb-1">{roleItem.role}</span>
                             <p className="text-slate-600 text-xs font-medium leading-relaxed">{roleItem.description}</p>
@@ -1427,7 +1422,7 @@ const App: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Key Features</h4>
                       <ul className="grid sm:grid-cols-2 gap-3">
-                        {activeProject.features.map((feat, fIdx) => (
+                        {activeProject.features.map((feat: string, fIdx: number) => (
                           <li key={fIdx} className="p-3 bg-slate-50 rounded-xl text-slate-600 text-xs font-bold border border-slate-100 flex items-start gap-2.5">
                             <span className="text-theme mt-0.5">•</span>
                             {feat}
@@ -1481,7 +1476,7 @@ const App: React.FC = () => {
                   <div>
                     <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
-                      {activeProject.tags.map((tag, tIdx) => (
+                      {activeProject.tags.map((tag: string, tIdx: number) => (
                         <span key={tIdx} className="px-3.5 py-1.5 bg-slate-50 text-xs font-black text-slate-500 rounded-lg border border-slate-200">
                           {tag}
                         </span>
@@ -1505,7 +1500,7 @@ const App: React.FC = () => {
             icon={<Award size={28} />}
           />
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
-            {ACHIEVEMENTS.map((item, idx) => (
+            {ACHIEVEMENTS.map((item: AchievementItem, idx: number) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 40 }}
@@ -1594,9 +1589,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Self-Hosted Links Hub (Entity Engineering Blueprint) */}
-      <LinksHub />
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-slate-50">
