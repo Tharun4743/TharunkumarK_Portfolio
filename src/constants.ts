@@ -77,13 +77,6 @@ export const CERTIFICATIONS: CertificationItem[] = [
     type: 'CERTIFICATE'
   },
   {
-    title: 'Dynamic Programming Camp Participation Certificate',
-    issuer: 'AlgoUniversity',
-    year: 'May 2026',
-    link: 'https://d3uam8jk4sa4y4.cloudfront.net/static/certificates/Dynamic_Programming_camp/tharunkumar-k.png',
-    type: 'CERTIFICATE'
-  },
-  {
     title: 'TCS iON Career Edge — Young Professional',
     issuer: 'TCS iON',
     year: '2025',
