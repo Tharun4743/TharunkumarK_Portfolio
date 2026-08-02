@@ -2,10 +2,10 @@ import { Project, CertificationItem, SkillCategory, AchievementItem } from './ty
 
 import profileImg from './assets/profile.png';
 import vsbecTaskManagerImg from './assets/vsbec-task-manager.png';
-import campusConnectImg from './assets/campusconnect.jpeg';
-import auraImg from './assets/aura.png';
-import chatboxImg from './assets/chatbox.png';
-import smartHelmetImg from './assets/smarthelmet.png';
+import campusConnectImg from './assets/campus-connect.jpeg';
+import auraImg from './assets/aura-ai.png';
+import chatboxImg from './assets/chatbox-ai.png';
+import smartHelmetImg from './assets/smart-helmet.png';
 
 export const PERSONAL_INFO = {
   name: 'Tharunkumar K',
