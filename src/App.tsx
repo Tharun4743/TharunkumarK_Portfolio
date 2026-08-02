@@ -100,13 +100,12 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
     }
     const element = document.getElementById(id);
     if (element) {
-      const navHeight = 80; // height of fixed navbar
-      const extraOffset = 40; // extra scroll down to reduce the visual gap caused by py-32 padding
+      const navHeight = 85; // exact fixed navbar height
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - navHeight + extraOffset;
-  
+      const offsetPosition = elementPosition + window.scrollY - navHeight;
+
       window.scrollTo({
-        top: offsetPosition,
+        top: Math.max(0, offsetPosition),
         behavior: 'smooth'
       });
     }
