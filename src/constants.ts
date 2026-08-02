@@ -321,6 +321,8 @@ export const PROJECTS: Project[] = [
     longDescription:
       'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle casualties through real-time hardware sensing and ignition interlocking.\n\nDeveloped for Smart India Hackathon 2025, the system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication.\n\nIt continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (eye-blink patterns), automatically cutting bike ignition within 500ms under unsafe conditions.\n\nBuilt with Arduino microcontrollers, C programming, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
     date: 'Sep 2025 - Oct 2025',
+    link: 'https://www.hackster.io/CircuitDigest/smart-helmet-with-arduino-step-by-step-tutorial-e62ef8',
+    hacksterLink: 'https://www.hackster.io/CircuitDigest/smart-helmet-with-arduino-step-by-step-tutorial-e62ef8',
     githubLink: 'https://github.com/Tharun4743/AGILE-INNOVATORS-smart-helmet-',
     driveLink: 'https://drive.google.com/drive/folders/1kYhyoOx9-Tr4WyOJkmUz7K4PDDpmaHEr?usp=drive_link',
     tags: ['Arduino', 'C', 'RF 433MHz', 'IoT', 'Embedded Systems'],

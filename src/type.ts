@@ -12,6 +12,7 @@ export type Project = {
   date?: string; 
   githubLink?: string;
   driveLink?: string;
+  hacksterLink?: string;
   category: 'frontend' | 'backend' | 'iot' | 'fullstack';
   features?: string[];
   challenges?: string;
