@@ -46,6 +46,11 @@ import {
   PORTFOLIO_STATS
 } from './constants';
 import { Project, RoleItem, LeadershipItem, EducationItem, AchievementItem } from './type';
+import infosysSpringboardImg from './assets/infosys-springboard.png';
+import tcsIonImg from './assets/tcs-ion.png';
+import futureSkillsImg from './assets/futureskills-prime.png';
+import tataImg from './assets/tata.png';
+import ciscoImg from './assets/cisco.png';
 
 const THEMES = [
   { primary: '#059669', secondary: '#10b981', soft: '#ecfdf5', glow: 'rgba(16, 185, 129, 0.2)' }, // Emerald
@@ -245,8 +250,8 @@ const CustomCursor: React.FC = () => {
     let targetY = -100;
 
     const handleMouseMove = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
+      // Immediate hardware translation on mousemove event for instant 0ms latency speed
+      el.style.transform = `translate3d(${e.clientX - 18}px, ${e.clientY - 18}px, 0px)`;
 
       if (el.style.display === 'none') {
         el.style.display = 'block';
@@ -259,14 +264,6 @@ const CustomCursor: React.FC = () => {
       } else {
         el.classList.remove('scale-150', 'border-[2.5px]');
         el.style.boxShadow = '0 0 15px var(--theme-glow)';
-      }
-
-      if (!rAFPending) {
-        rAFPending = true;
-        requestAnimationFrame(() => {
-          el.style.transform = `translate3d(${targetX - 18}px, ${targetY - 18}px, 0px)`;
-          rAFPending = false;
-        });
       }
     };
 
@@ -873,72 +870,96 @@ const AchievementsTimeline: React.FC = () => {
           { id: 'leadership', label: 'Department Leadership', icon: <GraduationCap size={14} /> },
           { id: 'ambassador', label: 'Campus Ambassador', icon: <Users size={14} /> },
         ].map((tab) => (
-          <button
+          <motion.button
             key={tab.id}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setActiveFilter(tab.id as any)}
             className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
               activeFilter === tab.id
-                ? 'bg-theme text-white shadow-lg'
+                ? 'bg-theme text-white shadow-lg shadow-theme/20'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
             }`}
           >
             {tab.icon}
             {tab.label}
-          </button>
+          </motion.button>
         ))}
       </div>
 
-      {/* Interactive Vertical Timeline Track */}
+      {/* Interactive Animated Vertical Timeline Track */}
       <div className="relative w-full border-l-2 border-slate-200/80 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
-        {filteredAchievements.map((item, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.08 }}
-            className="relative group"
-          >
-            {/* Timeline Pulsing Node */}
-            <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-theme shadow-md group-hover:scale-125 group-hover:bg-theme transition-all duration-300" />
+        {/* Animated Glowing Track Highlight */}
+        <motion.div
+          animate={{ opacity: [0.4, 0.9, 0.4] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 bottom-0 left-[-2px] w-[3px] bg-gradient-to-b from-theme via-theme-soft to-slate-200 rounded-full pointer-events-none"
+        />
 
-            <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white border border-slate-100 shadow-md hover:shadow-2xl hover:border-theme transition-all">
-              <div className="flex flex-wrap justify-between items-start gap-3 mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-transparent border-2 border-theme text-theme flex items-center justify-center flex-shrink-0 transition-all shadow-sm">
-                    {getJourneyIcon(item.iconName)}
+        <AnimatePresence mode="popLayout">
+          {filteredAchievements.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              layout
+              initial={{ opacity: 0, x: -40, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -20, scale: 0.95 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
+              whileHover={{ y: -8, scale: 1.015 }}
+              className="relative group"
+            >
+              {/* Timeline Pulsing Node */}
+              <motion.div
+                whileHover={{ scale: 1.4, rotate: 90 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                className="absolute -left-[31px] sm:-left-[47px] top-2 w-6 h-6 rounded-full bg-white border-4 border-theme shadow-md group-hover:bg-theme group-hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300 flex items-center justify-center cursor-pointer z-10"
+              />
+
+              <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white border border-slate-100 shadow-md hover:shadow-2xl hover:border-theme transition-all overflow-hidden relative">
+                {/* Shimmer Ambient Glow on Card Hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                <div className="flex flex-wrap justify-between items-start gap-3 mb-4 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      whileHover={{ rotate: 15, scale: 1.1 }}
+                      className="w-12 h-12 rounded-2xl bg-transparent border-2 border-theme text-theme flex items-center justify-center flex-shrink-0 transition-all shadow-sm"
+                    >
+                      {getJourneyIcon(item.iconName)}
+                    </motion.div>
+                    <span className="px-3.5 py-1 bg-transparent text-slate-700 font-bold rounded-xl text-xs border border-slate-200 flex items-center gap-1.5 shadow-sm">
+                      <Calendar size={13} className="text-slate-400" /> {item.year}
+                    </span>
                   </div>
-                  <span className="px-3.5 py-1 bg-transparent text-slate-700 font-bold rounded-xl text-xs border border-slate-200 flex items-center gap-1.5">
-                    <Calendar size={13} className="text-slate-400" /> {item.year}
-                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {item.prize && (
+                      <motion.span whileHover={{ scale: 1.05 }} className="px-3.5 py-1 bg-transparent text-amber-700 font-bold rounded-xl text-xs border border-amber-300/80 shadow-sm flex items-center gap-1.5">
+                        <Gift size={13} className="text-amber-600" /> {item.prize}
+                      </motion.span>
+                    )}
+                    {item.score && (
+                      <motion.span whileHover={{ scale: 1.05 }} className="px-3.5 py-1 bg-transparent text-emerald-700 font-bold rounded-xl text-xs border border-emerald-300/80 shadow-sm flex items-center gap-1.5">
+                        <Star size={13} className="text-emerald-600" /> {item.score}
+                      </motion.span>
+                    )}
+                    {item.type && (
+                      <motion.span whileHover={{ scale: 1.05 }} className="px-3.5 py-1 bg-transparent text-theme font-bold rounded-xl text-xs border border-theme/40 shadow-sm">
+                        {item.type}
+                      </motion.span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {item.prize && (
-                    <span className="px-3.5 py-1 bg-transparent text-amber-700 font-bold rounded-xl text-xs border border-amber-300/80 shadow-sm flex items-center gap-1.5">
-                      <Gift size={13} className="text-amber-600" /> {item.prize}
-                    </span>
-                  )}
-                  {item.score && (
-                    <span className="px-3.5 py-1 bg-transparent text-emerald-700 font-bold rounded-xl text-xs border border-emerald-300/80 shadow-sm flex items-center gap-1.5">
-                      <Star size={13} className="text-emerald-600" /> {item.score}
-                    </span>
-                  )}
-                  {item.type && (
-                    <span className="px-3.5 py-1 bg-transparent text-theme font-bold rounded-xl text-xs border border-theme/40">
-                      {item.type}
-                    </span>
-                  )}
-                </div>
-              </div>
 
-              <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors mb-1 leading-snug">
-                {item.title}
-              </h3>
-              <h4 className="text-xs font-bold text-slate-400 mb-3">{item.organization}</h4>
-              <p className="text-slate-600 text-sm font-medium leading-relaxed">{item.description}</p>
-            </TiltCard>
-          </motion.div>
-        ))}
+                <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors mb-1 leading-snug relative z-10">
+                  {item.title}
+                </h3>
+                <h4 className="text-xs font-bold text-slate-400 mb-3 relative z-10">{item.organization}</h4>
+                <p className="text-slate-600 text-sm font-medium leading-relaxed relative z-10">{item.description}</p>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -1817,32 +1838,58 @@ const App: React.FC = () => {
                     </svg>
                   );
                 }
-                if (norm.includes('infosys')) {
+                if (norm.includes('infosys') || norm.includes('springboard')) {
                   return (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#007CC3">
-                      <path d="M3 4h4v16H3V4zm7 0h4v16h-4V4zm7 0h4v16h-4V4z" />
-                    </svg>
+                    <img
+                      src={infosysSpringboardImg}
+                      alt="Infosys Springboard"
+                      className="w-10 h-10 object-contain"
+                    />
                   );
                 }
-                if (norm.includes('tata') || norm.includes('tcs') || norm.includes('forage')) {
+                if (norm.includes('tcs')) {
                   return (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#00529C">
-                      <path d="M2 5h20v4H14v10h-4V9H2V5z" />
-                    </svg>
+                    <img
+                      src={tcsIonImg}
+                      alt="TCS iON"
+                      className="w-10 h-10 object-contain"
+                    />
+                  );
+                }
+                if (norm.includes('tata') || norm.includes('forage')) {
+                  return (
+                    <img
+                      src={tataImg}
+                      alt="Tata"
+                      className="w-10 h-10 object-contain"
+                    />
                   );
                 }
                 if (norm.includes('salesforce') || norm.includes('trailhead')) {
                   return (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#00A1E0">
-                      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
-                    </svg>
+                    <img
+                      src="https://img.icons8.com/?size=100&id=38804&format=png"
+                      alt="Salesforce"
+                      className="w-9 h-9 object-contain"
+                    />
                   );
                 }
                 if (norm.includes('cisco')) {
                   return (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#049FD9">
-                      <path d="M4 16h2v4H4zm4-4h2v8H8zm4-4h2v12h-2zm4 4h2v8h-2zm4 4h2v4h-2z" />
-                    </svg>
+                    <img
+                      src={ciscoImg}
+                      alt="Cisco"
+                      className="w-10 h-10 object-contain"
+                    />
+                  );
+                }
+                if (norm.includes('nasscom') || norm.includes('futureskills') || norm.includes('prime')) {
+                  return (
+                    <img
+                      src={futureSkillsImg}
+                      alt="FutureSkills Prime"
+                      className="w-10 h-10 object-contain"
+                    />
                   );
                 }
                 if (norm.includes('algo')) {
