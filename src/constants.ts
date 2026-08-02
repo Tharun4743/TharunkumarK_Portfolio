@@ -407,9 +407,17 @@ export const ACHIEVEMENTS = [
   {
     title: 'Department Student Coordinator',
     organization: 'VSB Engineering College',
-    year: '2026 - Present',
+    year: '2024 - Present',
     type: 'LEADERSHIP',
     description:
-      'Serving as Department Student Coordinator for Information Technology, leading student activities, technical events, and department initiatives.'
+      'Serving as Department Student Coordinator for Information Technology from 2024, leading student activities, technical events, and department initiatives.'
+  },
+  {
+    title: 'SIH 2026 IT Department Coordinator',
+    organization: 'VSB Engineering College',
+    year: '2026',
+    type: 'LEADERSHIP',
+    description:
+      'Serving as the IT Department Coordinator for Smart India Hackathon (SIH) 2026, mentoring teams, coordinating project submissions, and managing hackathon operations.'
   }
 ];
