@@ -126,19 +126,6 @@
 
 ## 🚀 Featured Projects
 
-### 🚀 GOAT Code Editor — Real-Time Collaborative IDE
-**`Production Deployed`** &nbsp;·&nbsp; *Role: Lead Full Stack & Systems Architect*
-
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-00C7B7?style=flat-square&logo=googlechrome&logoColor=white)](https://goatcode-editor.onrender.com) [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Tharun4743/GOAT-CE)
-
-A high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing, featuring live multi-user code synchronization and in-browser compilation for 13+ languages.
-
-- **National Hackathon Winner:** Won 1st Place at Code Thugs 2k26 National Hackathon for technical complexity in collaborative architectures.
-- **Engine Highlights:** Built low-latency (<50ms) Socket.io state synchronization, custom Monaco Editor presence tracking/caret sync to prevent jumps, sandboxed 13+ languages runtimes (Piston API v2), and local AI-assisted code emulations.
-- **Tech Stack:** `React 19` `TypeScript 5.8` `Vite 6` `Tailwind CSS` `Monaco Editor` `Socket.io 4.8` `Node.js` `Express 5` `MongoDB Atlas` `Piston API v2` `OpenRouter API`
-
----
-
 ### 🏫 VSBEC Academic Task Manager — Centralized Role-Based Workflow System
 **`Production Deployed & Implemented in IT Department`** &nbsp;·&nbsp; *Role: Full-Stack Architect & Lead Developer*
 
@@ -161,6 +148,19 @@ Enterprise-grade placement cell platform automating TPO workflows, student appli
 
 - **Impact:** Streamlined placement workflows for 500+ students, reducing manual data entry by 80% and decreasing interview scheduling conflicts to zero.
 - **Tech Stack:** `React` `TypeScript` `Tailwind CSS` `Node.js` `Express` `Supabase` `Socket.IO`
+
+---
+
+### 🚀 GOAT Code Editor — Real-Time Collaborative IDE
+**`Production Deployed`** &nbsp;·&nbsp; *Role: Lead Full Stack & Systems Architect*
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-00C7B7?style=flat-square&logo=googlechrome&logoColor=white)](https://goatcode-editor.onrender.com) [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Tharun4743/GOAT-CE)
+
+A high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing, featuring live multi-user code synchronization and in-browser compilation for 13+ languages.
+
+- **National Hackathon Winner:** Won 1st Place at Code Thugs 2k26 National Hackathon for technical complexity in collaborative architectures.
+- **Engine Highlights:** Built low-latency (<50ms) Socket.io state synchronization, custom Monaco Editor presence tracking/caret sync to prevent jumps, sandboxed 13+ languages runtimes (Piston API v2), and local AI-assisted code emulations.
+- **Tech Stack:** `React 19` `TypeScript 5.8` `Vite 6` `Tailwind CSS` `Monaco Editor` `Socket.io 4.8` `Node.js` `Express 5` `MongoDB Atlas` `Piston API v2` `OpenRouter API`
 
 ---
 

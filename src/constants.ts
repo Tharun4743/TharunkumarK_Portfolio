@@ -145,52 +145,6 @@ export const PORTFOLIO_STATS = {
 
 export const PROJECTS: Project[] = [
   {
-    title: 'GOAT Code Editor',
-    description:
-      'A high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing, featuring live multi-user code synchronization and in-browser compilation for 13+ languages.',
-    longDescription:
-      'GOAT Code Editor is a high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing. It features live multi-user code synchronization, dynamic cursor highlighting, in-browser compilation for 13+ languages, and a context-aware AI pairing assistant.\n\nDesigned and built entirely under hackathon conditions for Code Thugs 2k26, it won 1st Place nationally for technical complexity in collaborative architectures.',
-    date: 'Jun 2026',
-    link: 'https://goatcode-editor.onrender.com',
-    githubLink: 'https://github.com/Tharun4743/GOAT-CE',
-    tags: [
-      'React 19',
-      'TypeScript 5.8',
-      'Vite 6',
-      'Tailwind CSS',
-      'Monaco Editor',
-      'Socket.io 4.8',
-      'Node.js',
-      'Express 5',
-      'MongoDB Atlas',
-      'Piston API v2',
-      'OpenRouter API'
-    ],
-    category: 'fullstack',
-    status: 'Production Deployed',
-    image: goatCodeEditorImg,
-    problem:
-      'In remote developer pairing, real-time collaboration platforms often suffer from cursor desynchronization and editor caret resets during remote edits. Furthermore, server-side database connectivity issues or network timeouts can crash active editing sessions and cause developers to lose their unsaved progress.',
-    solution:
-      'GOAT Code Editor resolves these issues by utilizing a custom React & Socket.io state management architecture that handles concurrent edits without disrupting cursor states, paired with an in-memory fallback state store that keeps rooms fully functional if MongoDB Atlas experiences downtime.',
-    features: [
-      'Real-time Synchronization Engine: Engineered a highly responsive WebSocket collaboration layer using Socket.io to sync document text, selections, and languages with sub-50ms latency.',
-      'Conflict & Feedback Loop Resolution: Resolved standard WebSocket echo loops by implementing an isRemoteChange reference flag, ensuring clean local merges without caret jumping.',
-      'Live Presence Tracking: Designed custom Monaco Editor decorations that track and display collaborators’ active cursor selections and caret coordinates dynamically, color-coded per user with a 15-second automatic idle pruning sweep.',
-      'Resilient Dual-Store Database Architecture: Configured Mongoose to write directly to MongoDB Atlas for persistence, paired with a memory-backed fallback state store (Map) to keep editing rooms fully functional in the event of database downtime.',
-      'Sandboxed Code Execution Terminal: Integrated the Piston v2 engine to allow compilations and standard output runs for 13+ languages safely in isolated runtime environments.',
-      'Context-Aware AI Assistant & Simulation: Sidebar assistant powered by OpenRouter API (Llama 3.1 70B Instruct LLM) that injects full buffer code and workspace state. Features a custom AI emulator that acts as a fallback runtime engine predicting console outputs when external compilation APIs are offline.',
-      'Production-Grade Infrastructure: Configured a Render Blueprint (render.yaml) for automated SPA static resource routing, database pipelines, and production hosting.'
-    ],
-    challenges:
-      '1. Caret Merging & Cursor Jumping: When a socket update is received, updating the editor text model resets caret positions to the end or start of the file. Solved by locking writes behind an isRemoteChange.current flag, saving current cursor coordinates, and restoring the caret and highlights instantly.\n\n2. Network Stability & Offline Fallbacks: Connection losses could drop rooms or lose buffer state. Resolved by building a resilient Express fallback storage manager (in-memory Map) to take over during database timeouts, paired with a connection health indicator.',
-    myRole: 'Lead Full Stack & Systems Architect',
-    impact:
-      'Won 1st Place Winner at Code Thugs 2k26 (National Hackathon) for technical complexity in collaborative architectures, competing against teams nationally and successfully deploying a production-ready real-time editor.',
-    keyLearnings:
-      'Mastered real-time WebSocket communication, state recovery mechanisms in editor text models, sandboxed runtime environments, and designing fallback systems for high availability.'
-  },
-  {
     title: 'VSBEC Academic Task Manager',
     description:
       'Role-based academic task management platform for centralized task collection, proof submission, verification, and class-level data management.',
@@ -292,6 +246,52 @@ export const PROJECTS: Project[] = [
     myRole: 'Lead Full Stack Developer',
     impact: 'Streamlined placement workflows for 500+ students, reducing manual data entry by 80% and decreasing interview scheduling conflicts to zero.',
     keyLearnings: 'Mastered WebSocket integration for real-time state synchronization and gained deep insights into secure document handling and RBAC (Role-Based Access Control) using Supabase.'
+  },
+  {
+    title: 'GOAT Code Editor',
+    description:
+      'A high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing, featuring live multi-user code synchronization and in-browser compilation for 13+ languages.',
+    longDescription:
+      'GOAT Code Editor is a high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing. It features live multi-user code synchronization, dynamic cursor highlighting, in-browser compilation for 13+ languages, and a context-aware AI pairing assistant.\n\nDesigned and built entirely under hackathon conditions for Code Thugs 2k26, it won 1st Place nationally for technical complexity in collaborative architectures.',
+    date: 'Jun 2026',
+    link: 'https://goatcode-editor.onrender.com',
+    githubLink: 'https://github.com/Tharun4743/GOAT-CE',
+    tags: [
+      'React 19',
+      'TypeScript 5.8',
+      'Vite 6',
+      'Tailwind CSS',
+      'Monaco Editor',
+      'Socket.io 4.8',
+      'Node.js',
+      'Express 5',
+      'MongoDB Atlas',
+      'Piston API v2',
+      'OpenRouter API'
+    ],
+    category: 'fullstack',
+    status: 'Production Deployed',
+    image: goatCodeEditorImg,
+    problem:
+      'In remote developer pairing, real-time collaboration platforms often suffer from cursor desynchronization and editor caret resets during remote edits. Furthermore, server-side database connectivity issues or network timeouts can crash active editing sessions and cause developers to lose their unsaved progress.',
+    solution:
+      'GOAT Code Editor resolves these issues by utilizing a custom React & Socket.io state management architecture that handles concurrent edits without disrupting cursor states, paired with an in-memory fallback state store that keeps rooms fully functional if MongoDB Atlas experiences downtime.',
+    features: [
+      'Real-time Synchronization Engine: Engineered a highly responsive WebSocket collaboration layer using Socket.io to sync document text, selections, and languages with sub-50ms latency.',
+      'Conflict & Feedback Loop Resolution: Resolved standard WebSocket echo loops by implementing an isRemoteChange reference flag, ensuring clean local merges without caret jumping.',
+      'Live Presence Tracking: Designed custom Monaco Editor decorations that track and display collaborators’ active cursor selections and caret coordinates dynamically, color-coded per user with a 15-second automatic idle pruning sweep.',
+      'Resilient Dual-Store Database Architecture: Configured Mongoose to write directly to MongoDB Atlas for persistence, paired with a memory-backed fallback state store (Map) to keep editing rooms fully functional in the event of database downtime.',
+      'Sandboxed Code Execution Terminal: Integrated the Piston v2 engine to allow compilations and standard output runs for 13+ languages safely in isolated runtime environments.',
+      'Context-Aware AI Assistant & Simulation: Sidebar assistant powered by OpenRouter API (Llama 3.1 70B Instruct LLM) that injects full buffer code and workspace state. Features a custom AI emulator that acts as a fallback runtime engine predicting console outputs when external compilation APIs are offline.',
+      'Production-Grade Infrastructure: Configured a Render Blueprint (render.yaml) for automated SPA static resource routing, database pipelines, and production hosting.'
+    ],
+    challenges:
+      '1. Caret Merging & Cursor Jumping: When a socket update is received, updating the editor text model resets caret positions to the end or start of the file. Solved by locking writes behind an isRemoteChange.current flag, saving current cursor coordinates, and restoring the caret and highlights instantly.\n\n2. Network Stability & Offline Fallbacks: Connection losses could drop rooms or lose buffer state. Resolved by building a resilient Express fallback storage manager (in-memory Map) to take over during database timeouts, paired with a connection health indicator.',
+    myRole: 'Lead Full Stack & Systems Architect',
+    impact:
+      'Won 1st Place Winner at Code Thugs 2k26 (National Hackathon) for technical complexity in collaborative architectures, competing against teams nationally and successfully deploying a production-ready real-time editor.',
+    keyLearnings:
+      'Mastered real-time WebSocket communication, state recovery mechanisms in editor text models, sandboxed runtime environments, and designing fallback systems for high availability.'
   },
   {
     title: "Techy Tharun's Chatbox — AI Assistant",
