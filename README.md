@@ -126,6 +126,19 @@
 
 ## 🚀 Featured Projects
 
+### 🚀 GOAT Code Editor — Real-Time Collaborative IDE
+**`Production Deployed`** &nbsp;·&nbsp; *Role: Lead Full Stack & Systems Architect*
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-00C7B7?style=flat-square&logo=googlechrome&logoColor=white)](https://goatcode-editor.onrender.com) [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Tharun4743/GOAT-CE)
+
+A high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing, featuring live multi-user code synchronization and in-browser compilation for 13+ languages.
+
+- **National Hackathon Winner:** Won 1st Place at Code Thugs 2k26 National Hackathon for technical complexity in collaborative architectures.
+- **Engine Highlights:** Built low-latency (<50ms) Socket.io state synchronization, custom Monaco Editor presence tracking/caret sync to prevent jumps, sandboxed 13+ languages runtimes (Piston API v2), and local AI-assisted code emulations.
+- **Tech Stack:** `React 19` `TypeScript 5.8` `Vite 6` `Tailwind CSS` `Monaco Editor` `Socket.io 4.8` `Node.js` `Express 5` `MongoDB Atlas` `Piston API v2` `OpenRouter API`
+
+---
+
 ### 🏫 VSBEC Academic Task Manager — Centralized Role-Based Workflow System
 **`Production Deployed & Implemented in IT Department`** &nbsp;·&nbsp; *Role: Full-Stack Architect & Lead Developer*
 
@@ -195,7 +208,7 @@ Proactive motorcycle safety platform monitoring helmet compliance (IR proximity)
 
 | Category | Title | Organization | Year | Highlights |
 |:---:|:---|:---|:---:|:---|
-| 🥇 | **Code Thugs 2k26 – 1st Place Winner** | National Hackathon | 2026 | Secured 1st place nationally for a Real-Time Collaborative Code Editor with live AST sync and operational transformation. **₹5,000 Cash Prize**. |
+| 🥇 | **Code Thugs 2k26 – 1st Place Winner** | National Hackathon | 2026 | Secured 1st place nationally for designing, building, and deploying GOAT Code Editor — a real-time collaborative IDE. **₹5,000 Cash Prize**. |
 | 🚀 | **Smart India Hackathon 2025 – Top 50** | Ministry of Education & SIH | 2025 | Ranked in top 50 out of 300+ competing teams. Served as lead developer for the IoT Smart Helmet Safety System. |
 | 🔬 | **India Innovates 2026 – Finalist** | India Innovates Challenge | 2026 | Advanced to national finals track following multi-stage technical evaluations. |
 | 🎓 | **Department Student Coordinator** | VSB Engineering College (IT Dept) | 2024 – Present | Appointed Student Coordinator for Information Technology. Leading academic task automation, student workshops, and department initiatives. |
