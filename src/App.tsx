@@ -14,10 +14,8 @@ import {
   BookOpen,
   User,
   ChevronRight,
-  ChevronLeft,
   Menu,
   X,
-  Terminal,
   MessageSquare,
   Sparkles,
   FileText,
@@ -42,10 +40,9 @@ import {
   CERTIFICATIONS,
   PROJECTS,
   LEADERSHIP,
-  ACHIEVEMENTS,
-  PORTFOLIO_STATS
+  ACHIEVEMENTS
 } from './constants';
-import { Project, RoleItem, LeadershipItem, EducationItem, AchievementItem } from './type';
+import { Project, RoleItem, LeadershipItem, EducationItem } from './type';
 import infosysSpringboardImg from './assets/infosys-springboard.png';
 import tcsIonImg from './assets/tcs-ion.png';
 import futureSkillsImg from './assets/futureskills-prime.png';
@@ -253,7 +250,7 @@ const Nav: React.FC<NavProps> = ({ onOpenPalette }) => {
   );
 };
 
-type CursorMode = 'magnetic' | 'particle' | 'inverted';
+
 
 const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -411,43 +408,7 @@ const GeeksForGeeksIcon: React.FC<{ className?: string; size?: number }> = ({ cl
   </svg>
 );
 
-const Typewriter: React.FC = () => {
-  const ROLES = ['IoT Safety Solutions', 'Robust Full-Stack Apps', 'Intelligent Systems'];
-  const [roleIdx, setRoleIdx] = useState(0);
-  const [subIdx, setSubIdx] = useState(0);
-  const [reverse, setReverse] = useState(false);
-  const [text, setText] = useState('');
-  
-  useEffect(() => {
-    if (subIdx === ROLES[roleIdx].length + 1 && !reverse) {
-      const timeout = setTimeout(() => setReverse(true), 2500); // Wait 2.5s before erasing
-      return () => clearTimeout(timeout);
-    }
-    
-    if (subIdx === 0 && reverse) {
-      setReverse(false);
-      setRoleIdx((prev) => (prev + 1) % ROLES.length);
-      return;
-    }
-    
-    const timeout = setTimeout(() => {
-      setSubIdx((prev) => prev + (reverse ? -1 : 1));
-    }, reverse ? 75 : 150); // Slow down typing to 150ms and erasing to 75ms
-    
-    return () => clearTimeout(timeout);
-  }, [subIdx, reverse, roleIdx]);
-  
-  useEffect(() => {
-    setText(ROLES[roleIdx].substring(0, subIdx));
-  }, [subIdx, roleIdx]);
-  
-  return (
-    <span className="gradient-text font-black">
-      {text}
-      <span className="animate-pulse text-slate-800 font-light">|</span>
-    </span>
-  );
-};
+
 
 interface CommandPaletteProps {
   isOpen: boolean;

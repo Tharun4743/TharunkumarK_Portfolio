@@ -135,13 +135,7 @@ export const CERTIFICATIONS: CertificationItem[] = [
   }
 ];
 
-export const PORTFOLIO_STATS = {
-  projectsCount: 6,
-  certificationsCount: 15,
-  leetcodeCount: 450,
-  githubContributions: 200,
-  hackathonsCount: 3,
-};
+
 
 export const PROJECTS: Project[] = [
   {

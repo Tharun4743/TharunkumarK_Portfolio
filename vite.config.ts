@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   server: {
     port: 5173
@@ -11,13 +11,15 @@ export default defineConfig({
     minify: 'esbuild',
     cssCodeSplit: true,
     rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-framer': ['framer-motion'],
-          'vendor-icons': ['lucide-react']
-        }
-      }
+      output: isSsrBuild
+        ? {}
+        : {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom'],
+              'vendor-framer': ['framer-motion'],
+              'vendor-icons': ['lucide-react']
+            }
+          }
     }
   }
-});
+}));
