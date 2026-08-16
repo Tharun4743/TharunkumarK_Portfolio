@@ -1,6 +1,6 @@
 import { Project, CertificationItem, SkillCategory, AchievementItem } from './type';
 
-import profileImg from './assets/profile.png';
+import profileImg from './assets/TharunKumar.jpeg';
 import vsbecTaskManagerImg from './assets/vsbec-task-manager.png';
 import campusConnectImg from './assets/campus-connect.jpeg';
 import auraImg from './assets/aura-ai.png';
