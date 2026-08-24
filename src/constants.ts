@@ -145,7 +145,7 @@ export const PROJECTS: Project[] = [
     longDescription:
       'The VSBEC Academic Task Manager is a centralized academic workflow platform engineered to modernize manual task collection, proof submission, and verification processes.\n\nThe system enables administrators and academic staff to create and assign tasks to specific classes, collect student screenshot/proof submissions, and process verified work through a multi-tier role-based access control architecture (Supreme Admin, HOD, Class Advisor, Student Coordinator, and Student).\n\nBuilt as a full-stack web application with React.js, TypeScript, Express.js, PostgreSQL, and Cloudinary, it enforces multi-tenant class and department data isolation with IDOR protection.\n\nThe platform is now actively deployed and implemented in the department to manage real-world academic task collection and verification.',
     date: 'Production Deployed',
-    link: 'https://it-taskmanager.onrender.com/',
+    link: 'https://it-taskmanager.vercel.app/',
     githubLink: 'https://github.com/Tharun4743/IT_taskmanager',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express.js', 'PostgreSQL', 'Cloudinary', 'Render'],
     category: 'fullstack',
