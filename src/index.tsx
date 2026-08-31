@@ -7,7 +7,12 @@ if (!rootElement) {
   throw new Error('Could not find root element to mount to');
 }
 
-if (rootElement.hasChildNodes()) {
+// Check if there is actual prerendered HTML (element nodes) inside root
+const hasPrerenderedContent = Array.from(rootElement.childNodes).some(
+  (node) => node.nodeType === Node.ELEMENT_NODE
+);
+
+if (hasPrerenderedContent) {
   ReactDOM.hydrateRoot(
     rootElement,
     <React.StrictMode>

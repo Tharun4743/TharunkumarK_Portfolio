@@ -31,7 +31,9 @@ import {
   Calendar,
   ShieldCheck,
   Layers,
-  Briefcase
+  Briefcase,
+  Check,
+  Copy
 } from 'lucide-react';
 import {
   PERSONAL_INFO,
@@ -594,7 +596,7 @@ const AIChatbot: React.FC = () => {
     },
     {
       keywords: ['contact', 'email', 'phone', 'social', 'reach'],
-      answer: "You can reach Tharun directly through:\n\n• Email: tharunkumark42007@gmail.com\n• Phone: +91 8760964830\n• LinkedIn: linkedin.com/in/tharunkumark4743/"
+      answer: "You can reach Tharun directly through:\n\n• Email: tharunkumark42007@gmail.com\n• Phone: +91 8760964830\n• LinkedIn: in.linkedin.com/in/tharunkumark4743?trk=profile-badge"
     }
   ];
 
@@ -777,7 +779,7 @@ const ContactSlider: React.FC = () => {
             key={idx}
             href={item.link}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer me"
             className={`w-80 p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03] transition-all flex flex-col items-center text-center gap-4 flex-shrink-0 group/item ${item.borderHover}`}
           >
             <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 text-slate-800 flex items-center justify-center shadow-sm group-hover/item:scale-110 group-hover/item:border-theme transition-all duration-300">
@@ -793,6 +795,8 @@ const ContactSlider: React.FC = () => {
     </div>
   );
 };
+
+
 
 
 
@@ -826,7 +830,7 @@ const AchievementsTimeline: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
+    <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
       {/* Category Filter Pills with Outlined Vector Icons */}
       <div className="flex flex-wrap justify-center gap-2.5 mb-12">
         {[
@@ -852,36 +856,22 @@ const AchievementsTimeline: React.FC = () => {
         ))}
       </div>
 
-      {/* Interactive Animated Vertical Timeline Track */}
-      <div className="relative w-full border-l-2 border-slate-200/80 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
-        {/* Animated Glowing Track Highlight */}
-        <motion.div
-          animate={{ opacity: [0.4, 0.9, 0.4] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-0 bottom-0 left-[-2px] w-[3px] bg-gradient-to-b from-theme via-theme-soft to-slate-200 rounded-full pointer-events-none"
-        />
-
+      {/* 2-Column Responsive Grid Layout */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         <AnimatePresence mode="popLayout">
           {filteredAchievements.map((item, idx) => (
             <motion.div
               key={item.title}
               layout
-              initial={{ opacity: 0, x: -40, scale: 0.95 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -20, scale: 0.95 }}
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.06 }}
-              whileHover={{ y: -8, scale: 1.015 }}
-              className="relative group"
+              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
+              whileHover={{ y: -6 }}
+              className="h-full"
             >
-              {/* Timeline Pulsing Node */}
-              <motion.div
-                whileHover={{ scale: 1.4, rotate: 90 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="absolute -left-[31px] sm:-left-[47px] top-2 w-6 h-6 rounded-full bg-white border-4 border-theme shadow-md group-hover:bg-theme group-hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300 flex items-center justify-center cursor-pointer z-10"
-              />
-
-              <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white border border-slate-100 shadow-md hover:shadow-2xl hover:border-theme transition-all overflow-hidden relative">
+              <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white border border-slate-100 shadow-md hover:shadow-2xl hover:border-theme transition-all overflow-hidden relative h-full flex flex-col group">
                 {/* Shimmer Ambient Glow on Card Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
@@ -893,23 +883,23 @@ const AchievementsTimeline: React.FC = () => {
                     >
                       {getJourneyIcon(item.iconName)}
                     </motion.div>
-                    <span className="px-3.5 py-1 bg-transparent text-slate-700 font-bold rounded-xl text-xs border border-slate-200 flex items-center gap-1.5 shadow-sm">
+                    <span className="px-3.5 py-1 bg-slate-50 text-slate-700 font-bold rounded-xl text-xs border border-slate-200 flex items-center gap-1.5 shadow-sm">
                       <Calendar size={13} className="text-slate-400" /> {item.year}
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {item.prize && (
-                      <motion.span whileHover={{ scale: 1.05 }} className="px-3.5 py-1 bg-transparent text-amber-700 font-bold rounded-xl text-xs border border-amber-300/80 shadow-sm flex items-center gap-1.5">
+                      <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-amber-50 text-amber-700 font-bold rounded-xl text-xs border border-amber-200 shadow-sm flex items-center gap-1.5">
                         <Gift size={13} className="text-amber-600" /> {item.prize}
                       </motion.span>
                     )}
                     {item.score && (
-                      <motion.span whileHover={{ scale: 1.05 }} className="px-3.5 py-1 bg-transparent text-emerald-700 font-bold rounded-xl text-xs border border-emerald-300/80 shadow-sm flex items-center gap-1.5">
+                      <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-emerald-50 text-emerald-700 font-bold rounded-xl text-xs border border-emerald-200 shadow-sm flex items-center gap-1.5">
                         <Star size={13} className="text-emerald-600" /> {item.score}
                       </motion.span>
                     )}
                     {item.type && (
-                      <motion.span whileHover={{ scale: 1.05 }} className="px-3.5 py-1 bg-transparent text-theme font-bold rounded-xl text-xs border border-theme/40 shadow-sm">
+                      <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-theme-soft text-theme font-bold rounded-xl text-xs border border-theme/30 shadow-sm">
                         {item.type}
                       </motion.span>
                     )}
@@ -919,8 +909,8 @@ const AchievementsTimeline: React.FC = () => {
                 <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors mb-1 leading-snug relative z-10">
                   {item.title}
                 </h3>
-                <h4 className="text-xs font-bold text-slate-400 mb-3 relative z-10">{item.organization}</h4>
-                <p className="text-slate-600 text-sm font-medium leading-relaxed relative z-10">{item.description}</p>
+                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 relative z-10">{item.organization}</h4>
+                <p className="text-slate-600 text-sm font-medium leading-relaxed relative z-10 mt-auto">{item.description}</p>
               </TiltCard>
             </motion.div>
           ))}
@@ -1504,8 +1494,8 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid lg:grid-cols-2 gap-12">
+          {/* Projects Grid: 3 columns x 2 rows on desktop */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">
               {PROJECTS.filter(p => selectedCategory === 'all' || p.category === selectedCategory).map((project, idx) => (
                 <motion.div
@@ -1520,16 +1510,16 @@ const App: React.FC = () => {
                 >
                   <TiltCard
                     onClick={() => setActiveProject(project)}
-                    className="group bg-white rounded-[3.5rem] border border-slate-100 hover:border-theme transition-all cursor-pointer h-full"
+                    className="group bg-white rounded-[2.5rem] border border-slate-100 hover:border-theme transition-all cursor-pointer h-full"
                   >
-                    <div className="p-10 flex flex-col h-full items-center text-center">
+                    <div className="p-7 sm:p-8 flex flex-col h-full items-center text-center">
                     {/* 1. Project Logo / Icon */}
                     {project.image && (
-                      <div className="mb-6 flex justify-center">
+                      <div className="mb-5 flex justify-center">
                         <motion.div
                           whileHover={{ rotate: 5, scale: 1.08 }}
                           transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                          className="w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
+                          className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
                         >
                           <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                         </motion.div>

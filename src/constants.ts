@@ -15,7 +15,7 @@ export const PERSONAL_INFO = {
   email: 'tharunkumark42007@gmail.com',
   phone: '+91 87609 64830',
   location: 'Dharapuram, Tamil Nadu, India',
-  linkedin: 'https://www.linkedin.com/in/tharunkumark4743/',
+  linkedin: 'https://in.linkedin.com/in/tharunkumark4743?trk=profile-badge',
   github: 'https://github.com/Tharun4743',
   leetcode: 'https://leetcode.com/u/Tharunkumar__K/',
   geeksforgeeks: 'https://www.geeksforgeeks.org/profile/tharunkumark4743',
