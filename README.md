@@ -10,6 +10,8 @@
 
 <p>Building intelligent web applications, role-based workflow systems, and safety IoT platforms that solve real-world problems.</p>
 
+<a href="https://tharunkumark4743.netlify.app/"><img src="https://img.shields.io/badge/Live_Portfolio-00C7B7?style=for-the-badge&amp;logo=netlify&amp;logoColor=white" height="36"/></a>
+<a href="https://app.netlify.com/projects/tharunkumark4743/deploys"><img src="https://api.netlify.com/api/v1/badges/0dd7f9d8-fb78-4221-8382-3d5de8685959/deploy-status" alt="Netlify Status" height="36"/></a>
 <a href="https://drive.google.com/drive/folders/1zdLQ8EoEC8X73fFAJjSJr-Ros_xckIyW"><img src="https://img.shields.io/badge/Resume-4285F4?style=for-the-badge&amp;logo=googledrive&amp;logoColor=white" height="36"/></a>
 <a href="https://github.com/Tharun4743"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&amp;logo=github&amp;logoColor=white" height="36"/></a>
 <a href="https://in.linkedin.com/in/tharunkumark4743?trk=profile-badge"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" height="36"/></a>
