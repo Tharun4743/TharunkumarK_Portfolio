@@ -65,6 +65,6 @@ export type AchievementItem = {
   prize?: string;
   score?: string;
   category?: 'hackathon' | 'leadership' | 'ambassador';
-  iconName?: 'trophy' | 'rocket' | 'lightbulb' | 'graduation' | 'shield' | 'code' | 'star';
+  iconName?: 'trophy' | 'rocket' | 'lightbulb' | 'graduation' | 'shield' | 'code' | 'star' | 'award';
 };
 

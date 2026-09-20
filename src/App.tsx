@@ -583,8 +583,8 @@ const AIChatbot: React.FC = () => {
       answer: "Tharunkumar K is a passionate Full Stack Developer and IoT enthusiast from Tamil Nadu, currently pursuing a B.Tech in IT at VSB Engineering College (CGPA: 8.5). He specializes in React, Node.js, TypeScript, PostgreSQL, and embedded IoT designs."
     },
     {
-      keywords: ['project', 'work', 'build', 'portfolio', 'top', 'technical', 'skills', 'tech', 'stack', 'helmet', 'backend', 'task', 'vsbec', 'goat', 'vault'],
-      answer: "Tharun has built several production-grade engineering platforms:\n\n• VSBEC IT Vault: Institutional governance & placement platform adopted by 365+ students with 3-tier proof audit, LeetCode sync, and sandboxed Monaco IDE.\n• GOAT Code Editor: Real-time collaborative IDE with browser-native WebRTC voice calling mesh, Monaco kernel & 13+ language execution (Code Thugs 2k26 National 1st Place Winner).\n• CampusConnect: Enterprise placement platform automating TPO workflows and student interview timelines for 500+ students (React 19, Supabase, Socket.IO).\n• Techy Tharun's Chatbox: SSE typewriter streaming AI platform with automated multi-provider fallback (Next.js 15, Neon Postgres).\n• Smart Helmet IoT System: Smart India Hackathon 2025 National Top 50 (top 0.5%) with RF 433MHz wireless ignition cutoff.\n• Aura: 100% Offline Multimodal RAG workstation (Spring Boot, Llama-3, CLIP, Electron)."
+      keywords: ['project', 'work', 'build', 'portfolio', 'top', 'technical', 'skills', 'tech', 'stack', 'helmet', 'backend', 'task', 'vsbec', 'goat', 'vault', 'sih'],
+      answer: "Tharun has built several production-grade engineering platforms:\n\n• VSBEC IT Vault: Smart India Hackathon (SIH) 2026 National Top 50 platform adopted by 365+ students with 3-tier proof audit, LeetCode sync, and sandboxed Monaco IDE.\n• Smart Helmet IoT System: Smart India Hackathon (SIH) 2025 Top 50 with RF 433MHz wireless ignition cutoff.\n• GOAT Code Editor: Real-time collaborative IDE with browser-native WebRTC voice calling mesh, Monaco kernel & 13+ language execution (Code Thugs 2k26 National 1st Place Winner).\n• CampusConnect: Enterprise placement platform automating TPO workflows and student interview timelines for 500+ students (React 19, Supabase, Socket.IO).\n• Techy Tharun's Chatbox: SSE typewriter streaming AI platform with automated multi-provider fallback (Next.js 15, Neon Postgres).\n• Aura: 100% Offline Multimodal RAG workstation (Spring Boot, Llama-3, CLIP, Electron)."
     },
     {
       keywords: ['intern', 'experience', 'neura', 'infosys', 'job'],
@@ -954,8 +954,13 @@ const HeroHighlightBadge: React.FC = () => {
     },
     {
       icon: <Trophy size={20} />,
-      subtitle: 'SIH 2025 Top 50',
+      subtitle: 'SIH 2025 & 2026 Top 50',
       title: 'Smart India Hackathon'
+    },
+    {
+      icon: <Award size={20} />,
+      subtitle: 'National Finalist',
+      title: 'Odoo × NMIT 2026'
     },
     {
       icon: <Sparkles size={20} />,
@@ -1512,14 +1517,14 @@ const App: React.FC = () => {
                     onClick={() => setActiveProject(project)}
                     className="group bg-white rounded-[2.5rem] border border-slate-100 hover:border-theme transition-all cursor-pointer h-full"
                   >
-                    <div className="p-7 sm:p-8 flex flex-col h-full items-center text-center">
+                    <div className="p-6 sm:p-7 flex flex-col h-full items-center text-center">
                     {/* 1. Project Logo / Icon */}
                     {project.image && (
-                      <div className="mb-5 flex justify-center">
+                      <div className="mb-3.5 flex justify-center">
                         <motion.div
                           whileHover={{ rotate: 5, scale: 1.08 }}
                           transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                          className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
+                          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-md ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
                         >
                           <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                         </motion.div>
@@ -1527,52 +1532,57 @@ const App: React.FC = () => {
                     )}
 
                     {/* 2. Category Badge */}
-                    <span className="px-3.5 py-1 bg-theme-soft text-theme font-bold rounded-lg text-xs uppercase tracking-wider mb-3">
-                      {project.category === 'fullstack' ? 'Full-Stack Web Application' : project.category === 'iot' ? 'IoT & Embedded Safety System' : project.category}
+                    <span className="px-3 py-0.5 bg-theme-soft text-theme font-bold rounded-lg text-[10px] sm:text-xs uppercase tracking-wider mb-2">
+                      {project.category === 'fullstack' ? 'Full-Stack Web Application' : project.category === 'iot' ? 'IoT & Embedded Safety' : project.category}
                     </span>
 
                     {/* 3. Title */}
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors tracking-tighter mb-3">
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 group-hover:text-theme transition-colors tracking-tight mb-2 line-clamp-1">
                       {project.title}
                     </h3>
 
                     {/* 4. Short Description */}
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6 font-medium max-w-lg">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 font-medium max-w-sm line-clamp-2">
                       {project.description}
                     </p>
 
                     {/* 5. Status Badges */}
                     {(project.status || project.realWorldImplementation) && (
-                      <div className="flex flex-wrap justify-center gap-2 mb-6">
+                      <div className="flex flex-wrap justify-center gap-1.5 mb-3.5">
                         {project.status && (
-                          <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-emerald-50 text-emerald-600 font-extrabold rounded-lg text-[10px] border border-emerald-100 uppercase tracking-wider shadow-sm">
+                          <motion.span whileHover={{ scale: 1.05 }} className="px-2.5 py-0.5 bg-emerald-50 text-emerald-600 font-extrabold rounded-md text-[10px] border border-emerald-100 uppercase tracking-wider shadow-sm">
                             {project.status}
                           </motion.span>
                         )}
                         {project.realWorldImplementation && (
-                          <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-indigo-50 text-indigo-600 font-extrabold rounded-lg text-[10px] border border-indigo-100 uppercase tracking-wider shadow-sm">
+                          <motion.span whileHover={{ scale: 1.05 }} className="px-2.5 py-0.5 bg-indigo-50 text-indigo-600 font-extrabold rounded-md text-[10px] border border-indigo-100 uppercase tracking-wider shadow-sm">
                             Implemented in Dept
                           </motion.span>
                         )}
                       </div>
                     )}
 
-                    {/* 6. Technology Badges */}
-                    <div className="mt-auto flex flex-wrap justify-center gap-2 mb-8">
-                      {project.tags.map((tag: string, tIdx: number) => (
-                        <motion.span whileHover={{ scale: 1.05 }} key={tIdx} className="px-3 py-1.5 bg-slate-50 text-[10px] sm:text-xs font-bold text-slate-500 rounded-xl border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
+                    {/* 6. Technology Badges (Top 4 + More Pill) */}
+                    <div className="mt-auto flex flex-wrap justify-center gap-1.5 mb-4">
+                      {project.tags.slice(0, 4).map((tag: string, tIdx: number) => (
+                        <motion.span whileHover={{ scale: 1.05 }} key={tIdx} className="px-2.5 py-1 bg-slate-50 text-[10px] font-bold text-slate-500 rounded-lg border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
                           {tag}
                         </motion.span>
                       ))}
+                      {project.tags.length > 4 && (
+                        <span className="px-2 py-1 bg-theme-soft text-theme text-[10px] font-bold rounded-lg border border-theme/20">
+                          +{project.tags.length - 4} more
+                        </span>
+                      )}
                     </div>
 
                     {/* 7. Action Button */}
-                    <div className="w-full flex justify-center gap-3 pt-4 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
+                    <div className="w-full flex justify-center gap-2.5 pt-3.5 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setActiveProject(project)}
-                        className="px-6 py-2.5 bg-theme text-white text-xs font-bold rounded-xl shadow-md hover:brightness-110 transition-all flex items-center gap-2"
+                        className="px-5 py-2 bg-theme text-white text-xs font-bold rounded-xl shadow-md hover:brightness-110 transition-all flex items-center gap-1.5"
                       >
                         View Project <ChevronRight size={14} />
                       </motion.button>
@@ -1583,10 +1593,10 @@ const App: React.FC = () => {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
+                          className="p-2 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
                           title="Live Demo"
                         >
-                          <ExternalLink size={16} />
+                          <ExternalLink size={15} />
                         </motion.a>
                       )}
                       {project.githubLink && (
@@ -1596,10 +1606,10 @@ const App: React.FC = () => {
                           href={project.githubLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
+                          className="p-2 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
                           title="GitHub Repository"
                         >
-                          <Github size={16} />
+                          <Github size={15} />
                         </motion.a>
                       )}
                     </div>

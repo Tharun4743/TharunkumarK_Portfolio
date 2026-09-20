@@ -136,11 +136,11 @@ export const CERTIFICATIONS: CertificationItem[] = [
 ];
 export const PROJECTS: Project[] = [
   {
-    title: 'VSBEC IT Vault — Academia-Industry Integrated Platform',
+    title: 'VSBEC IT Vault',
     description:
-      'Institutional governance, real-time coding competency tracking, and corporate recruitment ecosystem deployed for the Department of IT at VSB Engineering College.',
+      'Institutional governance, real-time coding competency tracking, and corporate recruitment ecosystem. Smart India Hackathon (SIH) 2026 National Top 50.',
     longDescription:
-      'The VSBEC IT Vault (Academia-Industry Integrated Platform & IT Task Manager) is an enterprise-grade institutional governance and placement readiness ecosystem engineered for the Department of Information Technology at VSB Engineering College, Karur.\n\nAdopted by 365+ students across 6 departmental sections (II IT-A/B/C & III IT-A/B/C), the platform digitizes 100% of departmental submissions through a rigorous 3-tier proof verification pipeline (Student Coordinator Peer Review → Class Advisor Validation → HOD Oversight) backed by Cloudinary image proof compression.\n\nIt features automated LeetCode GraphQL and GitHub REST API daemon synchronization for daily coding velocity tracking, a multi-compiler sandboxed Monaco IDE assessment suite (C, C++, Java 17, Python 3) with anti-cheat webcam PIP proctoring, an algorithmic Placement Readiness Index 2.0, and multi-channel instant broadcasting via Telegram Bot webhooks, VAPID Web Push, and a 3-node Brevo email failover pool.\n\nPowered by 35 relational PostgreSQL tables with row-level integrity and an in-memory pre-indexed RAM cache delivering sub-0.01ms directory lookups, the platform is actively deployed in production on Vercel.',
+      'The VSBEC IT Vault (Academia-Industry Integrated Platform & IT Task Manager) is an enterprise-grade institutional governance and placement readiness ecosystem engineered for the Department of Information Technology at VSB Engineering College, Karur.\n\nShortlisted as a National Top 50 project in Smart India Hackathon (SIH) 2026 and adopted by 365+ students across 6 departmental sections (II IT-A/B/C & III IT-A/B/C), the platform digitizes 100% of departmental submissions through a rigorous 3-tier proof verification pipeline (Student Coordinator Peer Review → Class Advisor Validation → HOD Oversight) backed by Cloudinary image proof compression.\n\nIt features automated LeetCode GraphQL and GitHub REST API daemon synchronization for daily coding velocity tracking, a multi-compiler sandboxed Monaco IDE assessment suite (C, C++, Java 17, Python 3) with anti-cheat webcam PIP proctoring, an algorithmic Placement Readiness Index 2.0, and multi-channel instant broadcasting via Telegram Bot webhooks, VAPID Web Push, and a 3-node Brevo email failover pool.\n\nPowered by 35 relational PostgreSQL tables with row-level integrity and an in-memory pre-indexed RAM cache delivering sub-0.01ms directory lookups, the platform is actively deployed in production on Vercel.',
     date: 'Production Deployed',
     link: 'https://it-taskmanager.vercel.app/',
     githubLink: 'https://github.com/Tharun4743/taskmanager',
@@ -158,9 +158,9 @@ export const PROJECTS: Project[] = [
       'Brevo Email Pool'
     ],
     category: 'fullstack',
-    status: 'Production Deployed (365+ Active Students)',
+    status: 'SIH 2026 Top 50 • Production',
     realWorldImplementation:
-      'Actively adopted by 365+ students across 6 departmental sections at VSB Engineering College for centralized academic governance, LeetCode habit tracking, and corporate coding assessments.',
+      'Smart India Hackathon (SIH) 2026 National Top 50. Actively adopted by 365+ students across 6 departmental sections at VSB Engineering College for centralized academic governance, LeetCode habit tracking, and corporate coding assessments.',
     image: vsbecTaskManagerImg,
     problem:
       'Departmental task submissions and coding progress were previously fragmented across manual paperwork, unverified Google Form links, and untracked external platforms without institutional oversight or corporate alignment.',
@@ -212,12 +212,12 @@ export const PROJECTS: Project[] = [
       '1. Real-time Multi-tenant Data Isolation: Strict section, class, and department scoping across 7 distinct personas solved via dynamic middleware authorization and row-level relational constraints.\n\n2. High-volume Directory Latency: Resolved by engineering an in-memory pre-indexed RAM directory cache achieving sub-0.01ms response times.\n\n3. Zero-loss Communication Delivery: Overcame SMTP port throttling and single-provider rate limits by building a 3-node Brevo HTTPS dispatch pool with automated credit telemetry and instant failover.',
     myRole: 'Full-Stack Architect & Lead Developer',
     impact:
-      'Adopted by 365+ enrolled students and faculty across 6 departmental sections (II IT & III IT) at VSB Engineering College, Karur.\n\nDigitized 100% of departmental task submissions, automated daily LeetCode/GitHub momentum tracking, and deployed an anti-cheat proctored Monaco IDE sandbox for corporate recruiting assessments.',
+      'Shortlisted as National Top 50 in Smart India Hackathon (SIH) 2026. Adopted by 365+ enrolled students and faculty across 6 departmental sections (II IT & III IT) at VSB Engineering College, Karur.\n\nDigitized 100% of departmental task submissions, automated daily LeetCode/GitHub momentum tracking, and deployed an anti-cheat proctored Monaco IDE sandbox for corporate recruiting assessments.',
     keyLearnings:
       'Engineered multi-tier RBAC authorization models, constructed isolated language runtime sandboxes, implemented in-memory directory caching strategies, and architected resilient multi-node transactional communication pools.'
   },
   {
-    title: 'CampusConnect — Automated Placement & Recruitment Ecosystem',
+    title: 'CampusConnect',
     description:
       'Enterprise-grade campus placement platform automating Training & Placement Officer (TPO) workflows, recruiter engagement, and student interview pipelines.',
     longDescription:
@@ -238,7 +238,7 @@ export const PROJECTS: Project[] = [
       'Google OAuth'
     ],
     category: 'fullstack',
-    status: 'Production Deployed (500+ Students)',
+    status: 'Production (500+ Students)',
     image: campusConnectImg,
     problem:
       'Campus placement offices face manual paperwork overload, untracked resume archives, delayed student status visibility, and complex interview coordination across multiple corporate recruiting partners.',
@@ -263,7 +263,7 @@ export const PROJECTS: Project[] = [
       'Mastered WebSocket synchronization for real-time application pipelines, structured RBAC using Supabase PostgreSQL, and implemented production defense-in-depth security.'
   },
   {
-    title: 'GOAT Code Editor — Real-Time Collaborative IDE',
+    title: 'GOAT Code Editor',
     description:
       'High-performance browser-based collaborative IDE featuring multi-user code synchronization, WebRTC voice calling (1-to-1 & group mesh), Monaco editor kernel, and AI assistant.',
     longDescription:
@@ -285,7 +285,7 @@ export const PROJECTS: Project[] = [
       'OpenRouter (Llama 3.1 70B)'
     ],
     category: 'fullstack',
-    status: 'Production Deployed • 1st Place National Winner',
+    status: 'National Winner (1st Place)',
     image: goatCodeEditorImg,
     problem:
       'Remote pair programmers struggle with copy-pasting snippets across chat tools, caret desynchronization during concurrent edits, and juggling separate apps for voice communication.',
@@ -313,7 +313,7 @@ export const PROJECTS: Project[] = [
       'Mastered WebRTC peer mesh networking from first principles, Web Audio API synthesis, fine-grained Monaco editor text model concurrency, and fault-tolerant dual-store architectures.'
   },
   {
-    title: "Techy Tharun's Chatbox — Intelligent AI Chat Platform",
+    title: "Techy Tharun's Chatbox",
     description:
       'High-performance, multi-model AI conversation platform featuring Server-Sent Events (SSE) streaming, automated key rotation fallback, and persistent chat history.',
     longDescription:
@@ -359,7 +359,7 @@ export const PROJECTS: Project[] = [
       'Deepened expertise in Server-Sent Events (SSE) streaming protocols, multi-tenant serverless PostgreSQL optimizations, and multi-provider AI resilience engineering.'
   },
   {
-    title: 'Aura — AI Unified Retrieval Assistant',
+    title: 'Aura — Offline Multimodal RAG',
     description:
       '100% Offline Multimodal Retrieval-Augmented Generation (RAG) System developed for resource-constrained environments. Features local document processing, multimodal vision indexing, and voice transcription.',
     longDescription:
@@ -368,7 +368,7 @@ export const PROJECTS: Project[] = [
     githubLink: 'https://github.com/Tharun4743/SIH25231',
     tags: ['React', 'Spring Boot', 'Java', 'SQLite', 'ChromaDB', 'Ollama', 'Electron'],
     category: 'fullstack',
-    status: 'Production Architecture • SIH Submission',
+    status: 'Offline AI Workstation',
     image: auraImg,
     problem:
       'Enterprise and defense environments requiring intelligent document and visual asset retrieval cannot rely on cloud-based LLM APIs due to strict data privacy, air-gapped network policies, and latency constraints.',
@@ -392,11 +392,11 @@ export const PROJECTS: Project[] = [
       'Learned to orchestrate local LLMs and vector databases within an Electron desktop shell and optimized Java Spring Boot for local low-memory environments.'
   },
   {
-    title: 'Smart Helmet — IoT Embedded Rider Safety System',
+    title: 'Smart Helmet IoT Safety System',
     description:
-      'Intelligent dual-unit IoT safety system preventing accidents via IR helmet wear detection, MQ-3 alcohol sensing, and eye-blink drowsiness monitoring with RF ignition interlock.',
+      'Dual-unit rider safety system preventing accidents via IR helmet wear detection, MQ-3 alcohol sensing, and eye-blink drowsiness monitoring with RF ignition interlock.',
     longDescription:
-      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle accidents through real-time hardware sensing and wireless ignition interlocking.\n\nRecognized among the National Top 50 in Smart India Hackathon 2025 (0.5% acceptance out of 10,000+ teams), the dual-unit system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication.\n\nIt continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (IR eye-blink sensor), automatically cutting bike ignition within 500ms under unsafe conditions. Built with Arduino microcontrollers, C/C++ firmware, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
+      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle accidents through real-time hardware sensing and wireless ignition interlocking.\n\nLead embedded developer on the dual-unit rider safety system. Shortlisted as Top 50 out of 10,000+ teams (top 0.5% acceptance) in Smart India Hackathon (SIH) 2025.\n\nThe dual-unit system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication. It continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (IR eye-blink sensor), automatically cutting bike ignition within 500ms under unsafe conditions. Built with Arduino microcontrollers, C/C++ firmware, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
     date: 'Sep 2025 - Oct 2025',
     githubLink: 'https://github.com/Tharun4743/Smart-Helmet-IoT-Safety-System',
     driveLink: 'https://drive.google.com/drive/folders/1kYhyoOx9-Tr4WyOJkmUz7K4PDDpmaHEr?usp=drive_link',
@@ -411,9 +411,9 @@ export const PROJECTS: Project[] = [
       'IoT Safety'
     ],
     category: 'iot',
-    status: 'SIH 2025 National Top 50',
+    status: 'SIH 2025 Top 50',
     realWorldImplementation:
-      'Built and demonstrated as a working physical hardware prototype for Smart India Hackathon 2025, selected in the top 0.5% nationally.',
+      'Built and demonstrated as a working physical hardware prototype for Smart India Hackathon (SIH) 2025 Top 50.',
     image: smartHelmetImg,
     problem:
       'Two-wheeler accidents frequently result in fatalities due to helmet non-compliance, driving under the influence (DUI), and unnoticed driver drowsiness.',
@@ -431,9 +431,9 @@ export const PROJECTS: Project[] = [
       'Ensuring microsecond-level synchronization between the helmet transmitter and motorcycle receiver over noisy RF 433MHz channels. Solved by implementing an optimized 100ms transmission packet with checksum validation and a 5-second failsafe timeout.',
     architecture:
       'Dual-unit embedded hardware system utilizing Arduino microcontrollers, RF 433MHz transmitter/receiver modules, 5V relay module for ignition interlock, active piezoelectric buzzer, and 16x2 I²C LCD display.',
-    myRole: 'IoT & Embedded Systems Engineer',
+    myRole: 'Lead Embedded Developer (Dual-Unit Rider Safety System)',
     impact:
-      'Selected as National Top 50 at Smart India Hackathon 2025 (top 0.5% out of 10,000+ teams), proving a sub-500ms hardware response time capable of saving motorcycle rider lives.',
+      'Shortlisted as Top 50 out of 10,000+ teams (top 0.5% acceptance) in Smart India Hackathon (SIH) 2025. Proved sub-500ms ignition cutoff response time to proactively safeguard motorcycle riders.',
     keyLearnings:
       'Navigated embedded hardware constraints, noise filtering in analog gas sensors, RF transceiver packet stability, and failsafe design in life-critical systems.'
   }
@@ -469,14 +469,34 @@ export const ACHIEVEMENTS: AchievementItem[] = [
       'Won 1st Place Winner nationally at Code Thugs 2k26 for designing, building, and deploying GOAT Code Editor — a real-time collaborative IDE featuring live cursor highlighting and in-browser compilation.'
   },
   {
+    title: 'Smart India Hackathon 2026 – Top 50',
+    organization: 'Ministry of Education & SIH',
+    year: '2026',
+    type: 'NATIONAL TOP 50',
+    category: 'hackathon',
+    iconName: 'trophy',
+    description:
+      'Selected in the Top 50 nationally in Smart India Hackathon (SIH) 2026 for engineering VSBEC IT Vault — an institutional governance and academic task platform.'
+  },
+  {
     title: 'Smart India Hackathon 2025 – Top 50',
     organization: 'Ministry of Education & SIH',
     year: '2025',
-    type: 'TOP 50 / 300+ TEAMS',
+    type: 'TOP 50',
     category: 'hackathon',
     iconName: 'rocket',
     description:
-      'Ranked in the top 50 out of 300+ competing teams in the internal hackathon, serving as lead developer for an IoT-enabled rider safety system.'
+      'Lead embedded developer on the dual-unit rider safety system. Shortlisted as Top 50 out of 10,000+ teams (top 0.5% acceptance) in Smart India Hackathon (SIH) 2025.'
+  },
+  {
+    title: 'Odoo × NMIT Bangalore Hackathon 2026 – Finalist',
+    organization: 'Odoo × NMIT Bangalore',
+    year: '2026',
+    type: 'NATIONAL ON-SITE FINALIST',
+    category: 'hackathon',
+    iconName: 'award',
+    description:
+      'Shortlisted from an 8-hour preliminary hackathon and qualified for the national on-site finals at NMIT Bangalore.'
   },
   {
     title: 'India Innovates 2026 – Finalist',
