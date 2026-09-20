@@ -584,7 +584,7 @@ const AIChatbot: React.FC = () => {
     },
     {
       keywords: ['project', 'work', 'build', 'portfolio', 'top', 'technical', 'skills', 'tech', 'stack', 'helmet', 'backend', 'task', 'vsbec', 'goat', 'vault', 'sih'],
-      answer: "Tharun has built several production-grade engineering platforms:\n\n• VSBEC IT Vault: Smart India Hackathon (SIH) 2026 National Top 50 platform adopted by 365+ students with 3-tier proof audit, LeetCode sync, and sandboxed Monaco IDE.\n• Smart Helmet IoT System: Smart India Hackathon (SIH) 2025 Top 50 with RF 433MHz wireless ignition cutoff.\n• GOAT Code Editor: Real-time collaborative IDE with browser-native WebRTC voice calling mesh, Monaco kernel & 13+ language execution (Code Thugs 2k26 National 1st Place Winner).\n• CampusConnect: Enterprise placement platform automating TPO workflows and student interview timelines for 500+ students (React 19, Supabase, Socket.IO).\n• Techy Tharun's Chatbox: SSE typewriter streaming AI platform with automated multi-provider fallback (Next.js 15, Neon Postgres).\n• Aura: 100% Offline Multimodal RAG workstation (Spring Boot, Llama-3, CLIP, Electron)."
+      answer: "Tharun has built several production-grade engineering platforms:\n\n• VSBEC IT Vault: SIH 2026 Internal Hackathon Top 50 (out of 300+ campus teams, official SIH portal nominee) adopted by 365+ students with 3-tier proof audit, LeetCode sync, and sandboxed Monaco IDE.\n• Smart Helmet IoT System: SIH 2025 Internal Hackathon Top 50 (out of 300+ campus teams, official SIH portal nominee) with RF 433MHz wireless ignition cutoff.\n• GOAT Code Editor: Real-time collaborative IDE with browser-native WebRTC voice calling mesh, Monaco kernel & 13+ language execution (Code Thugs 2k26 National 1st Place Winner).\n• CampusConnect: Enterprise placement platform automating TPO workflows and student interview timelines for 500+ students (React 19, Supabase, Socket.IO).\n• Techy Tharun's Chatbox: SSE typewriter streaming AI platform with automated multi-provider fallback (Next.js 15, Neon Postgres).\n• Aura: 100% Offline Multimodal RAG workstation (Spring Boot, Llama-3, CLIP, Electron)."
     },
     {
       keywords: ['intern', 'experience', 'neura', 'infosys', 'job'],
@@ -720,30 +720,30 @@ const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) =
   const chartUrl = `https://ghchart.rshah.org/${cleanColor}/Tharun4743`;
 
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <SectionHeader
           title="GitHub Analytics"
           subtitle="Real-time repository statistics and contributions activity tracker."
-          icon={<Github size={28} />}
+          icon={<Github size={24} />}
         />
 
-        <div className="max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8">
-          <div className="grid grid-cols-2 gap-3 sm:gap-6 text-center">
-            <TiltCard className="p-6 sm:p-8 bg-white rounded-3xl shadow-md border border-slate-100 hover:border-theme hover:shadow-xl transition-all">
-              <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Repos</h4>
+        <div className="max-w-4xl mx-auto flex flex-col gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 text-center">
+            <TiltCard className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-theme hover:shadow-lg transition-all">
+              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Repos</h4>
               <p className="text-base sm:text-lg font-black text-slate-900 truncate">{gitStats.loading ? '...' : gitStats.repos}</p>
             </TiltCard>
-            <TiltCard className="p-6 sm:p-8 bg-white rounded-3xl shadow-md border border-slate-100 hover:border-theme hover:shadow-xl transition-all">
-              <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Followers</h4>
+            <TiltCard className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-theme hover:shadow-lg transition-all">
+              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Followers</h4>
               <p className="text-base sm:text-lg font-black text-slate-900 truncate">{gitStats.loading ? '...' : gitStats.followers}</p>
             </TiltCard>
           </div>
 
-          <div className="p-6 sm:p-8 bg-white rounded-3xl shadow-md border border-slate-100 text-center hover:shadow-xl transition-all">
-            <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Contributions Activity Chart</h4>
+          <div className="p-4 sm:p-6 bg-white rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md transition-all">
+            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Contributions Activity Chart</h4>
             <div className="w-full overflow-x-auto scrollbar-thin">
-              <div className="inline-block min-w-[650px] max-w-full p-2">
+              <div className="inline-block min-w-[650px] max-w-full p-1">
                 <img
                   src={chartUrl}
                   alt="Tharunkumar K GitHub Contributions Chart"
@@ -760,34 +760,34 @@ const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) =
 
 const ContactSlider: React.FC = () => {
   const contactItems = [
-    { label: 'Drop me a message', value: PERSONAL_INFO.email, link: `https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}`, icon: <Mail size={32} />, borderHover: 'hover:border-blue-500', iconHover: 'group-hover:text-blue-600 group-hover:bg-blue-50 group-hover:border-blue-300' },
-    { label: 'Give me a call', value: PERSONAL_INFO.phone, link: `tel:${PERSONAL_INFO.phone}`, icon: <Phone size={32} />, accentColor: 'from-emerald-500 to-teal-600', borderHover: 'hover:border-emerald-500', iconHover: 'group-hover:text-emerald-600 group-hover:bg-emerald-50 group-hover:border-emerald-300' },
-    { label: 'Connect on', value: 'GitHub', link: PERSONAL_INFO.github, icon: <Github size={32} />, borderHover: 'hover:border-slate-800', iconHover: 'group-hover:text-slate-900 group-hover:bg-slate-100 group-hover:border-slate-400' },
-    { label: 'Connect on', value: 'LinkedIn', link: PERSONAL_INFO.linkedin, icon: <Linkedin size={32} />, borderHover: 'hover:border-blue-600', iconHover: 'group-hover:text-blue-700 group-hover:bg-blue-50 group-hover:border-blue-400' },
-    { label: 'Connect on', value: 'LeetCode', link: PERSONAL_INFO.leetcode, icon: <LeetCodeIcon size={32} />, borderHover: 'hover:border-amber-500', iconHover: 'group-hover:text-amber-600 group-hover:bg-amber-50 group-hover:border-amber-300' },
-    { label: 'Connect on', value: 'GeeksForGeeks', link: PERSONAL_INFO.geeksforgeeks, icon: <GeeksForGeeksIcon size={32} />, borderHover: 'hover:border-green-600', iconHover: 'group-hover:text-green-700 group-hover:bg-green-50 group-hover:border-green-300' }
+    { label: 'Drop me a message', value: PERSONAL_INFO.email, link: `https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}`, icon: <Mail size={24} />, borderHover: 'hover:border-blue-500', iconHover: 'group-hover:text-blue-600 group-hover:bg-blue-50 group-hover:border-blue-300' },
+    { label: 'Give me a call', value: PERSONAL_INFO.phone, link: `tel:${PERSONAL_INFO.phone}`, icon: <Phone size={24} />, accentColor: 'from-emerald-500 to-teal-600', borderHover: 'hover:border-emerald-500', iconHover: 'group-hover:text-emerald-600 group-hover:bg-emerald-50 group-hover:border-emerald-300' },
+    { label: 'Connect on', value: 'GitHub', link: PERSONAL_INFO.github, icon: <Github size={24} />, borderHover: 'hover:border-slate-800', iconHover: 'group-hover:text-slate-900 group-hover:bg-slate-100 group-hover:border-slate-400' },
+    { label: 'Connect on', value: 'LinkedIn', link: PERSONAL_INFO.linkedin, icon: <Linkedin size={24} />, borderHover: 'hover:border-blue-600', iconHover: 'group-hover:text-blue-700 group-hover:bg-blue-50 group-hover:border-blue-400' },
+    { label: 'Connect on', value: 'LeetCode', link: PERSONAL_INFO.leetcode, icon: <LeetCodeIcon size={24} />, borderHover: 'hover:border-amber-500', iconHover: 'group-hover:text-amber-600 group-hover:bg-amber-50 group-hover:border-amber-300' },
+    { label: 'Connect on', value: 'GeeksForGeeks', link: PERSONAL_INFO.geeksforgeeks, icon: <GeeksForGeeksIcon size={24} />, borderHover: 'hover:border-green-600', iconHover: 'group-hover:text-green-700 group-hover:bg-green-50 group-hover:border-green-300' }
   ];
 
   // Duplicated items for seamless continuous infinite marquee
   const marqueeItems = [...contactItems, ...contactItems];
 
   return (
-    <div className="w-full overflow-hidden relative py-6 group [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-      <div className="flex gap-6 w-max animate-marquee">
+    <div className="w-full overflow-hidden relative py-4 group [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+      <div className="flex gap-4 w-max animate-marquee">
         {marqueeItems.map((item, idx) => (
           <a
             key={idx}
             href={item.link}
             target="_blank"
             rel="noopener noreferrer me"
-            className={`w-80 p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03] transition-all flex flex-col items-center text-center gap-4 flex-shrink-0 group/item ${item.borderHover}`}
+            className={`w-64 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] transition-all flex flex-col items-center text-center gap-3 flex-shrink-0 group/item ${item.borderHover}`}
           >
-            <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 text-slate-800 flex items-center justify-center shadow-sm group-hover/item:scale-110 group-hover/item:border-theme transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-transparent border-2 border-slate-200 text-slate-800 flex items-center justify-center shadow-sm group-hover/item:scale-105 group-hover/item:border-theme transition-all duration-300">
               {item.icon}
             </div>
             <div className="w-full overflow-hidden">
-              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{item.label}</h4>
-              <p className="text-base font-black text-slate-900 truncate w-full px-2">{item.value}</p>
+              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">{item.label}</h4>
+              <p className="text-sm font-bold text-slate-900 truncate w-full px-1">{item.value}</p>
             </div>
           </a>
         ))}
@@ -832,21 +832,21 @@ const AchievementsTimeline: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
       {/* Category Filter Pills with Outlined Vector Icons */}
-      <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
         {[
-          { id: 'all', label: 'All Milestones', icon: <Layers size={14} /> },
-          { id: 'hackathon', label: 'Hackathons & Wins', icon: <Trophy size={14} /> },
-          { id: 'leadership', label: 'Department Leadership', icon: <GraduationCap size={14} /> },
-          { id: 'ambassador', label: 'Campus Ambassador', icon: <Users size={14} /> },
+          { id: 'all', label: 'All Milestones', icon: <Layers size={13} /> },
+          { id: 'hackathon', label: 'Hackathons & Wins', icon: <Trophy size={13} /> },
+          { id: 'leadership', label: 'Department Leadership', icon: <GraduationCap size={13} /> },
+          { id: 'ambassador', label: 'Campus Ambassador', icon: <Users size={13} /> },
         ].map((tab) => (
           <motion.button
             key={tab.id}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
             onClick={() => setActiveFilter(tab.id as any)}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
               activeFilter === tab.id
-                ? 'bg-theme text-white shadow-lg shadow-theme/20'
+                ? 'bg-theme text-white shadow-md shadow-theme/20'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
             }`}
           >
@@ -857,60 +857,60 @@ const AchievementsTimeline: React.FC = () => {
       </div>
 
       {/* 2-Column Responsive Grid Layout */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <AnimatePresence mode="popLayout">
           {filteredAchievements.map((item, idx) => (
             <motion.div
               key={item.title}
               layout
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
-              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.04 }}
+              whileHover={{ y: -4 }}
               className="h-full"
             >
-              <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white border border-slate-100 shadow-md hover:shadow-2xl hover:border-theme transition-all overflow-hidden relative h-full flex flex-col group">
+              <TiltCard className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-theme transition-all overflow-hidden relative h-full flex flex-col group">
                 {/* Shimmer Ambient Glow on Card Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-                <div className="flex flex-wrap justify-between items-start gap-3 mb-4 relative z-10">
-                  <div className="flex items-center gap-3">
+                <div className="flex flex-wrap justify-between items-start gap-2.5 mb-3 relative z-10">
+                  <div className="flex items-center gap-2.5">
                     <motion.div
-                      whileHover={{ rotate: 15, scale: 1.1 }}
-                      className="w-12 h-12 rounded-2xl bg-transparent border-2 border-theme text-theme flex items-center justify-center flex-shrink-0 transition-all shadow-sm"
+                      whileHover={{ rotate: 15, scale: 1.08 }}
+                      className="w-10 h-10 rounded-xl bg-transparent border-2 border-theme text-theme flex items-center justify-center flex-shrink-0 transition-all shadow-sm"
                     >
                       {getJourneyIcon(item.iconName)}
                     </motion.div>
-                    <span className="px-3.5 py-1 bg-slate-50 text-slate-700 font-bold rounded-xl text-xs border border-slate-200 flex items-center gap-1.5 shadow-sm">
-                      <Calendar size={13} className="text-slate-400" /> {item.year}
+                    <span className="px-2.5 py-0.5 bg-slate-50 text-slate-700 font-bold rounded-lg text-[11px] border border-slate-200 flex items-center gap-1.5 shadow-sm">
+                      <Calendar size={12} className="text-slate-400" /> {item.year}
                     </span>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {item.prize && (
-                      <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-amber-50 text-amber-700 font-bold rounded-xl text-xs border border-amber-200 shadow-sm flex items-center gap-1.5">
-                        <Gift size={13} className="text-amber-600" /> {item.prize}
+                      <motion.span whileHover={{ scale: 1.04 }} className="px-2 py-0.5 bg-amber-50 text-amber-700 font-bold rounded-lg text-[10px] border border-amber-200 shadow-sm flex items-center gap-1">
+                        <Gift size={11} className="text-amber-600" /> {item.prize}
                       </motion.span>
                     )}
                     {item.score && (
-                      <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-emerald-50 text-emerald-700 font-bold rounded-xl text-xs border border-emerald-200 shadow-sm flex items-center gap-1.5">
-                        <Star size={13} className="text-emerald-600" /> {item.score}
+                      <motion.span whileHover={{ scale: 1.04 }} className="px-2 py-0.5 bg-emerald-50 text-emerald-700 font-bold rounded-lg text-[10px] border border-emerald-200 shadow-sm flex items-center gap-1">
+                        <Star size={11} className="text-emerald-600" /> {item.score}
                       </motion.span>
                     )}
                     {item.type && (
-                      <motion.span whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-theme-soft text-theme font-bold rounded-xl text-xs border border-theme/30 shadow-sm">
+                      <motion.span whileHover={{ scale: 1.04 }} className="px-2.5 py-0.5 bg-theme-soft text-theme font-bold rounded-lg text-[10px] border border-theme/20 shadow-sm">
                         {item.type}
                       </motion.span>
                     )}
                   </div>
                 </div>
 
-                <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors mb-1 leading-snug relative z-10">
+                <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-theme transition-colors mb-0.5 leading-snug relative z-10">
                   {item.title}
                 </h3>
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 relative z-10">{item.organization}</h4>
-                <p className="text-slate-600 text-sm font-medium leading-relaxed relative z-10 mt-auto">{item.description}</p>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 relative z-10">{item.organization}</h4>
+                <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed relative z-10 mt-auto">{item.description}</p>
               </TiltCard>
             </motion.div>
           ))}
@@ -922,24 +922,24 @@ const AchievementsTimeline: React.FC = () => {
 
 const SectionHeader: React.FC<{ title: string; subtitle?: string; icon: React.ReactNode }> = ({ title, subtitle, icon }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-    className="mb-16"
+    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    className="mb-10 sm:mb-12"
   >
-    <div className="flex items-center gap-4 mb-4">
+    <div className="flex items-center gap-3.5 mb-2.5">
       <motion.div
-        whileHover={{ scale: 1.1, rotate: 5 }}
+        whileHover={{ scale: 1.08, rotate: 5 }}
         transition={{ type: "spring", stiffness: 300, damping: 15 }}
-        className="w-14 h-14 rounded-2xl bg-transparent border-2 border-theme text-slate-900 flex items-center justify-center transition-all cursor-pointer shadow-lg shadow-theme/10"
-        style={{ boxShadow: '0 0 20px var(--theme-glow)' }}
+        className="w-11 h-11 rounded-xl bg-transparent border-2 border-theme text-slate-900 flex items-center justify-center transition-all cursor-pointer shadow-md shadow-theme/10"
+        style={{ boxShadow: '0 0 15px var(--theme-glow)' }}
       >
         {icon}
       </motion.div>
-      <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter">{title}</h2>
     </div>
-    {subtitle && <p className="text-slate-500 max-w-2xl text-lg font-medium ml-1 mr-auto">{subtitle}</p>}
+    {subtitle && <p className="text-slate-500 max-w-2xl text-sm sm:text-base font-medium ml-1 mr-auto">{subtitle}</p>}
   </motion.div>
 );
 
@@ -1260,12 +1260,12 @@ const App: React.FC = () => {
       </section>
 
       {/* About Section - Photo Always Visible Here Too */}
-      <section id="about" className="py-32 bg-slate-50">
+      <section id="about" className="py-16 sm:py-20 bg-slate-50">
         <div className="container mx-auto px-6">
           <SectionHeader
             title="About Me"
             subtitle="My journey in the world of technology."
-            icon={<User size={28} />}
+            icon={<User size={24} />}
           />
           <div className="max-w-4xl mx-auto">
 
@@ -1274,23 +1274,23 @@ const App: React.FC = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="flex flex-col gap-6 sm:gap-8"
+              className="flex flex-col gap-4 sm:gap-6"
             >
-              <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-md border border-slate-100 text-center sm:text-left hover:shadow-xl transition-all">
-                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
+              <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-100 text-center sm:text-left hover:shadow-lg transition-all">
+                <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-medium">
                   {PERSONAL_INFO.profileSummary}
                 </p>
               </div>
-              <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-                <div className="p-8 bg-white shadow-md rounded-[2rem] border border-slate-100 group hover:border-theme hover:shadow-xl transition-all">
-                  <MapPin size={24} className="text-theme mb-6 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Location</h4>
-                  <p className="text-base sm:text-lg font-black text-slate-900 truncate">{PERSONAL_INFO.location}</p>
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="p-5 bg-white shadow-sm rounded-2xl border border-slate-100 group hover:border-theme hover:shadow-md transition-all">
+                  <MapPin size={20} className="text-theme mb-3 group-hover:scale-110 transition-transform" />
+                  <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Location</h4>
+                  <p className="text-sm sm:text-base font-bold text-slate-900 truncate">{PERSONAL_INFO.location}</p>
                 </div>
-                <div className="p-8 bg-white shadow-md rounded-[2rem] border border-slate-100 group hover:border-theme hover:shadow-xl transition-all">
-                  <Mail size={24} className="text-theme mb-6 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Contact</h4>
-                  <p className="text-base sm:text-lg font-black text-slate-900 truncate">{PERSONAL_INFO.email}</p>
+                <div className="p-5 bg-white shadow-sm rounded-2xl border border-slate-100 group hover:border-theme hover:shadow-md transition-all">
+                  <Mail size={20} className="text-theme mb-3 group-hover:scale-110 transition-transform" />
+                  <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Contact</h4>
+                  <p className="text-sm sm:text-base font-bold text-slate-900 truncate">{PERSONAL_INFO.email}</p>
                 </div>
               </div>
 
@@ -1302,10 +1302,10 @@ const App: React.FC = () => {
                 ].filter(s => !s.error);
 
                 return (
-                  <div className={`grid grid-cols-2 ${aboutStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6 sm:gap-8 text-center`}>
+                  <div className={`grid grid-cols-2 ${aboutStats.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-3 sm:gap-5 text-center`}>
                     {aboutStats.map((stat, i) => (
-                  <div key={i} className="p-6 bg-white shadow-md rounded-3xl border border-slate-100 hover:border-theme hover:shadow-xl transition-all">
-                    <p className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest mb-2">{stat.label}</p>
+                  <div key={i} className="p-4 bg-white shadow-sm rounded-xl border border-slate-100 hover:border-theme hover:shadow-md transition-all">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
                     <p className="text-base sm:text-lg font-black text-slate-900 truncate">
                       {stat.loading ? (
                         '...'
@@ -1323,40 +1323,37 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Rest of the sections... (Skills, Projects, Education, Contact) */}
-      {/* ... Keeping the structure identical to previous successful version but ensuring high visibility ... */}
-
       {/* Skills Section */}
-      <section id="skills" className="py-32 bg-slate-50">
+      <section id="skills" className="py-16 sm:py-20 bg-slate-50">
         <div className="container mx-auto px-6">
           <SectionHeader
             title="Technical Arsenal"
             subtitle="The tools and languages I use to bring ideas to life."
-            icon={<Cpu size={28} />}
+            icon={<Cpu size={24} />}
           />
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {TECHNICAL_SKILLS.map((cat, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, x: -40, scale: 0.95 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
-                whileHover={{ y: -8, scale: 1.015 }}
-                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] will-change-transform"
+                transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.06 }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.33%-1rem)] will-change-transform"
               >
-                <TiltCard className="p-6 sm:p-8 rounded-[2rem] bg-white shadow-md border border-slate-100 hover:shadow-xl hover:border-theme transition-all group h-full relative overflow-hidden">
+                <TiltCard className="p-5 sm:p-6 rounded-2xl bg-white shadow-sm border border-slate-100 hover:shadow-xl hover:border-theme transition-all group h-full relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-theme-soft/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                  <h3 className="text-theme font-black mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
+                  <h3 className="text-theme font-black mb-3.5 uppercase tracking-wider text-xs flex items-center gap-2.5">
                     <div className="w-2 h-2 rounded-full bg-theme animate-ping"></div>
                     {cat.name}
                   </h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {cat.skills.map((skill: string, sIdx: number) => (
                       <motion.span
                         key={sIdx}
-                        whileHover={{ scale: 1.05, color: 'var(--theme-primary)' }}
-                        className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white rounded-xl text-xs sm:text-sm font-black text-slate-700 border border-slate-200 group-hover:border-theme-soft shadow-sm"
+                        whileHover={{ scale: 1.04, color: 'var(--theme-primary)' }}
+                        className="px-2.5 py-1 bg-white rounded-lg text-xs font-semibold text-slate-700 border border-slate-200 group-hover:border-theme-soft shadow-xs"
                       >
                         {skill}
                       </motion.span>
@@ -1369,21 +1366,20 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Education Section */}
       {/* Experience & Education Journey Timeline Section (Feature 9) */}
-      <section id="experience" className="py-32 bg-slate-50 relative">
+      <section id="experience" className="py-16 sm:py-20 bg-slate-50 relative">
         <div className="container mx-auto px-6">
           <SectionHeader
             title="My Journey"
             subtitle="Professional experience, key achievements, and education history."
-            icon={<Activity size={28} />}
+            icon={<Activity size={24} />}
           />
 
-          <div className="relative max-w-4xl mx-auto mt-20">
+          <div className="relative max-w-4xl mx-auto mt-12 sm:mt-16">
             {/* Central Vertical Line */}
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-slate-200 -translate-x-1/2" />
 
-            <div className="space-y-16">
+            <div className="space-y-8 sm:space-y-10">
               {(() => {
                 const getStartYear = (period: string) => {
                   const match = period.match(/\b\d{4}\b/);
@@ -1417,38 +1413,38 @@ const App: React.FC = () => {
                       initial={{ opacity: 0, x: isLeft ? -40 : 40, scale: 0.95 }}
                       whileInView={{ opacity: 1, x: 0, scale: 1 }}
                       viewport={{ once: true, margin: "-60px" }}
-                      transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.1 }}
-                      whileHover={{ y: -6, scale: 1.015 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.08 }}
+                      whileHover={{ y: -4, scale: 1.01 }}
                       className={`relative flex flex-col md:flex-row ${isLeft ? 'md:flex-row-reverse' : ''} items-start md:items-center`}
                     >
                       {idx === firstEduIdx && <div id="education" className="absolute -top-24" />}
                       {/* Node Marker */}
-                      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-2 border-theme bg-white shadow-md z-10 flex items-center justify-center text-slate-800 transition-transform hover:scale-110">
+                      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-2 border-theme bg-white shadow-sm z-10 flex items-center justify-center text-slate-800 transition-transform hover:scale-110">
                         {item.type === 'work' ? (
-                          <Briefcase size={18} className="text-slate-800" />
+                          <Briefcase size={14} className="text-slate-800" />
                         ) : (
-                          <GraduationCap size={18} className="text-slate-800" />
+                          <GraduationCap size={14} className="text-slate-800" />
                         )}
                       </div>
 
                       {/* Content Card */}
-                      <div className={`w-full md:w-[calc(50%-2rem)] ml-12 md:ml-0 ${isLeft ? 'md:pr-8' : 'md:pl-8'}`}>
-                        <TiltCard className="p-8 bg-white shadow-md border border-slate-100 rounded-[2rem] hover:border-theme hover:shadow-xl transition-all group">
-                          <div className="flex justify-between items-center gap-4 mb-4 flex-wrap">
-                            <span className="px-3.5 py-1 bg-theme-soft text-theme font-bold rounded-lg text-xs border border-theme/10">
+                      <div className={`w-full md:w-[calc(50%-1.75rem)] ml-10 md:ml-0 ${isLeft ? 'md:pr-6' : 'md:pl-6'}`}>
+                        <TiltCard className="p-5 sm:p-6 bg-white shadow-sm border border-slate-100 rounded-2xl hover:border-theme hover:shadow-lg transition-all group">
+                          <div className="flex justify-between items-center gap-3 mb-2.5 flex-wrap">
+                            <span className="px-2.5 py-0.5 bg-theme-soft text-theme font-bold rounded-md text-[11px] border border-theme/10">
                               {item.period}
                             </span>
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                               {item.type}
                             </span>
                           </div>
-                          <h3 className="text-xl font-black text-slate-900 group-hover:text-theme transition-colors mb-1 leading-tight">
+                          <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-theme transition-colors mb-0.5 leading-snug">
                             {item.title}
                           </h3>
-                          <h4 className="text-sm font-bold text-slate-500 mb-4">{item.org}</h4>
-                          <div className="text-slate-600 text-sm leading-relaxed font-medium space-y-1.5">
+                          <h4 className="text-xs font-semibold text-slate-500 mb-3">{item.org}</h4>
+                          <div className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium space-y-1">
                             {item.description.split(' | ').map((desc: string, i: number, arr: string[]) => (
-                              <div key={i} className="flex items-start gap-2">
+                              <div key={i} className="flex items-start gap-1.5">
                                 {arr.length > 1 && (
                                   <span className="w-1.5 h-1.5 rounded-full bg-theme/40 mt-1.5 flex-shrink-0" />
                                 )}
@@ -1468,16 +1464,16 @@ const App: React.FC = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 bg-slate-50">
+      <section id="projects" className="py-16 sm:py-20 bg-slate-50">
         <div className="container mx-auto px-6">
           <SectionHeader
             title="Projects"
             subtitle="Real-world applications built with cutting-edge tech."
-            icon={<Code size={28} />}
+            icon={<Code size={24} />}
           />
 
           {/* Project Filtering Buttons (Feature 3) */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
+          <div className="flex flex-wrap justify-center gap-2.5 mb-8 sm:mb-10">
             {[
               { id: 'all', label: 'All Projects' },
               { id: 'fullstack', label: 'Full-Stack' },
@@ -1485,12 +1481,12 @@ const App: React.FC = () => {
             ].map(cat => (
               <motion.button
                 key={cat.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => setSelectedCategory(cat.id as any)}
-                className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-theme border-theme text-white shadow-lg shadow-theme/20'
+                    ? 'bg-theme border-theme text-white shadow-md shadow-theme/20'
                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                 }`}
               >
@@ -1500,7 +1496,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Projects Grid: 3 columns x 2 rows on desktop */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             <AnimatePresence mode="popLayout">
               {PROJECTS.filter(p => selectedCategory === 'all' || p.category === selectedCategory).map((project, idx) => (
                 <motion.div
@@ -1510,21 +1506,21 @@ const App: React.FC = () => {
                   whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: -20, scale: 0.95 }}
                   viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.06 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
                   className="w-full"
                 >
                   <TiltCard
                     onClick={() => setActiveProject(project)}
-                    className="group bg-white rounded-[2.5rem] border border-slate-100 hover:border-theme transition-all cursor-pointer h-full"
+                    className="group bg-white rounded-2xl border border-slate-100 hover:border-theme transition-all cursor-pointer h-full shadow-xs hover:shadow-xl"
                   >
-                    <div className="p-6 sm:p-7 flex flex-col h-full items-center text-center">
+                    <div className="p-4 sm:p-5 flex flex-col h-full items-center text-center">
                     {/* 1. Project Logo / Icon */}
                     {project.image && (
-                      <div className="mb-3.5 flex justify-center">
+                      <div className="mb-2.5 flex justify-center">
                         <motion.div
                           whileHover={{ rotate: 5, scale: 1.08 }}
                           transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-md ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
+                          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-white shadow-sm ring-1 ring-slate-200/60 relative flex-shrink-0 cursor-pointer"
                         >
                           <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                         </motion.div>
@@ -1532,84 +1528,84 @@ const App: React.FC = () => {
                     )}
 
                     {/* 2. Category Badge */}
-                    <span className="px-3 py-0.5 bg-theme-soft text-theme font-bold rounded-lg text-[10px] sm:text-xs uppercase tracking-wider mb-2">
-                      {project.category === 'fullstack' ? 'Full-Stack Web Application' : project.category === 'iot' ? 'IoT & Embedded Safety' : project.category}
+                    <span className="px-2.5 py-0.5 bg-theme-soft text-theme font-bold rounded-md text-[10px] uppercase tracking-wider mb-1.5">
+                      {project.category === 'fullstack' ? 'Full-Stack Web App' : project.category === 'iot' ? 'IoT & Safety' : project.category}
                     </span>
 
                     {/* 3. Title */}
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900 group-hover:text-theme transition-colors tracking-tight mb-2 line-clamp-1">
+                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-theme transition-colors tracking-tight mb-1 line-clamp-1">
                       {project.title}
                     </h3>
 
                     {/* 4. Short Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 font-medium max-w-sm line-clamp-2">
+                    <p className="text-xs text-slate-600 leading-relaxed mb-2 font-medium max-w-xs line-clamp-2">
                       {project.description}
                     </p>
 
                     {/* 5. Status Badges */}
-                    {(project.status || project.realWorldImplementation) && (
-                      <div className="flex flex-wrap justify-center gap-1.5 mb-3.5">
+                    {(project.status || (project.realWorldImplementation && project.title === 'VSBEC IT Vault')) && (
+                      <div className="flex flex-wrap justify-center gap-1 mb-2.5">
                         {project.status && (
-                          <motion.span whileHover={{ scale: 1.05 }} className="px-2.5 py-0.5 bg-emerald-50 text-emerald-600 font-extrabold rounded-md text-[10px] border border-emerald-100 uppercase tracking-wider shadow-sm">
+                          <motion.span whileHover={{ scale: 1.04 }} className="px-2 py-0.5 bg-emerald-50 text-emerald-600 font-extrabold rounded-md text-[9px] border border-emerald-100 uppercase tracking-wider shadow-xs">
                             {project.status}
                           </motion.span>
                         )}
-                        {project.realWorldImplementation && (
-                          <motion.span whileHover={{ scale: 1.05 }} className="px-2.5 py-0.5 bg-indigo-50 text-indigo-600 font-extrabold rounded-md text-[10px] border border-indigo-100 uppercase tracking-wider shadow-sm">
-                            Implemented in Dept
+                        {project.realWorldImplementation && project.title === 'VSBEC IT Vault' && (
+                          <motion.span whileHover={{ scale: 1.04 }} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 font-extrabold rounded-md text-[9px] border border-indigo-100 uppercase tracking-wider shadow-xs">
+                            Production (350+ Students)
                           </motion.span>
                         )}
                       </div>
                     )}
 
                     {/* 6. Technology Badges (Top 4 + More Pill) */}
-                    <div className="mt-auto flex flex-wrap justify-center gap-1.5 mb-4">
+                    <div className="mt-auto flex flex-wrap justify-center gap-1 mb-3">
                       {project.tags.slice(0, 4).map((tag: string, tIdx: number) => (
-                        <motion.span whileHover={{ scale: 1.05 }} key={tIdx} className="px-2.5 py-1 bg-slate-50 text-[10px] font-bold text-slate-500 rounded-lg border border-slate-200 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
+                        <motion.span whileHover={{ scale: 1.04 }} key={tIdx} className="px-2 py-0.5 bg-slate-50 text-[10px] font-semibold text-slate-500 rounded-md border border-slate-200/80 uppercase tracking-wider group-hover:border-theme-soft group-hover:text-theme transition-colors">
                           {tag}
                         </motion.span>
                       ))}
                       {project.tags.length > 4 && (
-                        <span className="px-2 py-1 bg-theme-soft text-theme text-[10px] font-bold rounded-lg border border-theme/20">
+                        <span className="px-1.5 py-0.5 bg-theme-soft text-theme text-[9px] font-bold rounded-md border border-theme/20">
                           +{project.tags.length - 4} more
                         </span>
                       )}
                     </div>
 
                     {/* 7. Action Button */}
-                    <div className="w-full flex justify-center gap-2.5 pt-3.5 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
+                    <div className="w-full flex justify-center gap-2 pt-2.5 border-t border-slate-100" onClick={(e) => e.stopPropagation()}>
                       <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.96 }}
                         onClick={() => setActiveProject(project)}
-                        className="px-5 py-2 bg-theme text-white text-xs font-bold rounded-xl shadow-md hover:brightness-110 transition-all flex items-center gap-1.5"
+                        className="px-3.5 py-1.5 bg-theme text-white text-xs font-bold rounded-lg shadow-sm hover:brightness-110 transition-all flex items-center gap-1"
                       >
-                        View Project <ChevronRight size={14} />
+                        View Project <ChevronRight size={13} />
                       </motion.button>
                       {project.link && project.link !== '#' && (
                         <motion.a
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.92 }}
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
+                          className="p-1.5 bg-slate-50 rounded-lg text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
                           title="Live Demo"
                         >
-                          <ExternalLink size={15} />
+                          <ExternalLink size={14} />
                         </motion.a>
                       )}
                       {project.githubLink && (
                         <motion.a
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.92 }}
                           href={project.githubLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 bg-slate-50 rounded-xl text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
+                          className="p-1.5 bg-slate-50 rounded-lg text-slate-500 hover:text-theme border border-slate-200 transition-colors flex items-center justify-center"
                           title="GitHub Repository"
                         >
-                          <Github size={15} />
+                          <Github size={14} />
                         </motion.a>
                       )}
                     </div>
@@ -1870,20 +1866,20 @@ const App: React.FC = () => {
       <GitHubWidget gitStats={gitStats} primaryColor={THEMES[activeThemeIndex]?.primary || '#4f46e5'} />
 
       {/* Certifications Section */}
-      <section id="certs" className="py-24 bg-slate-50">
+      <section id="certs" className="py-16 sm:py-20 bg-slate-50">
         <div className="container mx-auto px-6">
           <SectionHeader
             title="Certifications"
             subtitle="Continuous learning and professional growth."
-            icon={<Award size={28} />}
+            icon={<Award size={24} />}
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {CERTIFICATIONS.map((cert, idx) => {
               const getCompanyIcon = (issuer: string, title: string) => {
                 const norm = `${issuer} ${title}`.toLowerCase();
                 if (norm.includes('google')) {
                   return (
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                       <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
                       <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" />
@@ -1896,7 +1892,7 @@ const App: React.FC = () => {
                     <img
                       src={infosysSpringboardImg}
                       alt="Infosys Springboard"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 object-contain"
                     />
                   );
                 }
@@ -1905,7 +1901,7 @@ const App: React.FC = () => {
                     <img
                       src={tcsIonImg}
                       alt="TCS iON"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 object-contain"
                     />
                   );
                 }
@@ -1914,7 +1910,7 @@ const App: React.FC = () => {
                     <img
                       src={tataImg}
                       alt="Tata"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 object-contain"
                     />
                   );
                 }
@@ -1923,7 +1919,7 @@ const App: React.FC = () => {
                     <img
                       src="https://img.icons8.com/?size=100&id=38804&format=png"
                       alt="Salesforce"
-                      className="w-9 h-9 object-contain"
+                      className="w-7 h-7 object-contain"
                     />
                   );
                 }
@@ -1932,7 +1928,7 @@ const App: React.FC = () => {
                     <img
                       src={ciscoImg}
                       alt="Cisco"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 object-contain"
                     />
                   );
                 }
@@ -1941,14 +1937,14 @@ const App: React.FC = () => {
                     <img
                       src={futureSkillsImg}
                       alt="FutureSkills Prime"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 object-contain"
                     />
                   );
                 }
                 if (norm.includes('algo')) {
-                  return <Code size={26} className="text-slate-800 group-hover:text-theme transition-colors" />;
+                  return <Code size={22} className="text-slate-800 group-hover:text-theme transition-colors" />;
                 }
-                return <Award size={26} className="text-slate-800 group-hover:text-theme transition-colors" />;
+                return <Award size={22} className="text-slate-800 group-hover:text-theme transition-colors" />;
               };
 
               return (
@@ -1957,26 +1953,26 @@ const App: React.FC = () => {
                   initial={{ opacity: 0, x: -40, scale: 0.95 }}
                   whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.05 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: idx * 0.04 }}
                   className="w-full"
                 >
-                  <TiltCard className="p-6 bg-white rounded-3xl border border-slate-100 hover:border-theme transition-all group h-full">
-                    <div className="flex flex-col items-center text-center gap-4 w-full h-full">
-                      <div className="w-16 h-16 rounded-2xl bg-transparent border-2 border-slate-200 group-hover:border-theme text-slate-800 flex items-center justify-center group-hover:scale-110 transition-all shadow-sm flex-shrink-0">
+                  <TiltCard className="p-4 sm:p-5 bg-white rounded-2xl border border-slate-100 hover:border-theme transition-all group h-full shadow-xs hover:shadow-lg">
+                    <div className="flex flex-col items-center text-center gap-2.5 w-full h-full">
+                      <div className="w-12 h-12 rounded-xl bg-transparent border-2 border-slate-200 group-hover:border-theme text-slate-800 flex items-center justify-center group-hover:scale-105 transition-all shadow-xs flex-shrink-0">
                         {getCompanyIcon(cert.issuer, cert.title)}
                       </div>
                       <div className="flex flex-col items-center text-center w-full">
-                        <h3 className="text-base font-black text-slate-900 leading-tight mb-2 group-hover:text-theme transition-colors line-clamp-2">
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug mb-1 group-hover:text-theme transition-colors line-clamp-2">
                           {cert.title}
                         </h3>
-                        <div className="flex items-center justify-center gap-2 mb-2">
+                        <div className="flex items-center justify-center gap-1.5 mb-1.5">
                           {cert.type && (
-                            <span className="px-2 py-0.5 bg-theme-soft text-theme font-bold rounded-lg text-[10px] border border-theme/20 uppercase tracking-widest">
+                            <span className="px-2 py-0.5 bg-theme-soft text-theme font-bold rounded-md text-[9px] border border-theme/20 uppercase tracking-wider">
                               {cert.type}
                             </span>
                           )}
                         </div>
-                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                        <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
                           {cert.issuer}
                         </p>
                         {cert.link && cert.link !== '#' && (
@@ -1984,9 +1980,9 @@ const App: React.FC = () => {
                             href={cert.link} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="mt-4 inline-flex items-center gap-2 text-xs font-black text-theme hover:underline"
+                            className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-theme hover:underline"
                           >
-                            View {cert.type === 'BADGE' ? 'Badge' : 'Certificate'} <ExternalLink size={12} />
+                            View {cert.type === 'BADGE' ? 'Badge' : 'Certificate'} <ExternalLink size={11} />
                           </a>
                         )}
                       </div>
@@ -2000,12 +1996,12 @@ const App: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 bg-slate-50">
+      <section id="contact" className="py-16 sm:py-20 bg-slate-50">
         <div className="container mx-auto px-6">
           <SectionHeader
             title="Let's Connect"
             subtitle="I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision."
-            icon={<MessageSquare size={28} />}
+            icon={<MessageSquare size={24} />}
           />
           <ContactSlider />
         </div>

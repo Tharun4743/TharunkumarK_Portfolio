@@ -138,9 +138,9 @@ export const PROJECTS: Project[] = [
   {
     title: 'VSBEC IT Vault',
     description:
-      'Institutional governance, real-time coding competency tracking, and corporate recruitment ecosystem. Smart India Hackathon (SIH) 2026 National Top 50.',
+      'Institutional governance, real-time coding competency tracking, and corporate recruitment ecosystem. SIH 2026 Internal Hackathon Top 50 (Official SIH Portal Nominee).',
     longDescription:
-      'The VSBEC IT Vault (Academia-Industry Integrated Platform & IT Task Manager) is an enterprise-grade institutional governance and placement readiness ecosystem engineered for the Department of Information Technology at VSB Engineering College, Karur.\n\nShortlisted as a National Top 50 project in Smart India Hackathon (SIH) 2026 and adopted by 365+ students across 6 departmental sections (II IT-A/B/C & III IT-A/B/C), the platform digitizes 100% of departmental submissions through a rigorous 3-tier proof verification pipeline (Student Coordinator Peer Review → Class Advisor Validation → HOD Oversight) backed by Cloudinary image proof compression.\n\nIt features automated LeetCode GraphQL and GitHub REST API daemon synchronization for daily coding velocity tracking, a multi-compiler sandboxed Monaco IDE assessment suite (C, C++, Java 17, Python 3) with anti-cheat webcam PIP proctoring, an algorithmic Placement Readiness Index 2.0, and multi-channel instant broadcasting via Telegram Bot webhooks, VAPID Web Push, and a 3-node Brevo email failover pool.\n\nPowered by 35 relational PostgreSQL tables with row-level integrity and an in-memory pre-indexed RAM cache delivering sub-0.01ms directory lookups, the platform is actively deployed in production on Vercel.',
+      'The VSBEC IT Vault (Academia-Industry Integrated Platform & IT Task Manager) is an enterprise-grade institutional governance and placement readiness ecosystem engineered for the Department of Information Technology at VSB Engineering College, Karur.\n\nShortlisted in the SIH 2026 Internal Hackathon as Top 50 out of 300+ campus teams and officially nominated to submit the project proposal on the central Smart India Hackathon (SIH) portal. Adopted by 365+ students across 6 departmental sections (II IT-A/B/C & III IT-A/B/C), the platform digitizes 100% of departmental submissions through a rigorous 3-tier proof verification pipeline (Student Coordinator Peer Review → Class Advisor Validation → HOD Oversight) backed by Cloudinary image proof compression.\n\nIt features automated LeetCode GraphQL and GitHub REST API daemon synchronization for daily coding velocity tracking, a multi-compiler sandboxed Monaco IDE assessment suite (C, C++, Java 17, Python 3) with anti-cheat webcam PIP proctoring, an algorithmic Placement Readiness Index 2.0, and multi-channel instant broadcasting via Telegram Bot webhooks, VAPID Web Push, and a 3-node Brevo email failover pool.\n\nPowered by 35 relational PostgreSQL tables with row-level integrity and an in-memory pre-indexed RAM cache delivering sub-0.01ms directory lookups, the platform is actively deployed in production on Vercel.',
     date: 'Production Deployed',
     link: 'https://it-taskmanager.vercel.app/',
     githubLink: 'https://github.com/Tharun4743/taskmanager',
@@ -154,13 +154,14 @@ export const PROJECTS: Project[] = [
       'Monaco IDE',
       'LeetCode GraphQL',
       'Telegram Bot API',
+      
       'Cloudinary',
       'Brevo Email Pool'
     ],
     category: 'fullstack',
-    status: 'SIH 2026 Top 50 • Production',
+    status: 'SIH 2026 Top 50',
     realWorldImplementation:
-      'Smart India Hackathon (SIH) 2026 National Top 50. Actively adopted by 365+ students across 6 departmental sections at VSB Engineering College for centralized academic governance, LeetCode habit tracking, and corporate coding assessments.',
+      'Shortlisted in the SIH 2026 Internal Hackathon (Top 50 out of 300+ teams) with official SIH portal submission. Actively adopted by 365+ students across 6 departmental sections at VSB Engineering College for centralized academic governance, LeetCode habit tracking, and corporate coding assessments.',
     image: vsbecTaskManagerImg,
     problem:
       'Departmental task submissions and coding progress were previously fragmented across manual paperwork, unverified Google Form links, and untracked external platforms without institutional oversight or corporate alignment.',
@@ -212,7 +213,7 @@ export const PROJECTS: Project[] = [
       '1. Real-time Multi-tenant Data Isolation: Strict section, class, and department scoping across 7 distinct personas solved via dynamic middleware authorization and row-level relational constraints.\n\n2. High-volume Directory Latency: Resolved by engineering an in-memory pre-indexed RAM directory cache achieving sub-0.01ms response times.\n\n3. Zero-loss Communication Delivery: Overcame SMTP port throttling and single-provider rate limits by building a 3-node Brevo HTTPS dispatch pool with automated credit telemetry and instant failover.',
     myRole: 'Full-Stack Architect & Lead Developer',
     impact:
-      'Shortlisted as National Top 50 in Smart India Hackathon (SIH) 2026. Adopted by 365+ enrolled students and faculty across 6 departmental sections (II IT & III IT) at VSB Engineering College, Karur.\n\nDigitized 100% of departmental task submissions, automated daily LeetCode/GitHub momentum tracking, and deployed an anti-cheat proctored Monaco IDE sandbox for corporate recruiting assessments.',
+      'Shortlisted in the Top 50 out of 300+ teams in the SIH 2026 Internal Hackathon and officially nominated for idea submission on the central SIH portal. Adopted by 365+ enrolled students and faculty across 6 departmental sections (II IT & III IT) at VSB Engineering College, Karur.\n\nDigitized 100% of departmental task submissions, automated daily LeetCode/GitHub momentum tracking, and deployed an anti-cheat proctored Monaco IDE sandbox for corporate recruiting assessments.',
     keyLearnings:
       'Engineered multi-tier RBAC authorization models, constructed isolated language runtime sandboxes, implemented in-memory directory caching strategies, and architected resilient multi-node transactional communication pools.'
   },
@@ -238,7 +239,7 @@ export const PROJECTS: Project[] = [
       'Google OAuth'
     ],
     category: 'fullstack',
-    status: 'Production (500+ Students)',
+    status: 'Production',
     image: campusConnectImg,
     problem:
       'Campus placement offices face manual paperwork overload, untracked resume archives, delayed student status visibility, and complex interview coordination across multiple corporate recruiting partners.',
@@ -394,9 +395,9 @@ export const PROJECTS: Project[] = [
   {
     title: 'Smart Helmet IoT Safety System',
     description:
-      'Dual-unit rider safety system preventing accidents via IR helmet wear detection, MQ-3 alcohol sensing, and eye-blink drowsiness monitoring with RF ignition interlock.',
+      'Dual-unit rider safety system preventing accidents via IR helmet wear detection, MQ-3 alcohol sensing, and eye-blink drowsiness monitoring with RF ignition interlock. SIH 2025 Top 50.',
     longDescription:
-      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle accidents through real-time hardware sensing and wireless ignition interlocking.\n\nLead embedded developer on the dual-unit rider safety system. Shortlisted as Top 50 out of 10,000+ teams (top 0.5% acceptance) in Smart India Hackathon (SIH) 2025.\n\nThe dual-unit system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication. It continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (IR eye-blink sensor), automatically cutting bike ignition within 500ms under unsafe conditions. Built with Arduino microcontrollers, C/C++ firmware, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
+      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle accidents through real-time hardware sensing and wireless ignition interlocking.\n\nLead embedded developer on the dual-unit rider safety system. Shortlisted in the SIH 2025 Internal Hackathon as Top 50 out of 300+ campus teams and officially nominated to submit the idea proposal on the central Smart India Hackathon (SIH) portal.\n\nThe dual-unit system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication. It continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (IR eye-blink sensor), automatically cutting bike ignition within 500ms under unsafe conditions. Built with Arduino microcontrollers, C/C++ firmware, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
     date: 'Sep 2025 - Oct 2025',
     githubLink: 'https://github.com/Tharun4743/Smart-Helmet-IoT-Safety-System',
     driveLink: 'https://drive.google.com/drive/folders/1kYhyoOx9-Tr4WyOJkmUz7K4PDDpmaHEr?usp=drive_link',
@@ -412,8 +413,6 @@ export const PROJECTS: Project[] = [
     ],
     category: 'iot',
     status: 'SIH 2025 Top 50',
-    realWorldImplementation:
-      'Built and demonstrated as a working physical hardware prototype for Smart India Hackathon (SIH) 2025 Top 50.',
     image: smartHelmetImg,
     problem:
       'Two-wheeler accidents frequently result in fatalities due to helmet non-compliance, driving under the influence (DUI), and unnoticed driver drowsiness.',
@@ -433,7 +432,7 @@ export const PROJECTS: Project[] = [
       'Dual-unit embedded hardware system utilizing Arduino microcontrollers, RF 433MHz transmitter/receiver modules, 5V relay module for ignition interlock, active piezoelectric buzzer, and 16x2 I²C LCD display.',
     myRole: 'Lead Embedded Developer (Dual-Unit Rider Safety System)',
     impact:
-      'Shortlisted as Top 50 out of 10,000+ teams (top 0.5% acceptance) in Smart India Hackathon (SIH) 2025. Proved sub-500ms ignition cutoff response time to proactively safeguard motorcycle riders.',
+      'Lead embedded developer on the dual-unit rider safety system. Shortlisted as Top 50 out of 300+ teams in the SIH 2025 Internal Hackathon and officially nominated to submit on the central SIH portal. Proved sub-500ms ignition cutoff response time to proactively safeguard motorcycle riders.',
     keyLearnings:
       'Navigated embedded hardware constraints, noise filtering in analog gas sensors, RF transceiver packet stability, and failsafe design in life-critical systems.'
   }
@@ -469,24 +468,24 @@ export const ACHIEVEMENTS: AchievementItem[] = [
       'Won 1st Place Winner nationally at Code Thugs 2k26 for designing, building, and deploying GOAT Code Editor — a real-time collaborative IDE featuring live cursor highlighting and in-browser compilation.'
   },
   {
-    title: 'Smart India Hackathon 2026 – Top 50',
-    organization: 'Ministry of Education & SIH',
+    title: 'Smart India Hackathon 2026 – Top 50 (Internal)',
+    organization: 'Ministry of Education & SIH Internal Hackathon',
     year: '2026',
-    type: 'NATIONAL TOP 50',
+    type: 'TOP 50 (SIH NOMINEE)',
     category: 'hackathon',
     iconName: 'trophy',
     description:
-      'Selected in the Top 50 nationally in Smart India Hackathon (SIH) 2026 for engineering VSBEC IT Vault — an institutional governance and academic task platform.'
+      'Shortlisted in the Top 50 out of 300+ teams in the SIH 2026 Internal Hackathon for engineering VSBEC IT Vault and nominated to officially submit on the national SIH portal.'
   },
   {
-    title: 'Smart India Hackathon 2025 – Top 50',
-    organization: 'Ministry of Education & SIH',
+    title: 'Smart India Hackathon 2025 – Top 50 (Internal)',
+    organization: 'Ministry of Education & SIH Internal Hackathon',
     year: '2025',
-    type: 'TOP 50',
+    type: 'TOP 50 (SIH NOMINEE)',
     category: 'hackathon',
     iconName: 'rocket',
     description:
-      'Lead embedded developer on the dual-unit rider safety system. Shortlisted as Top 50 out of 10,000+ teams (top 0.5% acceptance) in Smart India Hackathon (SIH) 2025.'
+      'Lead embedded developer on the dual-unit rider safety system. Shortlisted in the Top 50 out of 300+ teams in the SIH 2025 Internal Hackathon and nominated to submit the idea on the official SIH portal.'
   },
   {
     title: 'Odoo × NMIT Bangalore Hackathon 2026 – Finalist',
