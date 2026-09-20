@@ -134,189 +134,229 @@ export const CERTIFICATIONS: CertificationItem[] = [
     type: 'GOLD CERTIFICATE'
   }
 ];
-
-
-
 export const PROJECTS: Project[] = [
   {
-    title: 'VSBEC Academic Task Manager',
+    title: 'VSBEC IT Vault — Academia-Industry Integrated Platform',
     description:
-      'Role-based academic task management platform for centralized task collection, proof submission, verification, and class-level data management.',
+      'Institutional governance, real-time coding competency tracking, and corporate recruitment ecosystem deployed for the Department of IT at VSB Engineering College.',
     longDescription:
-      'The VSBEC Academic Task Manager is a centralized academic workflow platform engineered to modernize manual task collection, proof submission, and verification processes.\n\nThe system enables administrators and academic staff to create and assign tasks to specific classes, collect student screenshot/proof submissions, and process verified work through a multi-tier role-based access control architecture (Supreme Admin, HOD, Class Advisor, Student Coordinator, and Student).\n\nBuilt as a full-stack web application with React.js, TypeScript, Express.js, PostgreSQL, and Cloudinary, it enforces multi-tenant class and department data isolation with IDOR protection.\n\nThe platform is now actively deployed and implemented in the department to manage real-world academic task collection and verification.',
+      'The VSBEC IT Vault (Academia-Industry Integrated Platform & IT Task Manager) is an enterprise-grade institutional governance and placement readiness ecosystem engineered for the Department of Information Technology at VSB Engineering College, Karur.\n\nAdopted by 365+ students across 6 departmental sections (II IT-A/B/C & III IT-A/B/C), the platform digitizes 100% of departmental submissions through a rigorous 3-tier proof verification pipeline (Student Coordinator Peer Review → Class Advisor Validation → HOD Oversight) backed by Cloudinary image proof compression.\n\nIt features automated LeetCode GraphQL and GitHub REST API daemon synchronization for daily coding velocity tracking, a multi-compiler sandboxed Monaco IDE assessment suite (C, C++, Java 17, Python 3) with anti-cheat webcam PIP proctoring, an algorithmic Placement Readiness Index 2.0, and multi-channel instant broadcasting via Telegram Bot webhooks, VAPID Web Push, and a 3-node Brevo email failover pool.\n\nPowered by 35 relational PostgreSQL tables with row-level integrity and an in-memory pre-indexed RAM cache delivering sub-0.01ms directory lookups, the platform is actively deployed in production on Vercel.',
     date: 'Production Deployed',
     link: 'https://it-taskmanager.vercel.app/',
-    githubLink: 'https://github.com/Tharun4743/IT_taskmanager',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express.js', 'PostgreSQL', 'Cloudinary', 'Render'],
+    githubLink: 'https://github.com/Tharun4743/taskmanager',
+    tags: [
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS v4',
+      'Node.js 20+',
+      'Express.js',
+      'PostgreSQL (35 Tables)',
+      'Monaco IDE',
+      'LeetCode GraphQL',
+      'Telegram Bot API',
+      'Cloudinary',
+      'Brevo Email Pool'
+    ],
     category: 'fullstack',
-    status: 'Production Deployed',
+    status: 'Production Deployed (365+ Active Students)',
     realWorldImplementation:
-      'Currently implemented and being used in the department to centrally collect and manage academic task details.',
+      'Actively adopted by 365+ students across 6 departmental sections at VSB Engineering College for centralized academic governance, LeetCode habit tracking, and corporate coding assessments.',
     image: vsbecTaskManagerImg,
     problem:
-      'Academic task details are often collected through scattered communication channels, manual submissions, and disconnected verification processes. This makes tracking, managing, and verifying student task completion difficult.',
+      'Departmental task submissions and coding progress were previously fragmented across manual paperwork, unverified Google Form links, and untracked external platforms without institutional oversight or corporate alignment.',
     solution:
-      'The VSBEC Academic Task Manager provides a centralized platform where authorized academic staff can create and manage tasks, students can submit proof of completion, and coordinators/advisors can review and verify submissions using role-based access control.',
+      'VSBEC IT Vault provides a centralized digital intelligence vault with a 3-tier proof verification pipeline, automated LeetCode/GitHub momentum synchronization, an isolated multi-language Monaco IDE assessment sandbox with webcam proctoring, and a Placement Readiness Index (0–100%).',
     features: [
-      'Role-based access control',
-      'Supreme Admin global platform management',
-      'HOD department-level management',
-      'Class Advisor class-level management',
-      'Student Coordinator class-specific task and review operations',
-      'Student-specific task dashboard',
-      'HOD task creation with class selection',
-      'Class-based task assignment',
-      'Student screenshot/proof submission',
-      'Submission review and approval workflow',
-      'Submission unlock workflow',
-      'Department and class-level data isolation',
-      'Secure backend API authorization',
-      'IDOR protection',
-      'PostgreSQL as the single source of truth',
-      'Cloudinary image storage',
-      'Environment-based production configuration',
-      'Deployed on Render'
+      '3-Tier Proof Verification Pipeline: Peer review by Student Coordinators, validation by Class Advisors, and departmental audit by HOD',
+      'Automated Coding Habit Tracking: Real-time velocity and commit synchronization via LeetCode GraphQL and GitHub REST APIs',
+      'Sandboxed Multi-Compiler Assessment Suite: In-browser execution for C, C++, Java 17, and Python 3 with memory/time boundaries (4-6s timeouts) and infinite loop traps',
+      'Anti-Cheat Security & Exam Lockdown: Webcam Picture-in-Picture proctoring, snapshot capture, tab-switch penalties, and full-screen enforcement',
+      'Placement Readiness Index 2.0: 4-pillar algorithmic evaluation (Aptitude 35%, LeetCode 25%, Projects 20%, Task Discipline 20%) mapping candidates against Tier-1/2/3 criteria',
+      'Multi-Node Communication Infrastructure: Telegram Bot with automated 8:00 AM summaries, 24h deadline alerts, VAPID Web Push, and 3-node Brevo email failover pool',
+      'In-Memory RAM Directory Cache: Pre-indexed memory cache achieving sub-0.01ms student lookups and eliminating relational bottlenecks',
+      'Automated Export Engine: Generates OpenXML Excel (.xlsx) reports, student scorecards, and automated candidate recruitment dossiers'
     ],
     roleStructure: [
       {
         role: 'Supreme Admin',
-        description: 'Global platform, department, class, and user management.'
+        description: 'Global institutional governance, department orchestration, class creation, and system configuration.'
       },
       {
-        role: 'HOD',
-        description: 'Restricted to the assigned department and authorized department-level classes, staff, students, and tasks.'
+        role: 'Head of Department (HOD)',
+        description: 'Department-wide authority over staff, classes, task approvals, circulars, and analytical heatmaps.'
       },
       {
-        role: 'Class Advisor',
-        description: 'Restricted to assigned class/classes with class information management, student management, coordinator assignment, and submission review.'
+        role: 'Class Advisor / Faculty',
+        description: 'Section-scoped governance, student directory administration, task creation, and final submission validation.'
+      },
+      {
+        role: 'Staff / Subject Faculty',
+        description: 'Course and subject-specific assignment distribution, test management, and academic assessment.'
       },
       {
         role: 'Student Coordinator',
-        description: 'Restricted to the assigned class for class-specific task posting, submission review, and permitted unlock actions.'
+        description: 'Tier-1 peer review command center for inspecting and pre-verifying classmate submissions.'
       },
       {
-        role: 'Student',
-        description: 'Access to own dashboard, authorized tasks, and screenshot/proof submission.'
+        role: 'Student / Candidate',
+        description: 'Task proof submissions, coding habit tracker, sandboxed assessments, placement rating, and 1-click resume export.'
+      },
+      {
+        role: 'Industry Partner / Recruiter',
+        description: 'Corporate recruitment desk, candidate screening, custom coding test creator, and scorecard analytics.'
       }
     ],
     architecture:
-      'Decoupled React.js & TypeScript SPA frontend communicating via REST APIs with a Node.js & Express.js backend. Powered by PostgreSQL database as the single source of truth and Cloudinary for screenshot/proof media storage, deployed on Render with environment-based production configuration.',
+      'Decoupled React 19 & TypeScript SPA frontend styled with Tailwind CSS v4, communicating with an Express.js & Node.js 20+ backend. Persisted across 35 relational PostgreSQL tables with strict row-level security, optimized with an in-memory pre-indexed RAM cache (<0.01ms lookups), Cloudinary CDN for proof compression, and Telegram/Brevo/VAPID communication gateways.',
     challenges:
-      'Enforcing strict class and department-level multi-tenant data isolation while maintaining seamless access for multi-role staff (Supreme Admin down to Student Coordinators). Solved by engineering robust server-side authorization middleware, IDOR protection, and row-level relational isolation in PostgreSQL.',
+      '1. Real-time Multi-tenant Data Isolation: Strict section, class, and department scoping across 7 distinct personas solved via dynamic middleware authorization and row-level relational constraints.\n\n2. High-volume Directory Latency: Resolved by engineering an in-memory pre-indexed RAM directory cache achieving sub-0.01ms response times.\n\n3. Zero-loss Communication Delivery: Overcame SMTP port throttling and single-provider rate limits by building a 3-node Brevo HTTPS dispatch pool with automated credit telemetry and instant failover.',
     myRole: 'Full-Stack Architect & Lead Developer',
     impact:
-      'Transformed academic task collection from fragmented manual workflows into a centralized digital platform with role-based access, class-level data isolation, and structured verification.\n\nThe platform is currently being implemented in the department for real-world academic task collection and management.',
+      'Adopted by 365+ enrolled students and faculty across 6 departmental sections (II IT & III IT) at VSB Engineering College, Karur.\n\nDigitized 100% of departmental task submissions, automated daily LeetCode/GitHub momentum tracking, and deployed an anti-cheat proctored Monaco IDE sandbox for corporate recruiting assessments.',
     keyLearnings:
-      'Engineered multi-tier RBAC workflows, implemented secure media submission pipelines with Cloudinary, and built production-grade REST APIs enforcing strict data isolation and IDOR protection.'
+      'Engineered multi-tier RBAC authorization models, constructed isolated language runtime sandboxes, implemented in-memory directory caching strategies, and architected resilient multi-node transactional communication pools.'
   },
   {
-    title: 'Campus Connect — College Placement Cell Platform',
+    title: 'CampusConnect — Automated Placement & Recruitment Ecosystem',
     description:
-      'Premium, enterprise-grade placement management platform designed to automate TPO workflows, facilitate seamless recruiter engagement, and help students transition smoothly into their careers.',
+      'Enterprise-grade campus placement platform automating Training & Placement Officer (TPO) workflows, recruiter engagement, and student interview pipelines.',
     longDescription:
-      'Campus Connect is an enterprise-grade college placement cell management platform designed to automate Training & Placement Officer (TPO) workflows and streamline recruitment operations.\n\nThe platform connects students, corporate recruiters, and placement officers into a unified digital ecosystem, facilitating automated job drive creation, multi-filter student screening, and interview scheduling.\n\nIt features an interactive Document Vault backed by Cloudinary for storing verified transcripts and resumes, alongside real-time application status tracking powered by WebSockets.\n\nBuilt with React, TypeScript, Node.js, Express, and Supabase PostgreSQL, Campus Connect eliminates manual placement record keeping and reduces interview scheduling friction.',
+      'CampusConnect is an enterprise-grade placement management platform designed to automate Training & Placement Officer (TPO) workflows, eliminate recruitment friction, and guide students into career opportunities.\n\nThe platform integrates students, corporate recruiters, and placement officers into a unified digital ecosystem featuring automated job drive management, multi-filter student screening, and real-time interview scheduling.\n\nBuilt with React 19, Vite 6, Tailwind CSS v4, TypeScript, Node.js, Express, and Supabase PostgreSQL, it features an interactive Document Vault backed by Cloudinary for storing verified credentials, alongside bi-directional real-time application tracking powered by Socket.IO.\n\nHardened with Same-Origin CSRF Guard, custom Helmet policies for Google SSO, and proxy-aware rate limiting, CampusConnect is deployed on Render via Infrastructure-as-Code.',
     date: 'June 2026',
     githubLink: 'https://github.com/Tharun4743/CampusConnect',
     link: 'https://campusconnect-yg4h.onrender.com/',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'Socket.IO'],
+    tags: [
+      'React 19',
+      'TypeScript 5.8',
+      'Vite 6.2',
+      'Tailwind CSS v4',
+      'Node.js 20+',
+      'Express',
+      'Supabase (PostgreSQL)',
+      'Socket.IO',
+      'Cloudinary',
+      'Google OAuth'
+    ],
     category: 'fullstack',
-    status: 'Production Deployed',
+    status: 'Production Deployed (500+ Students)',
     image: campusConnectImg,
     problem:
-      'College placement cells often struggle with manual record keeping, fragmented email communication with recruiters, delayed student application tracking, and lack of real-time visibility for Training & Placement Officers (TPOs).',
+      'Campus placement offices face manual paperwork overload, untracked resume archives, delayed student status visibility, and complex interview coordination across multiple corporate recruiting partners.',
     solution:
-      'Campus Connect centralizes the placement workflow into an enterprise platform featuring real-time application tracking, document vault storage, automated recruiter drive management, and verified TPO invite pipelines.',
+      'CampusConnect centralizes placement governance with an interactive Cloudinary Document Vault, real-time Socket.IO application timelines, multi-filter candidate screening for HRs, and automated TPO invite pipelines.',
     features: [
-      'Interactive Document Vault for academic transcripts, resumes, and certificates backed by Cloudinary',
-      'Real-Time Application Tracker with a step-by-step visual timeline tracking progress',
-      'Profile Verification Pipeline and Invite Management for Training & Placement Officers',
-      'Job Drive Creator, Multi-Filter Screening, and Interview Scheduler for HR & Recruiters',
-      'Detailed Audit Logs, Moderation Desk, and Database Seeding utilities for Administrators'
+      'Interactive Document Vault: Secure cloud storage and instant preview for academic transcripts, resumes, and certificates via Cloudinary',
+      'Real-Time Application Tracker: Step-by-step visual timeline tracking candidates across Applied, Shortlisted, Interviewing, and Offered stages',
+      'Profile Verification Pipeline: TPO verification tools ensuring candidate academic records, CGPA, and credentials remain tamper-proof',
+      'Recruiter Drive & Multi-Filter Screening: Vacancy creation with automatic eligibility filtering by CGPA, arrears history, and core skills',
+      'Interview Scheduler & Selection Desk: Automated scheduling tool with instant candidate notification dispatches and offer management',
+      'Administrative Moderation Desk: Comprehensive audit logging, account access moderation, and database seeding utilities'
     ],
     challenges:
-      'Configuring proxy-aware rate limiting and enforcing Same-Origin CSRF Guard for state-modifying requests. Solved by implementing strict custom Helmet policies to selectively bypass headers for secure Google SSO.',
+      '1. Secure Single Sign-On with Strict Headers: Configured custom Helmet policies to selectively bypass Cross-Origin-Opener-Policy headers for Google Identity Services SSO without compromising security.\n\n2. CSRF & Proxy Defense: Built a Same-Origin CSRF Guard validating state-modifying requests and implemented proxy-aware rate limiting (trust proxy) to prevent IP collision on load balancers.',
     architecture:
-      'Decoupled React SPA frontend and RESTful Express.js API backend, sharing real-time event updates via WebSockets and utilizing Supabase PostgreSQL.',
+      'Decoupled React 19 SPA frontend and RESTful Express.js API backend with bi-directional Socket.IO WebSockets for live status updates, backed by Supabase PostgreSQL and Cloudinary cloud storage CDN.',
     myRole: 'Lead Full Stack Developer',
-    impact: 'Streamlined placement workflows for 500+ students, reducing manual data entry by 80% and decreasing interview scheduling conflicts to zero.',
-    keyLearnings: 'Mastered WebSocket integration for real-time state synchronization and gained deep insights into secure document handling and RBAC (Role-Based Access Control) using Supabase.'
+    impact:
+      'Streamlined placement workflows for 500+ students, reducing manual data entry by 80% and decreasing interview scheduling conflicts to zero.',
+    keyLearnings:
+      'Mastered WebSocket synchronization for real-time application pipelines, structured RBAC using Supabase PostgreSQL, and implemented production defense-in-depth security.'
   },
   {
-    title: 'GOAT Code Editor',
+    title: 'GOAT Code Editor — Real-Time Collaborative IDE',
     description:
-      'A high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing, featuring live multi-user code synchronization and in-browser compilation for 13+ languages.',
+      'High-performance browser-based collaborative IDE featuring multi-user code synchronization, WebRTC voice calling (1-to-1 & group mesh), Monaco editor kernel, and AI assistant.',
     longDescription:
-      'GOAT Code Editor is a high-performance, real-time collaborative Integrated Development Environment (IDE) built for remote developer pairing. It features live multi-user code synchronization, dynamic cursor highlighting, in-browser compilation for 13+ languages, and a context-aware AI pairing assistant.\n\nDesigned and built entirely under hackathon conditions for Code Thugs 2k26, it won 1st Place nationally for technical complexity in collaborative architectures.',
+      'GOAT Code Editor (GOAT CE) is a high-performance browser-based collaborative IDE designed for seamless remote pair programming. It replaces fragmented workflows by providing a single shareable workspace with VS Code–grade Monaco editor, live peer cursors, multi-participant WebRTC voice calling, sandboxed code execution for 13+ languages, and a context-aware AI assistant.\n\nEngineered from first principles, it won 1st Place Nationally at Code Thugs 2k26 for technical complexity in collaborative architectures and is continuously deployed on Render via an Infrastructure-as-Code (IaC) render.yaml Blueprint.',
     date: 'Jun 2026',
     link: 'https://goatcode-editor.onrender.com',
     githubLink: 'https://github.com/Tharun4743/GOAT-CE',
     tags: [
       'React 19',
       'TypeScript 5.8',
-      'Vite 6',
-      'Tailwind CSS',
-      'Monaco Editor',
+      'Vite 6.2',
       'Socket.io 4.8',
+      'WebRTC Audio Mesh',
+      'Monaco Editor',
       'Node.js',
-      'Express 5',
-      'MongoDB Atlas',
+      'Express 5.2',
+      'PostgreSQL 16',
       'Piston API v2',
-      'OpenRouter API'
+      'OpenRouter (Llama 3.1 70B)'
     ],
     category: 'fullstack',
-    status: 'Production Deployed',
+    status: 'Production Deployed • 1st Place National Winner',
     image: goatCodeEditorImg,
     problem:
-      'In remote developer pairing, real-time collaboration platforms often suffer from cursor desynchronization and editor caret resets during remote edits. Furthermore, server-side database connectivity issues or network timeouts can crash active editing sessions and cause developers to lose their unsaved progress.',
+      'Remote pair programmers struggle with copy-pasting snippets across chat tools, caret desynchronization during concurrent edits, and juggling separate apps for voice communication.',
     solution:
-      'GOAT Code Editor resolves these issues by utilizing a custom React & Socket.io state management architecture that handles concurrent edits without disrupting cursor states, paired with an in-memory fallback state store that keeps rooms fully functional if MongoDB Atlas experiences downtime.',
+      'GOAT Code Editor unifies real-time code synchronization, peer cursors, browser-native WebRTC voice calling, and sandboxed compilation in a single zero-setup, ephemeral collaborative workspace URL.',
     features: [
-      'Real-time Synchronization Engine: Engineered a highly responsive WebSocket collaboration layer using Socket.io to sync document text, selections, and languages with sub-50ms latency.',
-      'Conflict & Feedback Loop Resolution: Resolved standard WebSocket echo loops by implementing an isRemoteChange reference flag, ensuring clean local merges without caret jumping.',
-      'Live Presence Tracking: Designed custom Monaco Editor decorations that track and display collaborators’ active cursor selections and caret coordinates dynamically, color-coded per user with a 15-second automatic idle pruning sweep.',
-      'Resilient Dual-Store Database Architecture: Configured Mongoose to write directly to MongoDB Atlas for persistence, paired with a memory-backed fallback state store (Map) to keep editing rooms fully functional in the event of database downtime.',
-      'Sandboxed Code Execution Terminal: Integrated the Piston v2 engine to allow compilations and standard output runs for 13+ languages safely in isolated runtime environments.',
-      'Context-Aware AI Assistant & Simulation: Sidebar assistant powered by OpenRouter API (Llama 3.1 70B Instruct LLM) that injects full buffer code and workspace state. Features a custom AI emulator that acts as a fallback runtime engine predicting console outputs when external compilation APIs are offline.',
-      'Production-Grade Infrastructure: Configured a Render Blueprint (render.yaml) for automated SPA static resource routing, database pipelines, and production hosting.'
+      'Real-Time Multi-User Collaboration: Live keystroke synchronization with race-condition-safe counter-based edit gating (remoteChangeDepth)',
+      'Live Presence & Cursor Tracking: Color-coded peer cursor and selection decorations in Monaco Editor with active typing indicators',
+      '1-to-1 & Group WebRTC Voice Calling: Full-duplex browser audio mesh built from scratch with SDP Offer/Answer negotiation, ICE relay, and live speaker detection',
+      'Hardware Acoustic Echo Cancellation: Browser-native AEC, Noise Suppression (NS), and Auto Gain Control (AGC) at the media stream level',
+      'Synthesized Telephone Ringtone: Dual oscillator nodes from Web Audio API producing realistic ringing with zero audio assets',
+      'Sandboxed Multi-Language Compiler: In-browser execution for 13+ languages via Piston API v2 with AI neural fallback engine',
+      'Ephemeral Auto-Purge Lifecycle: Instant memory and database purge of rooms, code, voice streams, and chat once all peers disconnect',
+      'Context-Aware AI Assistant: Llama 3.1 70B via OpenRouter for code explanation, refactoring, and automated unit test generation',
+      'Code Timeline Snapshots: Save up to 20 code states per room with instant timeline rollback'
     ],
     challenges:
-      '1. Caret Merging & Cursor Jumping: When a socket update is received, updating the editor text model resets caret positions to the end or start of the file. Solved by locking writes behind an isRemoteChange.current flag, saving current cursor coordinates, and restoring the caret and highlights instantly.\n\n2. Network Stability & Offline Fallbacks: Connection losses could drop rooms or lose buffer state. Resolved by building a resilient Express fallback storage manager (in-memory Map) to take over during database timeouts, paired with a connection health indicator.',
+      '1. Monaco Caret Jumping During Concurrent Edits: Gated local vs remote editor events with a remoteChangeDepth integer counter (rather than a simple boolean flag), restoring exact caret coordinates instantly.\n\n2. Native WebRTC Audio Mesh Without 3rd-Party SDKs: Implemented complete SDP Offer/Answer negotiation, ICE candidate handling, and Voice Activity Detection (VAD) via Web Audio API AnalyserNode.\n\n3. High-Availability Persistence: Built a dual-persistence architecture pairing PostgreSQL 16 with a transparent in-memory Map fallback to maintain full room functionality during database disconnects.',
+    architecture:
+      'Decoupled React 19 & Monaco Editor client interacting via WebSockets (Socket.io) with an Express 5 backend. Peer-to-peer audio routed through WebRTC mesh, sandboxed runs via Piston API, and dual storage combining PostgreSQL 16 and in-memory Map cache.',
     myRole: 'Lead Full Stack & Systems Architect',
     impact:
-      'Won 1st Place Winner at Code Thugs 2k26 (National Hackathon) for technical complexity in collaborative architectures, competing against teams nationally and successfully deploying a production-ready real-time editor.',
+      'Won 1st Place Winner at Code Thugs 2k26 (National Hackathon) for technical complexity in collaborative architectures, deploying a production-ready real-time editor serving developers globally.',
     keyLearnings:
-      'Mastered real-time WebSocket communication, state recovery mechanisms in editor text models, sandboxed runtime environments, and designing fallback systems for high availability.'
+      'Mastered WebRTC peer mesh networking from first principles, Web Audio API synthesis, fine-grained Monaco editor text model concurrency, and fault-tolerant dual-store architectures.'
   },
   {
-    title: "Techy Tharun's Chatbox — AI Assistant",
+    title: "Techy Tharun's Chatbox — Intelligent AI Chat Platform",
     description:
-      'A high-performance, premium AI assistant powered by GPT-4o. Featuring a sleek, humanized interface and optimized for extreme speed and near-zero latency streaming.',
+      'High-performance, multi-model AI conversation platform featuring Server-Sent Events (SSE) streaming, automated key rotation fallback, and persistent chat history.',
     longDescription:
-      "Techy Tharun's Chatbox is a high-performance, conversational AI assistant powered by OpenAI GPT-4o models, engineered for near-zero latency streaming and humanized digital interaction.\n\nThe platform offers multimodal capabilities, enabling users to upload and parse documents (PDF, DOCX, TXT), perform real-time voice transcription, and receive beautifully formatted markdown responses.\n\nArchitected with Next.js 15 App Router, TypeScript, Tailwind CSS, Prisma ORM, and Neon Serverless PostgreSQL, it achieves sub-200ms latency through parallelized backend operations.\n\nDesigned as a PWA with sleek glassmorphism aesthetics, it delivers an intuitive, empathetic chat experience tailored for high-speed technical workflows.",
+      "Techy Tharun's Chatbox is a high-performance, conversational AI assistant engineered for near-zero latency streaming and multi-model resilience.\n\nBuilt as a secure full-stack Next.js 15 application, it utilizes Server-Sent Events (SSE) to deliver instantaneous typewriter-style responses. It incorporates a custom token-aware Key Manager that automatically load-balances and rotates across Groq, OpenRouter, and OpenAI to eliminate rate limits.\n\nWith persistent conversation memory stored in Neon Serverless PostgreSQL via Prisma ORM, context-aware AI personas, file attachment parsing, and NextAuth.js v5 Google SSO, it delivers an intuitive, glassmorphic chat experience tailored for developers and technical workflows.",
     date: 'Feb 2026 - Apr 2026',
     githubLink: 'https://github.com/Tharun4743/Tharun-s-Chatbox',
     link: 'https://tharunchatbox.onrender.com',
-    tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma', 'Neon PostgreSQL', 'GPT-4o'],
+    tags: [
+      'Next.js 15',
+      'React 18',
+      'TypeScript',
+      'Tailwind CSS',
+      'Prisma ORM',
+      'Neon PostgreSQL',
+      'NextAuth.js v5',
+      'Groq',
+      'OpenRouter',
+      'OpenAI'
+    ],
     category: 'fullstack',
     status: 'Production Deployed',
     image: chatboxImg,
     problem:
-      'Standard AI chat interfaces often suffer from high latency, clunky document uploads, lack of voice interaction, and robotic user experiences that fail to adapt to local network setups.',
+      'Standard AI interfaces suffer from high streaming latency, rigid single-provider rate limits, clunky document uploads, and lack of persistent conversation memory.',
     solution:
-      "Techy Tharun's Chatbox leverages parallelized GPT-4o streaming APIs, Next.js 15 App Router, and a humanized glassmorphic UI supporting instant document parsing, voice commands, and sub-200ms response streaming.",
+      "Techy Tharun's Chatbox integrates Server-Sent Events (SSE) typewriter streaming, multi-provider token-aware key rotation (Groq -> OpenRouter -> OpenAI), document attachment parsing, and PostgreSQL chat storage.",
     features: [
-      'Extreme Performance with parallelized backend operations for near-zero latency streaming',
-      'Humanized UI featuring empathetic authentication flow and sleek glassmorphism design',
-      'Advanced Tools supporting file attachments (PDF, Doc, TXT), voice input, and markdown rendering',
-      'PWA-ready and optimized for local networks with personalized branding'
+      'Live SSE Streaming Responses: Server-Sent Events delivering instant, typewriter-style text generation with sub-200ms latency',
+      'Multi-Provider Fallback Logic: Token-aware Key Manager rotating across Groq, OpenRouter, and OpenAI to bypass rate limits and outages',
+      'Context-Aware AI Personas: Specialized modes including Code Assistant, Document Analyzer, and Resume Reviewer',
+      'Intelligent File Context: Direct document uploads (PDF, DOCX, TXT) parsed and referenced directly within conversational context',
+      'Persistent PostgreSQL Chat Memory: Session storage in Neon PostgreSQL via Prisma ORM for seamless history retrieval',
+      'Enterprise Security & Google SSO: One-click authentication powered by NextAuth.js (Auth.js) v5 with secure session management'
     ],
     challenges:
-      'Handling response latency and message streaming connections. Solved by parallelizing backend operations and streaming tokens to achieve near-zero latency.',
+      'Handling persistent SSE streaming connections across serverless environments and avoiding rate limit bottlenecks. Solved by architecting an automated provider-rotating Key Manager with parallelized token dispatch.',
     architecture:
-      'Architected using Next.js 15 App Router and Turbopack, styled with Tailwind CSS and Framer Motion, authenticated via NextAuth.js v5 Beta, and powered by Prisma ORM with Neon Serverless PostgreSQL and OpenRouter (GPT-4o).',
-    myRole: 'AI Engineer & Frontend Architect',
-    impact: 'Achieved sub-200ms latency on AI streaming responses and created a seamless UX that mimics human-like interaction.',
-    keyLearnings: 'Deeply understood the complexities of handling Server-Sent Events (SSE) for AI streaming and optimizing Next.js App Router for extreme performance.'
+      'Next.js 15 App Router architecture utilizing Server Components, Prisma ORM with Neon Serverless PostgreSQL, and load-balanced API routing across Groq, OpenRouter, and OpenAI.',
+    myRole: 'AI Engineer & Full-Stack Architect',
+    impact:
+      'Achieved sub-200ms latency on AI streaming responses with 99.9% uptime through automated provider failover, serving as a reliable personal productivity tool.',
+    keyLearnings:
+      'Deepened expertise in Server-Sent Events (SSE) streaming protocols, multi-tenant serverless PostgreSQL optimizations, and multi-provider AI resilience engineering.'
   },
   {
     title: 'Aura — AI Unified Retrieval Assistant',
@@ -328,6 +368,7 @@ export const PROJECTS: Project[] = [
     githubLink: 'https://github.com/Tharun4743/SIH25231',
     tags: ['React', 'Spring Boot', 'Java', 'SQLite', 'ChromaDB', 'Ollama', 'Electron'],
     category: 'fullstack',
+    status: 'Production Architecture • SIH Submission',
     image: auraImg,
     problem:
       'Enterprise and defense environments requiring intelligent document and visual asset retrieval cannot rely on cloud-based LLM APIs due to strict data privacy, air-gapped network policies, and latency constraints.',
@@ -345,38 +386,56 @@ export const PROJECTS: Project[] = [
     architecture:
       'Decoupled React SPA frontend and RESTful Spring Boot Java API backend, sharing real-time event updates via WebSockets, all wrapped in an Electron desktop shell.',
     myRole: 'Core Systems Developer',
-    impact: 'Enabled completely air-gapped, privacy-preserving document and vision querying, making it suitable for secure enterprise and military deployment environments.',
-    keyLearnings: 'Learned to orchestrate local LLMs and vector databases within an Electron desktop shell and optimized Java Spring Boot for local low-memory environments.'
+    impact:
+      'Enabled completely air-gapped, privacy-preserving document and vision querying, making it suitable for secure enterprise and military deployment environments.',
+    keyLearnings:
+      'Learned to orchestrate local LLMs and vector databases within an Electron desktop shell and optimized Java Spring Boot for local low-memory environments.'
   },
   {
-    title: 'Smart Helmet IoT Safety System',
+    title: 'Smart Helmet — IoT Embedded Rider Safety System',
     description:
-      'An intelligent IoT helmet system that proactively prevents accidents by monitoring helmet wear, alcohol levels, and drowsiness — disabling bike ignition on unsafe conditions via RF communication. Smart India Hackathon 2025 Submission.',
+      'Intelligent dual-unit IoT safety system preventing accidents via IR helmet wear detection, MQ-3 alcohol sensing, and eye-blink drowsiness monitoring with RF ignition interlock.',
     longDescription:
-      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle casualties through real-time hardware sensing and ignition interlocking.\n\nDeveloped for Smart India Hackathon 2025, the system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication.\n\nIt continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (eye-blink patterns), automatically cutting bike ignition within 500ms under unsafe conditions.\n\nBuilt with Arduino microcontrollers, C programming, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
+      'The Smart Helmet IoT Safety System is an embedded rider safety platform engineered to proactively eliminate motorcycle accidents through real-time hardware sensing and wireless ignition interlocking.\n\nRecognized among the National Top 50 in Smart India Hackathon 2025 (0.5% acceptance out of 10,000+ teams), the dual-unit system links a sensor-equipped helmet with a motorcycle ignition receiver circuit via low-latency RF 433MHz wireless communication.\n\nIt continuously monitors helmet wearing compliance (IR proximity sensor), rider alcohol levels (MQ-3 sensor), and driver drowsiness (IR eye-blink sensor), automatically cutting bike ignition within 500ms under unsafe conditions. Built with Arduino microcontrollers, C/C++ firmware, relays, and an I²C LCD status display, it incorporates a 5-second RF fail-safe signal protection for real-world environmental reliability.',
     date: 'Sep 2025 - Oct 2025',
-    githubLink: 'https://github.com/Tharun4743/AGILE-INNOVATORS-smart-helmet-',
+    githubLink: 'https://github.com/Tharun4743/Smart-Helmet-IoT-Safety-System',
     driveLink: 'https://drive.google.com/drive/folders/1kYhyoOx9-Tr4WyOJkmUz7K4PDDpmaHEr?usp=drive_link',
-    tags: ['Arduino', 'C', 'RF 433MHz', 'IoT', 'Embedded Systems'],
+    tags: [
+      'Arduino',
+      'C / C++',
+      'RF 433MHz',
+      'MQ-3 Alcohol Sensor',
+      'IR Proximity Sensor',
+      'Eye-Blink Sensor',
+      'Relay Interlock',
+      'IoT Safety'
+    ],
     category: 'iot',
+    status: 'SIH 2025 National Top 50',
+    realWorldImplementation:
+      'Built and demonstrated as a working physical hardware prototype for Smart India Hackathon 2025, selected in the top 0.5% nationally.',
     image: smartHelmetImg,
     problem:
-      'Two-wheeler accidents frequently lead to severe casualties due to helmet non-compliance, DUI (driving under the influence), and unmonitored rider drowsiness.',
+      'Two-wheeler accidents frequently result in fatalities due to helmet non-compliance, driving under the influence (DUI), and unnoticed driver drowsiness.',
     solution:
-      'The Smart Helmet IoT Safety System links rider sensors (IR proximity, MQ-3 alcohol, eye-blink drowsiness) via RF 433MHz to an ignition-interlock circuit that automatically blocks bike ignition under unsafe conditions.',
+      'The Smart Helmet links rider sensors (IR proximity, MQ-3 alcohol, eye-blink drowsiness) via RF 433MHz to an ignition-interlock circuit that automatically blocks bike ignition under unsafe conditions within 500ms.',
     features: [
-      'Helmet Detection: Ensures rider wears the helmet before starting via IR/Proximity sensor',
-      'Alcohol Detection: MQ-3 sensor detects alcohol presence and blocks ignition',
-      'Drowsiness Detection: Monitors eye blink patterns and triggers buzzer on drowsiness',
-      'Failsafe Mode: Auto-disables ignition if no RF data is received for 5 seconds'
+      'Proactive Helmet Compliance Check: IR proximity sensor verifies helmet is worn before ignition can engage',
+      'Alcohol Sobriety Interlock: MQ-3 gas sensor detects alcohol vapors in breath and immediately inhibits ignition',
+      'Driver Drowsiness Alert: IR eye-blink sensor monitors prolonged eyelid closure and triggers an audible buzzer and ignition cutoff',
+      'Continuous RF Telemetry: Helmet transmitter broadcasts safety packet every 100ms via RF 433MHz to bike unit',
+      'RF Fail-Safe Protection: Automatic ignition interlock if RF communication is lost or tampered with for >5 seconds',
+      'Multi-Page LCD Dashboard: Real-time status display showing helmet wear, alcohol PPM, drowsiness, and ignition state'
     ],
     challenges:
-      'Ensuring reliable real-time communication between the helmet transmitter and bike receiver. Solved by utilizing RF 433MHz to send sensor data every 100ms with a failsafe mode for signal loss.',
+      'Ensuring microsecond-level synchronization between the helmet transmitter and motorcycle receiver over noisy RF 433MHz channels. Solved by implementing an optimized 100ms transmission packet with checksum validation and a 5-second failsafe timeout.',
     architecture:
-      'Dual-unit embedded system utilizing Arduino microcontrollers, RF transmitters/receivers, relays, and an I²C LCD display for real-time status.',
+      'Dual-unit embedded hardware system utilizing Arduino microcontrollers, RF 433MHz transmitter/receiver modules, 5V relay module for ignition interlock, active piezoelectric buzzer, and 16x2 I²C LCD display.',
     myRole: 'IoT & Embedded Systems Engineer',
-    impact: 'Developed a prototype capable of reacting in under 500ms to dangerous rider states, potentially preventing life-threatening accidents.',
-    keyLearnings: 'Navigated hardware constraints to establish reliable RF communication and improved sensor calibration techniques for real-world environmental noise.'
+    impact:
+      'Selected as National Top 50 at Smart India Hackathon 2025 (top 0.5% out of 10,000+ teams), proving a sub-500ms hardware response time capable of saving motorcycle rider lives.',
+    keyLearnings:
+      'Navigated embedded hardware constraints, noise filtering in analog gas sensors, RF transceiver packet stability, and failsafe design in life-critical systems.'
   }
 ];
 
