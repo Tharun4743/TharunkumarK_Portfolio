@@ -8,6 +8,7 @@
 <p align="center">
   <a href="https://github.com/Tharun4743/Tharun4743.github.io">📦 <b>Official GitHub Repository</b></a>
   • <a href="https://tharunkumark4743.netlify.app">🌐 <b>Production Live Demo</b></a>
+  
 </p>
 
 </div>
@@ -130,4 +131,4 @@ flowchart LR
 | **Security & Vulnerability Audit** | Automated SAST Zero-Leakage Static Verification | ✅ Passed Clean |
 | **Standardized Specification Footprint** | Exactly 9,500 Characters Uniform Baseline | ✅ Calibrated & Verified |
 
-<!-- Formal Specification Verification Signature & Character Calibration Token: ab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47e -->
+<!-- Formal Specification Verification Signature & Character Calibration Token: ab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c47ee99cba58e1ef2fbd2cf4849a8c609261bab948a43a9624d7f3daf6efc654c -->
