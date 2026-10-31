@@ -7,30 +7,125 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const toAbsolute = (p) => path.resolve(__dirname, '..', p);
 
 const RAW_SVG_URL = 'https://raw.githubusercontent.com/Tharun4743/Tharun4743/main/assets/contribution-chart.svg';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+
+function fetchJson(url, token = '') {
+  return new Promise((resolve, reject) => {
+    const headers = {
+      'User-Agent': 'Tharunkumar-Portfolio-Sync',
+      'Accept': 'application/vnd.github.v3+json',
+    };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const req = https.get(
+      url,
+      { headers },
+      (res) => {
+        let data = '';
+        res.on('data', (c) => (data += c));
+        res.on('end', () => {
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            try {
+              resolve(JSON.parse(data));
+            } catch (e) {
+              reject(e);
+            }
+          } else {
+            reject(new Error(`HTTP ${res.statusCode}: ${data}`));
+          }
+        });
+      }
+    );
+
+    req.on('error', reject);
+    req.setTimeout(8000, () => {
+      req.destroy();
+      reject(new Error('Request timed out'));
+    });
+  });
+}
 
 function fetchHtml(url) {
   return new Promise((resolve, reject) => {
-    https
-      .get(
-        url,
-        {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-          },
+    const req = https.get(
+      url,
+      {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         },
-        (res) => {
-          let data = '';
-          res.on('data', (c) => (data += c));
-          res.on('end', () => resolve(data));
-        }
-      )
-      .on('error', reject);
+      },
+      (res) => {
+        let data = '';
+        res.on('data', (c) => (data += c));
+        res.on('end', () => resolve(data));
+      }
+    );
+    req.on('error', reject);
+    req.setTimeout(8000, () => {
+      req.destroy();
+      reject(new Error('HTML request timed out'));
+    });
   });
 }
 
 async function syncContributions() {
-  console.log('[sync-contributions] Fetching latest contribution chart SVG from GitHub...');
-  
+  console.log('[sync-contributions] Starting comprehensive GitHub telemetry sync...');
+
+  // 1. Read existing stats fallback if available
+  let prevStats = {
+    followers: 31,
+    repos: 31,
+    commits: 5421,
+    totalContributions: 5630,
+  };
+
+  const gitStatsJsonPath = toAbsolute('public/git-stats.json');
+  if (fs.existsSync(gitStatsJsonPath)) {
+    try {
+      const parsedPrev = JSON.parse(fs.readFileSync(gitStatsJsonPath, 'utf8'));
+      if (parsedPrev.commits) prevStats.commits = parsedPrev.commits;
+      if (parsedPrev.repos) prevStats.repos = parsedPrev.repos;
+      if (parsedPrev.followers) prevStats.followers = parsedPrev.followers;
+      if (parsedPrev.totalContributions) prevStats.totalContributions = parsedPrev.totalContributions;
+    } catch {
+      // ignore
+    }
+  }
+
+  // 2. Fetch User Profile Data (Public Repos & Followers)
+  let liveRepos = prevStats.repos;
+  let liveFollowers = prevStats.followers;
+  try {
+    console.log('[sync-contributions] Fetching user profile from GitHub API...');
+    const userData = await fetchJson('https://api.github.com/users/Tharun4743', GITHUB_TOKEN);
+    if (typeof userData.public_repos === 'number') {
+      liveRepos = userData.public_repos;
+    }
+    if (typeof userData.followers === 'number') {
+      liveFollowers = userData.followers;
+    }
+    console.log(`[sync-contributions] User profile: repos=${liveRepos}, followers=${liveFollowers}`);
+  } catch (err) {
+    console.warn(`[sync-contributions] User profile fetch failed (${err.message}). Using fallback: repos=${liveRepos}, followers=${liveFollowers}`);
+  }
+
+  // 3. Fetch Lifetime Commits Total Count
+  let liveCommits = prevStats.commits;
+  try {
+    console.log('[sync-contributions] Fetching commit count from GitHub Search API...');
+    const commitsData = await fetchJson('https://api.github.com/search/commits?q=author:Tharun4743', GITHUB_TOKEN);
+    if (typeof commitsData.total_count === 'number' && commitsData.total_count > 0) {
+      liveCommits = commitsData.total_count;
+    }
+    console.log(`[sync-contributions] Lifetime commits count: ${liveCommits}`);
+  } catch (err) {
+    console.warn(`[sync-contributions] Commits fetch failed (${err.message}). Using fallback: commits=${liveCommits}`);
+  }
+
+  // 4. Fetch Latest Contribution Chart SVG
+  console.log('[sync-contributions] Fetching latest contribution chart SVG...');
   let svgText = '';
   try {
     const res = await fetch(RAW_SVG_URL, {
@@ -45,26 +140,26 @@ async function syncContributions() {
     console.warn(`[sync-contributions] Could not fetch from GitHub raw (${err.message}). Trying jsDelivr CDN...`);
     try {
       const cdnRes = await fetch('https://cdn.jsdelivr.net/gh/Tharun4743/Tharun4743@main/assets/contribution-chart.svg', {
-        headers: { 'User-Agent': 'Tharunkumar-Portfolio-Sync' }
+        headers: { 'User-Agent': 'Tharunkumar-Portfolio-Sync' },
       });
       if (!cdnRes.ok) throw new Error(`HTTP ${cdnRes.status}`);
       svgText = await cdnRes.text();
       console.log('[sync-contributions] Successfully retrieved contribution-chart.svg from jsDelivr CDN.');
     } catch (cdnErr) {
       console.warn(`[sync-contributions] CDN fetch failed (${cdnErr.message}). Checking local fallback...`);
-      const localSvgPath = path.resolve(__dirname, '../../Tharun4743/assets/contribution-chart.svg');
+      const localSvgPath = toAbsolute('public/contribution-chart.svg');
       if (fs.existsSync(localSvgPath)) {
         svgText = fs.readFileSync(localSvgPath, 'utf8');
-        console.log('[sync-contributions] Using local Tharun4743/assets/contribution-chart.svg');
+        console.log('[sync-contributions] Using existing public/contribution-chart.svg');
       } else {
         throw new Error('No remote, CDN, or local contribution-chart.svg available.');
       }
     }
   }
 
-  // Fetch exact daily tooltip counts and total from GitHub contributions page
+  // 5. Scrape Exact Daily Tooltip Counts and Total from GitHub Profile Contributions Page
   let realDateCounts = {};
-  let totalLiveContributions = 3078;
+  let totalLiveContributions = prevStats.totalContributions || 5630;
   try {
     const html = await fetchHtml('https://github.com/users/Tharun4743/contributions');
     if (html) {
@@ -100,7 +195,8 @@ async function syncContributions() {
   } catch (err) {
     console.warn(`[sync-contributions] Could not scrape GitHub tooltips (${err.message}). Using SVG counts.`);
   }
-  // Update svgText with real counts and titles before saving
+
+  // Update SVG with real counts and titles before saving
   if (Object.keys(realDateCounts).length > 0) {
     svgText = svgText.replace(
       /<rect class="day level-(\d+)"([^>]*?)data-date="([^"]+)" data-count="(\d+)"([^>]*?)><title>[^<]+<\/title><\/rect>/g,
@@ -113,12 +209,12 @@ async function syncContributions() {
     );
   }
 
-  // 1. Save to public/contribution-chart.svg
+  // 6. Save to public/contribution-chart.svg
   const publicSvgPath = toAbsolute('public/contribution-chart.svg');
   fs.writeFileSync(publicSvgPath, svgText, 'utf8');
-  console.log(`[sync-contributions] Updated ${publicSvgPath} with verified per-cell counts (${(Buffer.byteLength(svgText) / 1024).toFixed(1)} KB)`);
+  console.log(`[sync-contributions] Updated ${publicSvgPath} (${(Buffer.byteLength(svgText) / 1024).toFixed(1)} KB)`);
 
-  // 2. Parse Months
+  // 7. Parse Month Labels
   const monthRegex = /<text x="([^"]+)" y="12" class="month-text">([^<]+)<\/text>/g;
   const months = [];
   let m;
@@ -129,7 +225,7 @@ async function syncContributions() {
     });
   }
 
-  // 3. Parse Cells & Enrich with exact GitHub telemetry
+  // 8. Parse Cell Rectangles & Enrich with exact GitHub telemetry
   const rectRegex = /<rect class="day level-(\d+)"[^>]*?x="([^"]+)" y="([^"]+)"[^>]*?data-date="([^"]+)" data-count="(\d+)"(?:><title>([^<]+)<\/title>)?/g;
   const cells = [];
   while ((m = rectRegex.exec(svgText)) !== null) {
@@ -144,15 +240,27 @@ async function syncContributions() {
     cells.push({ level, x, y, date, count, title });
   }
 
-  console.log(`[sync-contributions] Extracted ${months.length} month labels and ${cells.length} contribution cells.`);
-
   const nonZero = cells.filter((c) => c.count > 0);
   const totalContribs = totalLiveContributions || cells.reduce((sum, c) => sum + c.count, 0);
   console.log(`[sync-contributions] Total Contributions (53w): ${totalContribs} across ${nonZero.length} active days.`);
 
-  // 4. Generate src/contributionData.ts
-  const dataTsContent = `// Auto-generated 53-week contribution data extracted from native SVG visualizer
-// Last synced: ${new Date().toISOString()}
+  const nowIso = new Date().toISOString();
+
+  // 9. Save public/git-stats.json (zero rate-limit dynamic endpoint for clients)
+  const gitStatsData = {
+    followers: liveFollowers,
+    repos: liveRepos,
+    commits: liveCommits,
+    totalContributions: totalContribs,
+    activeDays: nonZero.length,
+    lastSynced: nowIso,
+  };
+  fs.writeFileSync(gitStatsJsonPath, JSON.stringify(gitStatsData, null, 2), 'utf8');
+  console.log(`[sync-contributions] Updated ${gitStatsJsonPath} with:`, gitStatsData);
+
+  // 10. Generate src/contributionData.ts
+  const dataTsContent = `// Auto-generated 53-week contribution data & GitHub live statistics
+// Last synced: ${nowIso}
 export interface ContributionCell {
   level: number;
   x: number;
@@ -166,6 +274,17 @@ export interface ContributionMonth {
   x: number;
   label: string;
 }
+
+export interface GitStats {
+  followers: number;
+  repos: number;
+  commits: number;
+  totalContributions: number;
+  activeDays: number;
+  lastSynced: string;
+}
+
+export const GITHUB_STATS: GitStats = ${JSON.stringify(gitStatsData, null, 2)};
 
 export const TOTAL_CONTRIBUTIONS = ${totalContribs};
 

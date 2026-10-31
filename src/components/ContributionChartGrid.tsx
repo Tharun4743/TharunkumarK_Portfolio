@@ -3,6 +3,7 @@ import {
   CONTRIBUTION_CELLS,
   CONTRIBUTION_MONTHS,
   TOTAL_CONTRIBUTIONS,
+  GITHUB_STATS,
   ContributionCell,
   ContributionMonth,
 } from '../contributionData';
@@ -108,24 +109,37 @@ export const ContributionChartGrid: React.FC<ContributionChartGridProps> = ({
       // 3. Local fallback static asset
       const fallbackUrl = `/contribution-chart.svg?t=${Date.now()}`;
 
-      const tryFetch = async (url: string) => {
-        const res = await fetch(url, {
-          signal: controller.signal,
-          headers: { 'Cache-Control': 'no-cache' },
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return await res.text();
+      const tryFetchWithTimeout = async (url: string, ms = 3000) => {
+        const fetchController = new AbortController();
+        const timeout = setTimeout(() => fetchController.abort(), ms);
+        try {
+          const res = await fetch(url, {
+            signal: fetchController.signal,
+            headers: { 'Cache-Control': 'no-cache' },
+          });
+          clearTimeout(timeout);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return await res.text();
+        } catch (e) {
+          clearTimeout(timeout);
+          throw e;
+        }
       };
 
       try {
         let svgText = '';
+        // Fast, high-availability order: CDN -> Local -> Raw GitHub
         try {
-          svgText = await tryFetch(primaryUrl);
+          svgText = await tryFetchWithTimeout(cdnUrl, 3000);
         } catch {
           try {
-            svgText = await tryFetch(cdnUrl);
+            svgText = await tryFetchWithTimeout(fallbackUrl, 2500);
           } catch {
-            svgText = await tryFetch(fallbackUrl);
+            try {
+              svgText = await tryFetchWithTimeout(primaryUrl, 3000);
+            } catch {
+              // all failed
+            }
           }
         }
 
@@ -148,18 +162,17 @@ export const ContributionChartGrid: React.FC<ContributionChartGridProps> = ({
 
           if (onSyncStatus) {
             const sumCounts = accurateCells.reduce((acc, c) => acc + c.count, 0);
-            const total = sumCounts > 1000 ? sumCounts : TOTAL_CONTRIBUTIONS;
-            const activeDays = accurateCells.filter((c) => c.count > 0).length;
+            const total = sumCounts > 1000 ? sumCounts : (TOTAL_CONTRIBUTIONS || GITHUB_STATS.totalContributions);
+            const activeDays = accurateCells.filter((c) => c.count > 0).length || GITHUB_STATS.activeDays;
             onSyncStatus({ total, isLive: true, activeDays });
           }
         }
       } catch (err) {
         if (isMounted) {
-          // If network fetch fails, report stats from initial fallback cells
           if (onSyncStatus) {
             const sumCounts = CONTRIBUTION_CELLS.reduce((acc, c) => acc + c.count, 0);
-            const total = sumCounts > 1000 ? sumCounts : TOTAL_CONTRIBUTIONS;
-            const activeDays = CONTRIBUTION_CELLS.filter((c) => c.count > 0).length;
+            const total = sumCounts > 1000 ? sumCounts : (TOTAL_CONTRIBUTIONS || GITHUB_STATS.totalContributions);
+            const activeDays = CONTRIBUTION_CELLS.filter((c) => c.count > 0).length || GITHUB_STATS.activeDays;
             onSyncStatus({ total, isLive: false, activeDays });
           }
         }

@@ -53,7 +53,7 @@ import {
 import { Project, RoleItem, LeadershipItem, EducationItem } from './type';
 import VsbShowcase from './VsbShowcase';
 import ContributionChartGrid from './components/ContributionChartGrid';
-import { ContributionCell, TOTAL_CONTRIBUTIONS } from './contributionData';
+import { ContributionCell, TOTAL_CONTRIBUTIONS, GITHUB_STATS } from './contributionData';
 import infosysSpringboardImg from './assets/infosys-springboard.png';
 import tcsIonImg from './assets/tcs-ion.png';
 import futureSkillsImg from './assets/futureskills-prime.png';
@@ -334,7 +334,7 @@ const CountUp: React.FC<{ value: number; suffix?: string; duration?: number }> =
   suffix = '',
   duration = 1200
 }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => typeof window === 'undefined' ? (Number(value) || 0) : 0);
   const prevValueRef = useRef(0);
 
   useEffect(() => {
@@ -603,7 +603,7 @@ interface AIChatbotProps {
   };
 }
 
-const AIChatbot: React.FC<AIChatbotProps> = ({ gitStats = { commits: 3574, repos: 30 } }) => {
+const AIChatbot: React.FC<AIChatbotProps> = ({ gitStats = { commits: GITHUB_STATS.commits, repos: GITHUB_STATS.repos } }) => {
   const ALL_QUESTIONS = [
     'What is your professional background?',
     'Can you detail your top projects?',
@@ -622,8 +622,8 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ gitStats = { commits: 3574, repos
   ]);
   const [isTyping, setIsTyping] = useState(false);
 
-  const safeCommits = (gitStats?.commits ?? 3574).toLocaleString();
-  const safeRepos = gitStats?.repos ?? 30;
+  const safeCommits = (gitStats?.commits ?? GITHUB_STATS.commits).toLocaleString();
+  const safeRepos = gitStats?.repos ?? GITHUB_STATS.repos;
 
   const qaPairs = [
     {
@@ -769,9 +769,9 @@ interface GitHubWidgetProps {
 
 const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) => {
   const [contribStats, setContribStats] = useState<{ total: number; isLive: boolean; activeDays: number }>({
-    total: TOTAL_CONTRIBUTIONS || 3078,
-    isLive: false,
-    activeDays: 142,
+    total: TOTAL_CONTRIBUTIONS || GITHUB_STATS.totalContributions,
+    isLive: true,
+    activeDays: GITHUB_STATS.activeDays || 163,
   });
   const [hoveredCell, setHoveredCell] = useState<ContributionCell | null>(null);
 
@@ -809,7 +809,7 @@ const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) =
                   {gitStats.loading ? (
                     <span className="animate-pulse text-slate-400">...</span>
                   ) : (
-                    <CountUp value={gitStats.repos} />
+                    <CountUp value={gitStats.repos || GITHUB_STATS.repos} />
                   )}
                 </p>
               </TiltCard>
@@ -827,7 +827,7 @@ const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) =
                   {gitStats.loading ? (
                     <span className="animate-pulse text-slate-400">...</span>
                   ) : (
-                    <CountUp value={gitStats.commits || 3574} />
+                    <CountUp value={gitStats.commits || GITHUB_STATS.commits} />
                   )}
                 </p>
               </TiltCard>
@@ -845,7 +845,7 @@ const GitHubWidget: React.FC<GitHubWidgetProps> = ({ primaryColor, gitStats }) =
                   {gitStats.loading ? (
                     <span className="animate-pulse text-slate-400">...</span>
                   ) : (
-                    <CountUp value={gitStats.followers} />
+                    <CountUp value={gitStats.followers || GITHUB_STATS.followers} />
                   )}
                 </p>
               </TiltCard>
@@ -1312,9 +1312,9 @@ const App: React.FC = () => {
   const [isDedicatedShowcase, setIsDedicatedShowcase] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'fullstack' | 'ai' | 'iot'>('all');
   const [gitStats, setGitStats] = useState({
-    followers: 7,
-    repos: 30,
-    commits: 3574,
+    followers: GITHUB_STATS.followers,
+    repos: GITHUB_STATS.repos,
+    commits: GITHUB_STATS.commits,
     loading: false,
     error: false
   });
@@ -1388,6 +1388,29 @@ const App: React.FC = () => {
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     const fetchLiveGitHub = async () => {
+      // 1. Instantly hydrate from zero-rate-limit local JSON endpoint
+      try {
+        const jsonRes = await fetch(`/git-stats.json?t=${Date.now()}`, {
+          signal: controller.signal,
+          headers: { 'Cache-Control': 'no-cache' }
+        });
+        if (jsonRes.ok) {
+          const statsJson = await jsonRes.json();
+          if (isMounted && typeof statsJson.commits === 'number') {
+            setGitStats(prev => ({
+              ...prev,
+              followers: statsJson.followers ?? prev.followers,
+              repos: statsJson.repos ?? prev.repos,
+              commits: statsJson.commits ?? prev.commits,
+              loading: false
+            }));
+          }
+        }
+      } catch {
+        // Fallback continues to direct GitHub API
+      }
+
+      // 2. Fetch live data from GitHub REST & Search APIs
       try {
         const [userRes, commitsRes] = await Promise.allSettled([
           fetch('https://api.github.com/users/Tharun4743', {
@@ -1405,14 +1428,14 @@ const App: React.FC = () => {
         ]);
         clearTimeout(timeoutId);
 
-        let liveFollowers = 7;
-        let liveRepos = 30;
-        let liveCommits = 3574;
+        let liveFollowers = GITHUB_STATS.followers;
+        let liveRepos = GITHUB_STATS.repos;
+        let liveCommits = GITHUB_STATS.commits;
 
         if (userRes.status === 'fulfilled' && userRes.value.ok) {
           const userJson = await userRes.value.json();
-          liveFollowers = typeof userJson.followers === 'number' ? userJson.followers : (Number(userJson.followers) || 7);
-          liveRepos = typeof userJson.public_repos === 'number' ? userJson.public_repos : (Number(userJson.public_repos) || 30);
+          liveFollowers = typeof userJson.followers === 'number' ? userJson.followers : (Number(userJson.followers) || GITHUB_STATS.followers);
+          liveRepos = typeof userJson.public_repos === 'number' ? userJson.public_repos : (Number(userJson.public_repos) || GITHUB_STATS.repos);
         }
 
         if (commitsRes.status === 'fulfilled' && commitsRes.value.ok) {
@@ -1423,13 +1446,13 @@ const App: React.FC = () => {
         }
 
         if (isMounted) {
-          setGitStats({
-            followers: liveFollowers,
-            repos: liveRepos,
-            commits: liveCommits,
+          setGitStats(prev => ({
+            followers: liveFollowers || prev.followers,
+            repos: liveRepos || prev.repos,
+            commits: liveCommits || prev.commits,
             loading: false,
             error: false
-          });
+          }));
         }
       } catch (err) {
         if (isMounted) {
@@ -1657,7 +1680,7 @@ const App: React.FC = () => {
                 const aboutStats = [
                   { label: 'Projects Built', value: PROJECTS.length, suffix: '', loading: false, error: false },
                   { label: 'Certifications', value: CERTIFICATIONS.length, suffix: '', loading: false, error: false },
-                  { label: 'GitHub Repos', value: gitStats.repos, suffix: '', loading: gitStats.loading, error: gitStats.error }
+                  { label: 'GitHub Repos', value: gitStats.repos || GITHUB_STATS.repos, suffix: '', loading: gitStats.loading, error: gitStats.error }
                 ].filter(s => !s.error);
 
                 return (

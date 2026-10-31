@@ -16,6 +16,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { PERSONAL_INFO } from './constants';
+import { GITHUB_STATS } from './contributionData';
 
 interface VsbShowcaseProps {
   isDedicatedPage?: boolean;
@@ -29,8 +30,8 @@ interface VsbShowcaseProps {
 
 export const VsbShowcase: React.FC<VsbShowcaseProps> = ({ isDedicatedPage = false, onNavigateHome, gitStats }) => {
   const [liveStats, setLiveStats] = React.useState({
-    repos: gitStats?.repos || 30,
-    commits: gitStats?.commits || 3574
+    repos: gitStats?.repos || GITHUB_STATS.repos,
+    commits: gitStats?.commits || GITHUB_STATS.commits
   });
 
   React.useEffect(() => {
@@ -40,13 +41,30 @@ export const VsbShowcase: React.FC<VsbShowcaseProps> = ({ isDedicatedPage = fals
     }
     let isMounted = true;
     const fetchLive = async () => {
+      // 1. Try zero-rate-limit cached stats first
+      try {
+        const jsonRes = await fetch(`/git-stats.json?t=${Date.now()}`);
+        if (jsonRes.ok) {
+          const stats = await jsonRes.json();
+          if (isMounted && typeof stats.commits === 'number') {
+            setLiveStats({
+              repos: stats.repos ?? GITHUB_STATS.repos,
+              commits: stats.commits ?? GITHUB_STATS.commits
+            });
+          }
+        }
+      } catch {
+        // Continue to API fetch
+      }
+
+      // 2. Fetch live data from GitHub APIs
       try {
         const [userRes, commitsRes] = await Promise.allSettled([
           fetch('https://api.github.com/users/Tharun4743'),
           fetch('https://api.github.com/search/commits?q=author:Tharun4743')
         ]);
-        let repos = 30;
-        let commits = 3574;
+        let repos = gitStats?.repos || GITHUB_STATS.repos;
+        let commits = gitStats?.commits || GITHUB_STATS.commits;
         if (userRes.status === 'fulfilled' && userRes.value.ok) {
           const u = await userRes.value.json();
           if (typeof u.public_repos === 'number') repos = u.public_repos;
